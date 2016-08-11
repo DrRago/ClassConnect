@@ -34,6 +34,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
         <link rel="stylesheet" href="../css/edit.css">
         <link rel="stylesheet" href="../css/formula.css">
         <link rel="stylesheet" href="../css/input_container.css">
+
     </head>
     <body>
     <?php require "navigator.php" ?>

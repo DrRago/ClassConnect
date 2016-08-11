@@ -7,7 +7,7 @@ include_once "../scripts/communicate.php";
 $links = json_decode(getContent(array(), "get_patchnotes.php"));
 
 if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
-    header('Location: ' . $_SESSION["language"] . 'timetable.php');
+    header('Location: timetable.php');
     exit;
 }
 ?>
