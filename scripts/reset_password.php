@@ -21,4 +21,4 @@ if ($result == null) {
 
 unset($_SESSION['resetPassword']);
 
-header("Location: " . $_SESSION["language"] . "/edit.php?id=" . $id);
+header("Location: ../" . $_SESSION["language"] . "/edit.php?id=" . $id);

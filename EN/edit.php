@@ -103,11 +103,11 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                     </div>
                     <?php
                     if ($_SESSION["resetStatus"] == "success") {
-                        echo "<script>alert('Password reset successful! New password is ", $_SESSION["newPassword"], "')</script>";
+                        echo "<div style='margin-top: 50px;margin-bottom: -30px' class='alert-box success'><span>success: </span>Password reset successful! New password is ", $_SESSION["newPassword"], ".</div>";
                         unset($_SESSION["resetStatus"]);
                         unset($_SESSION["newPassword"]);
                     } elseif ($_SESSION["resetStatus"] == "error") {
-                        echo "<script>alert('ERROR! Password NOT reset')</script>";
+                        echo "<div style='margin-top: 50px;margin-bottom: -30px' class='alert-box error'><span>error: </span>Password not reset!</div>";
                         unset($_SESSION["resetStatus"]);
                     }
                 }

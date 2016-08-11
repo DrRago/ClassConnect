@@ -25,9 +25,9 @@ if (isset($_SESSION["username"]) & isset($_SESSION["password"])) {
     } else {
         $_SESSION = array();
         $_SESSION["login"] = "error";
-        header("Location: index.php");
+        header("Location: ../index.php");
     }
 } else {
     $_SESSION = array();
-    header("Location: index.php");
+    header("Location: ../index.php");
 }

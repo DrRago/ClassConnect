@@ -4,7 +4,7 @@ require "../scripts/check_user.php";
 ?>
 <html>
 <head>
-    <title>Helpdesk</title>
+    <title>Hilfe</title>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
@@ -23,11 +23,11 @@ require "../scripts/check_user.php";
 <?php if ($_SESSION["permissions"] != "ServerAdmin") { ?>
     <div class="inputs">
         <form class="form" method="post" action="../scripts/add_ticket.php">
-            <div class="input"><label class="username">Username:<a class="IsRequired">*</a></label><input class="name"
+            <div class="input"><label class="username">Benutzername:<a class="IsRequired">*</a></label><input class="name"
                                                                                                           name="username"
                                                                                                           type="text"
                                                                                                           value="<?php echo $_SESSION['username'] ?>"
-                                                                                                          placeholder="Username"
+                                                                                                          placeholder="Benutzername"
                                                                                                           readonly><br>
             </div>
             <div class="input"><label class="name">Name:<a class="IsRequired">*</a></label><input name="name"
@@ -39,17 +39,17 @@ require "../scripts/check_user.php";
                                                                                                   } ?>"
                                                                                                   placeholder="Name"
                                                                                                   required><br></div>
-            <div class="input"><label class="email">Email Address:<a class="IsRequired">*</a></label><input name="email"
+            <div class="input"><label class="email">Email adresse:<a class="IsRequired">*</a></label><input name="email"
                                                                                                             type="email"
                                                                                                             value="<?php if (isset($_SESSION["ticketEmail"])) {
                                                                                                                 echo $_SESSION["ticketEmail"];
                                                                                                             } else {
                                                                                                                 echo $_SESSION['email'];
                                                                                                             } ?>"
-                                                                                                            placeholder="Email"
+                                                                                                            placeholder="Email adresse"
                                                                                                             required><br>
             </div>
-            <div class="input"><label class="topic">Topic:<a class="IsRequired">*</a></label>
+            <div class="input"><label class="topic">Art:<a class="IsRequired">*</a></label>
                 <select name="topic" title="topicSelection" required>
                     <option value="Bug">Bug</option>
                     <option value="Add Class">Add Class</option>
@@ -57,15 +57,15 @@ require "../scripts/check_user.php";
                     <option value="Other">Other</option>
                 </select><br>
             </div>
-            <div class="input"><label class="message">Message:<a class="IsRequired">*</a></label><textarea
+            <div class="input"><label class="message">Nachricht:<a class="IsRequired">*</a></label><textarea
                     maxlength="500" oninput="resize()" id="message" name="message"
                     placeholder="message"><?php echo $_SESSION["ticketMessage"] ?></textarea><br></div>
             <button type="submit" class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
             <?php if ($_SESSION["addTicket"] == "success") {
-                echo "<div class='alert-box success'><span>success: </span>Ticket raised successfully.</div>";
+                echo "<div class='alert-box success'><span>erfolg: </span>Ticket erfolgreich hinzugefügt.</div>";
                 unset($_SESSION["addTicket"]);
             } elseif ($_SESSION["addTicket"] == "error") {
-                echo "<div class='alert-box error'><span>error: </span>Wrong email format.</div>";
+                echo "<div class='alert-box error'><span>fehler: </span>Falsches Emailformat</div>";
                 unset($_SESSION["addTicket"]);
             }
             unset($_SESSION["ticketEmail"]);
@@ -83,14 +83,14 @@ require "../scripts/check_user.php";
         <table>
             <tr>
                 <th class="id"><strong>ID</strong></th>
-                <th class="creator"><strong>Creator</strong></th>
+                <th class="creator"><strong>Ersteller</strong></th>
                 <th class="mail"><strong>Email</strong></th>
-                <th class="reason"><strong>Reason</strong></th>
-                <th class="crID"><strong>Creator ID</strong></th>
+                <th class="reason"><strong>Grund</strong></th>
+                <th class="crID"><strong>Ersteller ID</strong></th>
             </tr>
             <?php
             if (!isset($result)) {
-                echo "<tr><td colspan='5'>No Tickets</td></tr>";
+                echo "<tr><td colspan='5'>Keine Tickets</td></tr>";
             } else {
                 foreach ($result as $object) {
                     echo "<tr onclick='window.location.href=\"ticket.php?id=", $object->{'id'}, "\"'><td><input class='ticketID' name='id' type='text' readonly style='width:", strlen($object->{'id'}) * 10, "px;' value='", $object->{'id'}, "'>";
@@ -103,7 +103,7 @@ require "../scripts/check_user.php";
         </table>
         <?php
         if (isset($_SESSION["deleteTicket"])) {
-            echo "<div class='alert-box ticketSuccess'><span>success: </span>Ticket ", $_SESSION['deleteTicket'], " deleted successfully.</div>";
+            echo "<div class='alert-box ticketSuccess'><span>erfolg: </span>Ticket ", $_SESSION['deleteTicket'], " erfolgreich gelöscht.</div>";
             unset($_SESSION["deleteTicket"]);
         }
         ?>

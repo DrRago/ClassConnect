@@ -25,16 +25,16 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
 <div class='login'>
     <img class='title_pic' src='../img/class_connect_title.png'>
     <?php if ($_SESSION['login'] == 'wrong') { ?>
-        <h4 class='error'>Wrong username or password, try again</h4>
+        <h4 class='error'>Falsche Eingabe, versuchen Sie es erneut</h4>
     <?php }
     if ($_SESSION['login'] == 'error') { ?>
-        <h4 class='error'>A random error occurred, please try to relog</h4>
+        <h4 class='error'>Ein Fehler ist aufgetreten, bitte loggen Sie sich neu ein</h4>
     <?php } ?>
     <form method='post' action='../scripts/login.php'>
-        <input type='text' class='user_in' name='username' placeholder='Username' required='required' autofocus
+        <input type='text' class='user_in' name='username' placeholder='Benutzername' required='required' autofocus
                autocomplete='off'/>
-        <input type='password' class='password_in' name='password' placeholder='Password' required='required'/>
-        <button type='submit' class='btn login_btn'>Login</button>
+        <input type='password' class='password_in' name='password' placeholder='Passwort' required='required'/>
+        <button type='submit' class='btn login_btn'>Anmelden</button>
         <a href="<?php echo $links[count($links) - 1]->link ?>">
             <button type="button" class='btn app_btn'><?php echo "App " . $links[count($links) - 1]->content ?></button>
         </a>

@@ -29,4 +29,4 @@ if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     $_SESSION["mail_address"] = $_POST["email"];
 }
 
-header("Location: " . $_SESSION["language"] . "/helpdesk.php");
+header("Location: ../" . $_SESSION["language"] . "/helpdesk.php");

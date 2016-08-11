@@ -29,29 +29,29 @@ $result = json_decode($result);
     <form class="form" method="post" action="../scripts/delete_ticket.php">
         <?php
         if (!is_numeric($_GET['id'])) {
-            echo "<div class='alert-box error ticketError'><span>error: </span>The ID ", $_GET['id'], " is no number</div>";
+            echo "<div class='alert-box error ticketError'><span>fehler: </span>Die ID ", $_GET['id'], " ist keine Zahl</div>";
         } else {
             if ($result == null) {
-                echo "<div class='alert-box error ticketError'><span>error: </span>No ticket with the ID ", $_GET['id'], " found</div>";
+                echo "<div class='alert-box error ticketError'><span>fehler: </span>Es existiert kein Ticket mit der ID ", $_GET['id'], "</div>";
             } else { ?>
                 <div class="input"><label>Ticket ID:</label><input name="id" type="text"
                                                                    value="<?php echo $result{0}->id ?>" readonly><br>
                 </div>
-                <div class="input"><label>Creator ID:</label><input type="text"
+                <div class="input"><label>Ersteller ID:</label><input type="text"
                                                                     value="<?php echo $result{0}->creatorID ?>"
                                                                     readonly><br></div>
-                <div class="input"><label>Creator Name:</label><input name="name" type="text"
+                <div class="input"><label>Ersteller Name:</label><input name="name" type="text"
                                                                       value="<?php echo $result{0}->creatorName ?>"
                                                                       readonly><br></div>
-                <div class="input"><label>Creator Email:</label><input type="text"
+                <div class="input"><label>Ersteller Email:</label><input type="text"
                                                                        value="<?php echo $result{0}->creatorEmail ?>"
                                                                        readonly><br></div>
-                <div class="input"><label>Topic:</label><input type="text" value="<?php echo $result{0}->reason ?>"
+                <div class="input"><label>Grund:</label><input type="text" value="<?php echo $result{0}->reason ?>"
                                                                readonly><br></div>
-                <div class="input"><label>Message:</label><textarea id="note" oninput=""
+                <div class="input"><label>Nachricht:</label><textarea id="note" oninput=""
                                                                     readonly><?php echo $result{0}->content ?></textarea><br>
                 </div>
-                <button class="btn">&nbsp;Delete <span class="arrow">X</span></button>
+                <button class="btn">&nbsp;Löschen <span class="arrow">X</span></button>
                 <?php
             }
         }

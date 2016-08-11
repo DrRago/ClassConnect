@@ -116,11 +116,7 @@ for ($i = 0; $lessonAmount > $i; $i++) {
                 }
             } else {
                 $count[$e]++;
-                if ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1) {
-                    echo "<td class='now'></td>";
-                } else {
-                    echo "<td class='nohover'></td>";
-                }
+                echo "<td class='nohover'></td>";
             }
         }
         echo "</tr>";

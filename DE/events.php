@@ -24,16 +24,16 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <div class="events_tbl">
     <table>
         <tr>
-            <th><strong>Title</strong></th>
-            <th><strong>Description</strong></th>
-            <th><strong>Place</strong></th>
-            <th><strong>Time</strong></th>
-            <th><strong>Date</strong></th>
+            <th><strong>Titel</strong></th>
+            <th><strong>Beschreibung</strong></th>
+            <th><strong>Ort</strong></th>
+            <th><strong>Uhrzeit</strong></th>
+            <th><strong>Datum</strong></th>
         </tr>
 
         <?php
         if (!isset($result)) {
-            echo "<tr><td colspan='5'>No Events</td></tr>";
+            echo "<tr><td colspan='5'>Keine Events</td></tr>";
         } else {
             foreach ($result as $object) {
                 echo "<tr><td class='title'>", $object->{'title'}, "</td>";
@@ -49,18 +49,18 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <div class="inputs">
     <form action="../scripts/add_event.php" method="post">
 
-        <input type="text" name="title" id="lesson_in" placeholder="Title" autofocus required>
-        <input type="text" name="description" id="exercises_in" placeholder="Description">
-        <input type="text" name="place" id="exercises_in" placeholder="Place" required>
-        <input type="text" name="eventStart" id="exercises_in" placeholder="Begin" required>
-        <input type="text" name="eventEnd" id="exercises_in" placeholder="End" required>
-        <input type="date" name="date" id="date_in" title="date" placeholder="JJJJ-MM-DD" required>
-        <button class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
+        <input type="text" name="title" id="lesson_in" placeholder="Titel" autofocus required>
+        <input type="text" name="description" id="exercises_in" placeholder="Beschreibung">
+        <input type="text" name="place" id="exercises_in" placeholder="Ort" required>
+        <input type="text" name="eventStart" id="exercises_in" placeholder="Beginn" required>
+        <input type="text" name="eventEnd" id="exercises_in" placeholder="Ende" required>
+        <input type="date" name="date" id="date_in" title="date" placeholder="JJJJ-MM-TT" required>
+        <button class="btn">&nbsp;Hinzufügen <span class="arrow">❯</span></button>
         <?php if ($_SESSION["addEvent"] == "success") {
-            echo "<div class='alert-box success'><span>success: </span>Event added successfully.</div>";
+            echo "<div class='alert-box success'><span>erfolg: </span>Event erfolgreich hinzugefügt.</div>";
             unset($_SESSION["addEvent"]);
         } elseif ($_SESSION["addEvent"] == "error") {
-            echo "<div class='alert-box error'><span>error: </span>Wrong date format.</div>";
+            echo "<div class='alert-box error'><span>fehler: </span>Falsches Datumsformat (JJJJ-MM-TT).</div>";
             unset($_SESSION["addEvent"]);
         } ?>
     </form>

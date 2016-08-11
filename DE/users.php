@@ -12,7 +12,7 @@ if ($permissions == 'ServerAdmin') {
 ?>
 <html>
 <head>
-    <title>Users</title>
+    <title>Benutzer</title>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
@@ -35,14 +35,14 @@ if ($permissions == 'ServerAdmin') {
             } ?>
             <th><strong>Name</strong></th>
             <?php if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
-                echo "<th><strong>Username</strong></th>";
+                echo "<th><strong>Benutzername</strong></th>";
             } ?>
-            <th><strong>Email</strong></th>
-            <th><strong>Phone</strong></th>
-            <th><strong>Permissions</strong></th>
-            <th><strong>GroupID</strong></th>
+            <th><strong>Email adresse</strong></th>
+            <th><strong>Telefonnummer</strong></th>
+            <th><strong>Rechte</strong></th>
+            <th><strong>GruppenID</strong></th>
             <?php if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
-                echo "<th><strong>ClassID</strong></th>";
+                echo "<th><strong>KlassenID</strong></th>";
             } ?>
             <?php if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
                 echo "<th></th>";
@@ -87,9 +87,9 @@ if ($permissions == 'ServerAdmin') {
 <?php if ($_SESSION["permissions"] == "ClassAdmin" | $_SESSION["permissions"] == "ServerAdmin") { ?>
     <div class="inputs">
         <form action="../scripts/add_user.php" method="post">
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="username" placeholder="Benutzername" required>
             <input type="text" name="name" placeholder="Name" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Passwort" required>
             <select name="permissions" title="permissionSelection" required>
                 <option value="User" selected>User</option>
                 <option value="Moderator">Moderator</option>
@@ -97,15 +97,15 @@ if ($permissions == 'ServerAdmin') {
                 <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?>
                     <option value="ServerAdmin">ServerAdmin</option> <?php } ?>
             </select>
-            <input type="text" name="groupID" placeholder="Group ID" required>
+            <input type="text" name="groupID" placeholder="Gruppen ID" required>
             <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?><input type="number" name="classID"
-                                                                            placeholder="Class ID" required><?php } ?>
+                                                                            placeholder="Klassen ID" required><?php } ?>
             <button class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
             <?php if ($_SESSION["addUser"] == "success") {
-                echo "<div class='alert-box success'><span>success: </span>User added successfully.</div>";
+                echo "<div class='alert-box success'><span>erfolg: </span>Benutzer erfolgreich hinzugefügt.</div>";
                 unset($_SESSION["addUser"]);
             } elseif ($_SESSION["addUser"] == "error") {
-                echo "<div class='alert-box error'><span>error: </span>Equal username found.</div>";
+                echo "<div class='alert-box error'><span>fehler: </span>Gleichen Benutzernamen gefunden.</div>";
                 unset($_SESSION["addUser"]);
             } ?>
         </form>

@@ -19,4 +19,4 @@ $result = getContent(
 );
 
 $_SESSION["changedUser"] = $_POST["id"];
-header("Location: " . $_SESSION["language"] . "/users.php");
+header("Location: ../" . $_SESSION["language"] . "/users.php");

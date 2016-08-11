@@ -24,7 +24,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
     ?>
     <html>
     <head>
-        <title>User</title>
+        <title>Benutzer bearbeiten</title>
 
         <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
@@ -43,40 +43,40 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
         <form class="form" method="post" action="../scripts/edit_user.php">
             <?php
             if (!is_numeric($_GET['id'])) {
-                echo "<div class='alert-box error userError'><span>error: </span>The ID ", $_GET['id'], " is no number</div>";
+                echo "<div class='alert-box error userError'><span>Fehler: </span>Die ID ", $_GET['id'], " ist keine Zahl</div>";
             } else {
                 if ($result == null) {
-                    echo "<div class='alert-box error userError'><span>error: </span>No User with the ID ", $_GET['id'], " found</div>";
+                    echo "<div class='alert-box error userError'><span>Fehler: </span>Es existiert kein Benutzer mit der ID ", $_GET['id'], "</div>";
                 } else { ?>
-                    <div class="input"><label class="id">User ID:<a class="IsRequired">*</a></label><input class="id"
+                    <div class="input"><label class="id">Benutzer ID:<a class="IsRequired">*</a></label><input class="id"
                                                                                                            name="id"
                                                                                                            type="number"
                                                                                                            value="<?php echo $result{0}->id ?>"
-                                                                                                           placeholder="Username"
+                                                                                                           placeholder="Benutzer ID"
                                                                                                            readonly><br>
                     </div>
-                    <div class="input"><label class="username">Username:<a class="IsRequired">*</a></label><input
+                    <div class="input"><label class="username">Benutzername:<a class="IsRequired">*</a></label><input
                             class="username" name="username" type="text" value="<?php echo $result{0}->username ?>"
-                            placeholder="Username" readonly><br></div>
+                            placeholder="Benutzername" readonly><br></div>
                     <div class="input"><label class="name">Name:<a class="IsRequired">*</a></label><input name="name"
                                                                                                           type="text"
                                                                                                           value="<?php echo $result{0}->name ?>"
                                                                                                           placeholder="Name"
                                                                                                           required><br>
                     </div>
-                    <div class="input"><label class="phone">Phone:</label><input name="phone" type="tel"
+                    <div class="input"><label class="phone">Telefonnummer:</label><input name="phone" type="tel"
                                                                                  value="<?php echo $result{0}->phone ?>"
-                                                                                 placeholder="Phone"><br></div>
-                    <div class="input"><label class="email">Email address:</label><input name="email" type="email"
+                                                                                 placeholder="Telefonnummer"><br></div>
+                    <div class="input"><label class="email">Email adresse:</label><input name="email" type="email"
                                                                                          value="<?php echo $result{0}->email ?>"
-                                                                                         placeholder="Email"><br></div>
-                    <div class="input"><label class="group">Group:<a class="IsRequired">*</a></label><input
-                            name="groupID" type="text" value="<?php echo $result{0}->groupID ?>" placeholder="GroupID"
+                                                                                         placeholder="Email adresse"><br></div>
+                    <div class="input"><label class="group">Gruppe:<a class="IsRequired">*</a></label><input
+                            name="groupID" type="text" value="<?php echo $result{0}->groupID ?>" placeholder="Gruppen ID"
                             required><br></div>
-                    <div class="input"><label class="classID">Class ID:<a class="IsRequired">*</a></label><input
-                            name="classID" type="number" value="<?php echo $result{0}->classID ?>" placeholder="ClassID"
+                    <div class="input"><label class="classID">Klassen ID:<a class="IsRequired">*</a></label><input
+                            name="classID" type="number" value="<?php echo $result{0}->classID ?>" placeholder="Klassen ID"
                             required><br></div>
-                    <div class="input"><label class="permissions">Permissions:<a class="IsRequired">*</a></label>
+                    <div class="input"><label class="permissions">Rechte:<a class="IsRequired">*</a></label>
                         <select name="permissions" title="permissionSelection" required>
                             <option value="User" <?php if ($result{0}->permissions == "User") {
                                 echo "selected='selected'";
@@ -95,19 +95,19 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     echo "selected='selected'";
                                 } ?>>ServerAdmin</option> <?php } ?>
                         </select><br></div>
-                    <button type="submit" class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
+                    <button type="submit" class="btn">&nbsp;Übernehmen <span class="arrow">❯</span></button>
                     <div class="pw">
                         <button type="button"
                                 onclick="window.location.href='../scripts/reset_password.php<?php $_SESSION["resetPassword"] = $_GET["id"] ?>'"
-                                class="btn btn_pw">&nbsp;Reset Password <span class="arrow">❯</span></button>
+                                class="btn btn_pw">&nbsp;Neues Passwort<span class="arrow">❯</span></button>
                     </div>
                     <?php
                     if ($_SESSION["resetStatus"] == "success") {
-                        echo "<script>alert('Password reset successful! New password is ", $_SESSION["newPassword"], "')</script>";
+                        echo "<div style='margin-top: 50px;margin-bottom: -30px' class='alert-box success'><span>Erfolg: </span>Passwort erfolgreich zurückgesetzt! Das neue Passwort ist ", $_SESSION["newPassword"], ".</div>";
                         unset($_SESSION["resetStatus"]);
                         unset($_SESSION["newPassword"]);
                     } elseif ($_SESSION["resetStatus"] == "error") {
-                        echo "<script>alert('ERROR! Password NOT reset')</script>";
+                        echo "<div style='margin-top: 50px;margin-bottom: -30px' class='alert-box error'><span>Fehler: </span>Passwort nicht zurückgesetzt!</div>";
                         unset($_SESSION["resetStatus"]);
                     }
                 }

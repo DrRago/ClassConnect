@@ -73,7 +73,7 @@ for ($i = 0; $lessonAmount > $i; $i++) {
 ?>
 <html>
 <head>
-    <title>Timetable</title>
+    <title>Stundenplan</title>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
@@ -89,24 +89,24 @@ for ($i = 0; $lessonAmount > $i; $i++) {
 </div>
 <table class="timetable">
     <tr>
-        <th class="Week"><strong><?php if ((date('W') % 2) == 0) {
-                    echo "Even Week";
+        <th class="Week" colspan="2"><strong><?php if ((date('W') % 2) == 0) {
+                    echo "gerade Woche";
                 } else {
-                    echo "Odd Week";
-                } ?> (This Week)</strong></th>
+                    echo "ungerade Woche";
+                } ?> (aktuelle Woche)</strong></th>
     </tr>
     <tr>
-        <th><strong>Lesson</strong></th>
-        <th><strong>Monday</strong></th>
-        <th><strong>Tuesday</strong></th>
-        <th><strong>Wednesday</strong></th>
-        <th><strong>Thursday</strong></th>
-        <th><strong>Friday</strong></th>
+        <th><strong>Zeiten</strong></th>
+        <th><strong>Montag</strong></th>
+        <th><strong>Dienstag</strong></th>
+        <th><strong>Mittwoch</strong></th>
+        <th><strong>Donnerstag</strong></th>
+        <th><strong>Freitag</strong></th>
     </tr>
     <?php
     for ($i = 0; $lessonAmount > $i; $i++) {
         echo "<tr>";
-        echo "<td class='nohover'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
+        echo "<td class='nohover'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Raum</td>";
         for ($e = 0; $e <= 4; $e++) {
             if ($startTimes[$i] == $timetable{$e}{$i - $count[$e]}['lessonStart']) {
                 if ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
@@ -116,11 +116,7 @@ for ($i = 0; $lessonAmount > $i; $i++) {
                 }
             } else {
                 $count[$e]++;
-                if ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1) {
-                    echo "<td class='now'></td>";
-                } else {
-                    echo "<td class='nohover'></td>";
-                }
+                echo "<td class='nohover'></td>";
             }
         }
         echo "</tr>";
@@ -147,24 +143,24 @@ for ($i = 0; $lessonAmount > $i; $i++) {
 ?>
 <table class="timetable">
     <tr>
-        <th><strong><?php if (((date('W') + 1) % 2) == 0) {
-                    echo "Even Week";
+        <th colspan="2"><strong><?php if (((date('W') + 1) % 2) == 0) {
+                    echo "gerade Woche";
                 } else {
-                    echo "Odd Week";
+                    echo "ungerade Woche";
                 } ?></strong></th>
     </tr>
     <tr>
-        <th><strong>Lesson</strong></th>
-        <th><strong>Monday</strong></th>
-        <th><strong>Tuesday</strong></th>
-        <th><strong>Wednesday</strong></th>
-        <th><strong>Thursday</strong></th>
-        <th><strong>Friday</strong></th>
+        <th><strong>Zeiten</strong></th>
+        <th><strong>Montag</strong></th>
+        <th><strong>Dienstag</strong></th>
+        <th><strong>Mittwoch</strong></th>
+        <th><strong>Donnerstag</strong></th>
+        <th><strong>Freitag</strong></th>
     </tr>
     <?php
     for ($i = 0; $lessonAmount > $i; $i++) {
         echo "<tr>";
-        echo "<td class='nohover'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
+        echo "<td class='nohover'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Raum</td>";
         for ($e = 0; $e <= 4; $e++) {
             if ($startTimes[$i] == $timetable{$e}{$i - $count[$e]}['lessonStart']) {
                 echo "<td>", $timetable{$e}{$i - $count[$e]}['lessonName'], "<br>", $timetable{$e}{$i - $count[$e]}['room'], "</td>";

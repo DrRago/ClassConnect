@@ -7,7 +7,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 ?>
 <html>
 <head>
-    <title>Exams</title>
+    <title>Klausuren</title>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
@@ -26,14 +26,14 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <div class="examList">
     <table>
         <tr>
-            <th><strong>Subject</strong></th>
-            <th><strong>Topics</strong></th>
-            <th><strong>Date</strong></th>
+            <th><strong>Fach</strong></th>
+            <th><strong>Themen</strong></th>
+            <th><strong>Datum</strong></th>
         </tr>
 
         <?php
         if (!isset($result)) {
-            echo "<tr><td colspan='3'>No Exams</td></tr>";
+            echo "<tr><td colspan='3'>Keine Klausuren</td></tr>";
         } else {
             foreach ($result as $object) {
 
@@ -47,15 +47,15 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <?php if ($_SESSION['permissions'] != 'User') { ?>
     <div class="inputs">
         <form action="../scripts/add_exam.php" method="post" id="formular">
-            <input type="text" name="lessonName" id="lesson_in" placeholder="subject" required>
-            <input type="text" name="topics" id="topics_in" placeholder="topics" required>
-            <input type="date" name="date" id="date_in" placeholder="JJJJ-MM-DD" required>
+            <input type="text" name="lessonName" id="lesson_in" placeholder="Fach" required>
+            <input type="text" name="topics" id="topics_in" placeholder="Themen" required>
+            <input type="date" name="date" id="date_in" placeholder="JJJJ-MM-TT" required>
             <button class="btn"> &nbsp;Submit <span class="arrow">❯</span></button>
             <?php if ($_SESSION["addExam"] == "success") {
-                echo "<div class='alert-box success'><span>success: </span>Exam added successfully.</div>";
+                echo "<div class='alert-box success'><span>erfolg: </span>Klausur erfolgreich hinzugefügt.</div>";
                 unset($_SESSION["addExam"]);
             } elseif ($_SESSION["addExam"] == "error") {
-                echo "<div class='alert-box error'><span>error: </span>Wrong date format.</div>";
+                echo "<div class='alert-box error'><span>fehler: </span>Falsches Datumsformat (JJJJ-MM-TT).</div>";
                 unset($_SESSION["addExam"]);
             } ?>
         </form>

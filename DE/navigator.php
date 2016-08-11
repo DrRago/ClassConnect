@@ -6,13 +6,13 @@ $links = getContent(array(), "get_patchnotes.php");
 $links = json_decode($links);
 
 $items = array(
-    "Timetable" => "timetable.php",
-    "Exams" => "exams.php",
-    "Homework" => "homework.php",
+    "Stundenplan" => "timetable.php",
+    "Klausuren" => "exams.php",
+    "Hausaufgaben" => "homework.php",
     "Events" => "events.php",
-    "Users" => "users.php",
-    "Helpdesk" => "helpdesk.php",
-    "Logout" => "../scripts/logout.php",
+    "Benutzer" => "users.php",
+    "Hilfe" => "helpdesk.php",
+    "Ausloggen" => "../scripts/logout.php",
     "App " . $links[count($links) - 1]->content => $links[count($links) - 1]->link,
     $_SESSION["name"] => "profile.php",
 );
@@ -23,7 +23,7 @@ foreach ($items as $title => $url) {
         echo "<li class='right user active'><a href='" . $url . "'>" . $title . "</a></li>\n";
     } elseif ($url == end(explode("/", $_SERVER["REQUEST_URI"]))) {
         echo "<li class='active " . explode(".", end(explode("/", $_SERVER["REQUEST_URI"])))[0] . "'><a href='" . $url . "'>" . $title . "</a></li>\n";
-    } elseif ($title == "Logout") {
+    } elseif ($url == "../scripts/logout.php") {
         echo "<li class='logout right'><a href='" . $url . "'>" . $title . "</a></li>\n";
     } elseif ($url == "profile.php") {
         echo "<li class='right'><a href='" . $url . "'>" . $title . "</a></li>";
