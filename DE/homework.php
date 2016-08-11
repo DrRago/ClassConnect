@@ -27,14 +27,14 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <div class="homework_tbl">
     <table>
         <tr>
-            <th><strong>Subject</strong></th>
-            <th><strong>Exercises</strong></th>
-            <th><strong>Date</strong></th>
+            <th><strong>Fach</strong></th>
+            <th><strong>Aufgaben</strong></th>
+            <th><strong>Datum</strong></th>
         </tr>
 
         <?php
         if (!isset($result)) {
-            echo "<tr><td colspan='3'>No Homework</td></tr>";
+            echo "<tr><td colspan='3'>Keine Hausaufgaben</td></tr>";
         } else {
             foreach ($result as $object) {
                 echo "<tr><td class='lessonName'>", $object->{'lessonName'}, "</td>";
@@ -47,9 +47,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <?php if ($_SESSION['permissions'] != 'User') { ?>
     <div class="inputs">
         <form action="../scripts/add_homework.php" method="post">
-            <input type="text" name="lessonName" id="lesson_in" placeholder="subject" required>
-            <input type="text" name="exercises" id="exercises_in" placeholder="exercises" required>
-            <input type="date" name="date" id="date_in" title="date" placeholder="yyyy-mm-dd" required>
+            <input type="text" name="lessonName" id="lesson_in" placeholder="Fach" required>
+            <input type="text" name="exercises" id="exercises_in" placeholder="Aufgaben" required>
+            <input type="date" name="date" id="date_in" title="date" placeholder="JJJJ-MM-TT" required>
             <button class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
             <?php if ($_SESSION["addHomework"] == "success") {
                 echo "<div class='alert-box success'><span>success: </span>Homework added successfully.</div>";

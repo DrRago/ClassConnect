@@ -54,7 +54,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
         <input type="text" name="place" id="exercises_in" placeholder="Place" required>
         <input type="text" name="eventStart" id="exercises_in" placeholder="Begin" required>
         <input type="text" name="eventEnd" id="exercises_in" placeholder="End" required>
-        <input type="date" name="date" id="date_in" title="date" placeholder="JJJJ-MM-DD" required>
+        <input type="date" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
         <button class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
         <?php if ($_SESSION["addEvent"] == "success") {
             echo "<div class='alert-box success'><span>success: </span>Event added successfully.</div>";
