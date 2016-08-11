@@ -1,0 +1,61 @@
+tr:hover {
+    background-color: #a1d2eb;
+    cursor: pointer;
+}
+
+th:hover {
+    cursor: auto;
+}
+
+table {
+    width: 80%;
+}
+
+table input {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    border: none;
+    background: none;
+}
+
+.id {
+    width: 1%;
+}
+
+.crID {
+    width: 3%;
+}
+
+.creator {
+    width: 7%;
+}
+
+.mail {
+    width: 9%;
+}
+
+.reason {
+    width: 2%;
+}
+
+.success, .error {
+    width: 60% !important;
+    margin: 40px 50px -20px;
+    position: relative;
+    left: 7%;
+}
+
+textarea {
+    overflow: hidden;
+}
+
+.ticketID {
+    cursor: pointer;
+    font-size: inherit;
+}
+
+.ticketSuccess {
+    margin: 10px 50px -20px;
+    position: relative;
+    left: -40%;
+}
