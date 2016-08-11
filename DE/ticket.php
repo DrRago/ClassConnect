@@ -1,7 +1,7 @@
 <?php
 error_reporting(1);
 session_start();
-require_once "scripts/communicate.php";
+require_once "../scripts/communicate.php";
 
 $result = getContent(array('id' => $_GET['id']), "get_ticket.php");
 
@@ -12,13 +12,13 @@ $result = json_decode($result);
 <head>
     <title>Ticket <?php echo $_GET['id'] ?></title>
 
-    <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico'>
+    <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/formula.css">
-    <link rel="stylesheet" href="css/input_container.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/ticket.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/input_container.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/ticket.css">
 </head>
 
 <body>
@@ -26,7 +26,7 @@ $result = json_decode($result);
 <div class="filler">
 </div>
 <div class="inputs">
-    <form class="form" method="post" action="scripts/delete_ticket.php">
+    <form class="form" method="post" action="../scripts/delete_ticket.php">
         <?php
         if (!is_numeric($_GET['id'])) {
             echo "<div class='alert-box error ticketError'><span>error: </span>The ID ", $_GET['id'], " is no number</div>";

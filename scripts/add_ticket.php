@@ -9,7 +9,7 @@ if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     $_SESSION["ticketName"] = $_POST["name"];
     $_SESSION["ticketEmail"] = $_POST["email"];
     $_SESSION["ticketMessage"] = $_POST["message"];
-    header('Location: ../helpdesk.php');
+    header('Location: ' . $_SESSION["language"] . '/helpdesk.php');
     exit;
 }
 
@@ -27,4 +27,4 @@ $result = getContent(
 if ($result == 'Data Inserted') {
     $_SESSION['addTicket'] = 'success';
 }
-header('Location: ../helpdesk.php');
+header('Location: ' . $_SESSION["language"] . '/helpdesk.php');

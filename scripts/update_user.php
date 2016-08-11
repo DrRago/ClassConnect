@@ -40,4 +40,4 @@ if (md5($_POST["old_password"]) == $_SESSION["password"]) {
     $_SESSION["editUser"] = "wrong";
 }
 
-header("Location: ../profile.php");
+header("Location: " . $_SESSION["language"] . "/profile.php");

@@ -28,4 +28,4 @@ if ($result == "Data Inserted") {
     $_SESSION["addUser"] = "error";
 }
 
-header("Location: ../users.php");
+header("Location: " . $_SESSION["language"] . "/users.php");

@@ -1,25 +1,25 @@
 <?php
 session_start();
 error_reporting(1);
-require "scripts/check_user.php"; ?>
+require "../scripts/check_user.php"; ?>
 <html>
 <head>
     <title>User</title>
 
-    <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico'>
+    <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/profile.css">
-    <link rel="stylesheet" href="css/formula.css">
-    <link rel="stylesheet" href="css/input_container.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/input_container.css">
 
 </head>
 <?php require "navigator.php" ?>
 <body>
 <div class="filler"></div>
 <div class="inputs">
-    <form class="form" method="post" action="scripts/update_user.php">
+    <form class="form" method="post" action="../scripts/update_user.php">
         <div class="input"><label class="username">Username:<a class="IsRequired">*</a></label><input name="username"
                                                                                                       type="text"
                                                                                                       value="<?php echo $_SESSION["username"] ?>"

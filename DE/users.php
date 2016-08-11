@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(1);
-require "scripts/check_user.php";
+require "../scripts/check_user.php";
 $permissions = $_SESSION['permissions'];
 
 if ($permissions == 'ServerAdmin') {
@@ -14,13 +14,13 @@ if ($permissions == 'ServerAdmin') {
 <head>
     <title>Users</title>
 
-    <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico'>
+    <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="css/users.css">
-    <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/formula.css">
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/users.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 <?php require "navigator.php" ?>
@@ -86,7 +86,7 @@ if ($permissions == 'ServerAdmin') {
 
 <?php if ($_SESSION["permissions"] == "ClassAdmin" | $_SESSION["permissions"] == "ServerAdmin") { ?>
     <div class="inputs">
-        <form action="scripts/add_user.php" method="post">
+        <form action="../scripts/add_user.php" method="post">
             <input type="text" name="username" placeholder="Username" required>
             <input type="text" name="name" placeholder="Name" required>
             <input type="password" name="password" placeholder="Password" required>

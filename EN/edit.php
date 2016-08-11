@@ -1,12 +1,12 @@
 <?php
 session_start();
 error_reporting(1);
-require "scripts/check_user.php";
-include_once "scripts/communicate.php";
+require "../scripts/check_user.php";
+include_once "../scripts/communicate.php";
 
 if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User") {
 
-    echo "<meta http-equiv='refresh' content='3; URL=scripts/logout.php'>";
+    echo "<meta http-equiv='refresh' content='3; URL=../scripts/logout.php'>";
     echo "Sorry Brudah, du kommst hier net rein";
 } else {
     if ($_GET["id"] == $_SESSION["id"]) {
@@ -26,21 +26,21 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
     <head>
         <title>User</title>
 
-        <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico'>
+        <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
 
-        <link rel="stylesheet" href="css/navigation.css">
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/edit.css">
-        <link rel="stylesheet" href="css/formula.css">
-        <link rel="stylesheet" href="css/input_container.css">
+        <link rel="stylesheet" href="../css/navigation.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/edit.css">
+        <link rel="stylesheet" href="../css/formula.css">
+        <link rel="stylesheet" href="../css/input_container.css">
 
     </head>
     <body>
     <?php require "navigator.php" ?>
     <div class="filler"></div>
     <div class="inputs">
-        <form class="form" method="post" action="scripts/edit_user.php">
+        <form class="form" method="post" action="../scripts/edit_user.php">
             <?php
             if (!is_numeric($_GET['id'])) {
                 echo "<div class='alert-box error userError'><span>error: </span>The ID ", $_GET['id'], " is no number</div>";
@@ -98,7 +98,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                     <button type="submit" class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
                     <div class="pw">
                         <button type="button"
-                                onclick="window.location.href='scripts/reset_password.php<?php $_SESSION["resetPassword"] = $_GET["id"] ?>'"
+                                onclick="window.location.href='../scripts/reset_password.php<?php $_SESSION["resetPassword"] = $_GET["id"] ?>'"
                                 class="btn btn_pw">&nbsp;Reset Password <span class="arrow">❯</span></button>
                     </div>
                     <?php

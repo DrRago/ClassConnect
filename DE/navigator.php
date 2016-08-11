@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "scripts/communicate.php";
+include_once "../scripts/communicate.php";
 
 $links = getContent(array(), "get_patchnotes.php");
 $links = json_decode($links);
@@ -12,7 +12,7 @@ $items = array(
     "Events" => "events.php",
     "Users" => "users.php",
     "Helpdesk" => "helpdesk.php",
-    "Logout" => "scripts/logout.php",
+    "Logout" => "../scripts/logout.php",
     "App " . $links[count($links) - 1]->content => $links[count($links) - 1]->link,
     $_SESSION["name"] => "profile.php",
 );

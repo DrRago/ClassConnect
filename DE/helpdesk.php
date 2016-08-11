@@ -1,19 +1,19 @@
 <?php session_start();
 error_reporting(1);
-require "scripts/check_user.php";
+require "../scripts/check_user.php";
 ?>
 <html>
 <head>
     <title>Helpdesk</title>
 
-    <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico'>
+    <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="css/formula.css">
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/helpdesk.css">
-    <link rel="stylesheet" href="css/input_container.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <link rel="stylesheet" href="../css/helpdesk.css">
+    <link rel="stylesheet" href="../css/input_container.css">
 
 </head>
 
@@ -22,7 +22,7 @@ require "scripts/check_user.php";
 <div class="filler"></div>
 <?php if ($_SESSION["permissions"] != "ServerAdmin") { ?>
     <div class="inputs">
-        <form class="form" method="post" action="scripts/add_ticket.php">
+        <form class="form" method="post" action="../scripts/add_ticket.php">
             <div class="input"><label class="username">Username:<a class="IsRequired">*</a></label><input class="name"
                                                                                                           name="username"
                                                                                                           type="text"
@@ -75,7 +75,7 @@ require "scripts/check_user.php";
         </form>
     </div>
 <?php } else {
-    include_once "scripts/communicate.php";
+    include_once "../scripts/communicate.php";
     $result = getContent(array(), "get_every_ticket.php");
     $result = json_decode($result);
     ?>

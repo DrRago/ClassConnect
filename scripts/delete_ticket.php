@@ -8,4 +8,4 @@ $result = getContent(array('id' => $_POST['id']), "delete_ticket.php");
 
 $_SESSION["deleteTicket"] = $_POST['id'];
 
-header("Location: ../helpdesk.php");
+header("Location: " . $_SESSION["language"] . "/helpdesk.php");

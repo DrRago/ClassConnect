@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(1);
-require "scripts/check_user.php";
+require "../scripts/check_user.php";
 
 $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_events.php"));
 ?>
@@ -9,13 +9,13 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <head>
     <title>Events</title>
 
-    <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico'>
+    <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/formula.css">
-    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/events.css">
 </head>
 <body>
 <?php require "navigator.php" ?>
@@ -47,7 +47,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 </div>
 
 <div class="inputs">
-    <form action="scripts/add_event.php" method="post">
+    <form action="../scripts/add_event.php" method="post">
 
         <input type="text" name="title" id="lesson_in" placeholder="Title" autofocus required>
         <input type="text" name="description" id="exercises_in" placeholder="Description">

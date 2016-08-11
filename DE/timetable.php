@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(1);
-require "scripts/check_user.php";
+require "../scripts/check_user.php";
 
 function getLessonAmount($timetable)
 {
@@ -75,12 +75,12 @@ for ($i = 0; $lessonAmount > $i; $i++) {
 <head>
     <title>Timetable</title>
 
-    <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico'>
+    <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/timetable.css">
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <link rel="stylesheet" href="../css/timetable.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>

@@ -6,7 +6,7 @@ include "communicate.php";
 
 if (!preg_match('/\d{4}-\d{2}-\d{2}/', $_POST["date"])) {
     $_SESSION["addExam"] = "error";
-    header('Location: ../exams.php');
+    header('Location: ' . $_SESSION["language"] . '/exams.php');
     exit;
 }
 
@@ -24,4 +24,4 @@ if ($result == "Data Inserted") {
     $_SESSION["addExam"] = "success";
 }
 
-header('Location: ../exams.php');
+header('Location: ' . $_SESSION["language"] . '/exams.php');

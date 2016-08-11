@@ -5,7 +5,7 @@ error_reporting(0);
 include "communicate.php";
 
 if ($_POST["username"] == "Felsmann" && $_POST["password"] == "Hut") {
-    header("Location: ../felsmann.php");
+    header("Location: felsmann.php");
     exit;
 }
 
@@ -20,7 +20,7 @@ $result = getContent(
 
 if ($result == 'null') {
     $_SESSION['login'] = 'wrong';
-    header('Location: ../index.php');
+    header('Location: index.php');
     exit();
 }
 
@@ -38,4 +38,4 @@ $_SESSION['groupID'] = $result{0}->groupID;
 $_SESSION['classID'] = $result{0}->classID;
 
 
-header('Location: ../timetable.php');
+header('Location: ' . $_SESSION["language"] . '/timetable.php');
