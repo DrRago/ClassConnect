@@ -1,0 +1,73 @@
+.btn:hover {
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+.btn {
+    width: 100%;
+    outline: none;
+    padding: 9px 14px;
+    font-size: 15px;
+    line-height: normal;
+    border-color: deepskyblue;
+    background-color: deepskyblue;
+    color: white;
+}
+
+.app_btn {
+    margin-top: 10px;
+}
+
+.login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+    width: 300px;
+    height: 300px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.title_pic {
+    margin-top: -100px;
+    margin-left: -100px;
+    margin-bottom: -50px;
+}
+
+::-webkit-input-placeholder {
+    color: white;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0);
+    outline: none;
+    padding: 10px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-bottom: 1px solid white;
+}
+
+input:focus {
+    border-bottom: 1px solid deepskyblue;
+    transition: border-color 0.1s linear;
+}
+
+.user_in {
+    background: url('../img/ic_account_outline_white_24dp.png') no-repeat;
+    padding-left: 40px;
+}
+
+.password_in {
+    background: url('../img/ic_lock_outline_white_24dp.png') no-repeat;
+    padding-left: 40px;
+}
+
+body {
+    background-color: #92b8ff;
+}

@@ -1,0 +1,6 @@
+.success, .error {
+    width: 60% !important;
+    margin: 70px -50px -20px;
+    position: relative;
+    left: 7%;
+}

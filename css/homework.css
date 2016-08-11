@@ -1,0 +1,15 @@
+tr:hover {
+    background-color: #a1d2eb;
+}
+
+table {
+    width: 80%;
+}
+
+th {
+    width: 0 !important;
+}
+
+.examDate {
+    width: 15%;
+}

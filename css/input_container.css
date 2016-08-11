@@ -1,0 +1,27 @@
+input, select, textarea {
+    margin-top: -20px !important;
+    margin-left: 150px !important;
+}
+
+form {
+    font-family: Arial, serif;
+    font-size: 15px;
+    background-color: rgba(72, 72, 72, 0.4);
+    padding: 35px 35px 50px;
+    width: 350px;
+    float: left;
+    left: 50%;
+    position: absolute;
+    margin-left: -210px;
+    z-index: 1;
+}
+
+.btn {
+    margin: 20px -50px -20px;
+    position: relative;
+    left: 50%;
+}
+
+.IsRequired {
+    color: red;
+}

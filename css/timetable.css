@@ -1,0 +1,16 @@
+.now {
+    background-color: #0adcff !important;
+    color: black;
+}
+
+td:hover {
+    background-color: #a1d2eb;
+}
+
+.nohover:hover {
+    background-color: #f5f5f5;
+}
+
+table {
+    background: none;
+}
