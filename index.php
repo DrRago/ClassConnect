@@ -1,4 +1,6 @@
 <?php
+session_set_cookie_params(31536000);
+
 session_start();
 
 substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);

@@ -37,7 +37,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
         } else {
             foreach ($result as $object) {
 
-                echo "<tr><td class='lessonName'>", $object->{'lessonName'}, "</td>";
+                if ($_SESSION['permissions'] != 'User') {
+                    echo "<tr onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"'>";
+                } else {
+                    echo "<tr>";
+                }
+                echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='topics'>", $object->{'topics'}, "</td>";
                 echo "<td class='examDate'>", $object->{'examDate'}, "</td></tr>";
             }

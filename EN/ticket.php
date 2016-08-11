@@ -7,7 +7,6 @@ $result = getContent(array('id' => $_GET['id']), "get_ticket.php");
 
 $result = json_decode($result);
 ?>
-
 <html>
 <head>
     <title>Ticket <?php echo $_GET['id'] ?></title>

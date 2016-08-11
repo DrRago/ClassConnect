@@ -41,7 +41,7 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
     </form>
 </div>
 <?php
-$_SESSION['login'] = '';
+unset($_SESSION['login']);
 ?>
 </body>
 
