@@ -13,7 +13,7 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
 ?>
 <html>
 <head>
-    <title>Login</title>
+    <title>ClassConnect - Anmelden</title>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
