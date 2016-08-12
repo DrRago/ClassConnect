@@ -1,6 +1,7 @@
 <?php
 error_reporting(1);
 session_start();
+require "../scripts/check_user.php";
 require_once "../scripts/communicate.php";
 
 $result = getContent(array('id' => $_GET['id']), "get_exam.php");
