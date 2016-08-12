@@ -1,6 +1,5 @@
 tr:hover {
     background-color: #a1d2eb;
-    cursor: pointer;
 }
 
 table {
@@ -23,4 +22,37 @@ th {
 .inputs {
     margin-left: 10%;
     margin-top: 20px;
+}
+
+.glyphicon {
+    cursor: pointer;
+    border: none;
+    height: 20px;
+    width: 0!important;
+    position: inherit;
+    background-color: transparent;
+    background-size: 20px 20px;
+    top: 50%;
+    margin-left: -10px;
+    margin-right: auto;
+}
+.topics {
+    width: 70%;
+}
+
+.notDeleted {
+    animation: 4s bgcolorchange;
+    -webkit-animation: 4s bgcolorchange;
+}
+
+@keyframes bgcolorchange {
+    0% {
+        background-color: #a94442;
+    }
+    75% {
+        background-color: #a94442;
+    }
+    100% {
+        background-color: transparent;
+    }
 }

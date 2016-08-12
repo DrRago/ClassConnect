@@ -13,36 +13,66 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
 ?>
 <html>
 <head>
-    <title>Login</title>
+    <title>ClassConnect - Login</title>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+
+
+    <link rel="stylesheet" href="../css/reset.css">
+
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/index.css">
+
 
 </head>
 <body>
+<form class="login" action="../scripts/login.php?js=false" method="post">
 
-<div class='login'>
-    <img class='title_pic' src='../img/class_connect_title.png'>
-    <?php if ($_SESSION['login'] == 'wrong') { ?>
-        <h4 class='error'>Wrong username or password, try again</h4>
-    <?php }
-    if ($_SESSION['login'] == 'error') { ?>
-        <h4 class='error'>A random error occurred, please try to relog</h4>
-    <?php } ?>
-    <form method='post' action='../scripts/login.php'>
-        <input type='text' class='user_in' name='username' placeholder='Username' required='required' autofocus
-               autocomplete='off'/>
-        <input type='password' class='password_in' name='password' placeholder='Password' required='required'/>
-        <button type='submit' class='btn login_btn'>Login</button>
-        <a href="<?php echo $links[count($links) - 1]->link ?>">
-            <button type="button" class='btn app_btn'><?php echo "App " . $links[count($links) - 1]->content ?></button>
-        </a>
-    </form>
-</div>
-<?php
-unset($_SESSION['login']);
-?>
+    <fieldset>
+
+        <legend class="legend">Login</legend>
+
+        <div class="input">
+            <input class="user-in" type="text" name="username" placeholder="Username" autocomplete="off" required />
+            <span><i class="fa fa-envelope-o"></i></span>
+        </div>
+
+        <div class="input">
+            <input class="pw-in" type="password" name="password" placeholder="Password" required />
+            <span><i class="fa fa-lock"></i></span>
+        </div>
+
+        <button type="submit" class="submit"><i class="fa fa-long-arrow-right"></i></button>
+
+    </fieldset>
+
+    <div class="feedback">
+        login successful <br />
+        redirecting...
+    </div>
+
+    <div class="error">
+        wrong username or password <br />
+        try again
+    </div>
+
+</form>
+
+<noscript>
+    <div class="container alert alert-danger" role="alert">
+        <strong>Warning!</strong>
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
+</noscript>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script src="../js/index.js"></script>
+
 </body>
 
 </html>

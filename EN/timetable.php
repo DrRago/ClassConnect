@@ -166,11 +166,7 @@ for ($i = 0; $lessonAmount > $i; $i++) {
                 echo "<td>", $timetable{$e}{$i - $count[$e]}['lessonName'], "<br>", $timetable{$e}{$i - $count[$e]}['room'], "</td>";
             } else {
                 $count[$e]++;
-                if ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1) {
-                    echo "<td></td>";
-                } else {
-                    echo "<td class='nohover'></td>";
-                }
+                echo "<td class='nohove'></td>";
             }
         }
         echo "</tr>";

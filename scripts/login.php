@@ -19,8 +19,12 @@ $result = getContent(
 );
 
 if ($result == 'null') {
-    $_SESSION['login'] = 'wrong';
-    header('Location: ../index.php');
+    if ($_GET["js"] == "false") {
+        $_SESSION["login"] = "wrong";
+        header('Location: ../index.php');
+    } else {
+        print hash_pbkdf2("sha512", "wrong", md5("secure_hashing"), 500);
+    }
     exit();
 }
 
@@ -37,5 +41,10 @@ $_SESSION['permissions'] = $result{0}->permissions;
 $_SESSION['groupID'] = $result{0}->groupID;
 $_SESSION['classID'] = $result{0}->classID;
 
+$_SESSION["sessionID"] = hash_pbkdf2("sha256", date("Y-m-d H:i:s"), mcrypt_create_iv(16, MCRYPT_DEV_URANDOM), 1000, 20);
 
-header('Location: ../' . $_SESSION["language"] . '/timetable.php');
+if ($_GET["js"] == "false") {
+    header('Location: ../' . $_SESSION["language"] . '/timetable.php');
+} else {
+    print hash_pbkdf2("sha512", "success", md5("secure_hashing"), 500);
+}

@@ -20,7 +20,6 @@ $result = 1;
     <link rel="stylesheet" href="../css/input_container.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/ticket.css">
-    <link rel="stylesheet" href="../css/exam.css">
 </head>
 <body>
 <?php require "navigator.php"; ?>
@@ -45,10 +44,6 @@ $result = 1;
                 <div class="input"><label>Date:</label><input type="text"
                                                               value="<?php echo $result{0}->examDate ?>"><br></div>
                 <button class="btn" type="submit">&nbsp;Submit <span class="arrow">❯</span></button>
-                <div class="pw">
-                    <!--TODO ADD SCRIPTS delete & update exam-->
-                    <button type="button" class="btn" onclick="window.location.href='../scripts/delete_exam.php'" <?php $_SESSION["deleteExam"] = $_GET["id"] ?>>&nbsp;Delete <span class="arrow">X</span></button>
-                </div>
                 <?php
             }
         }

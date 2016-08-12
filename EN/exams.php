@@ -11,6 +11,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/formula.css">
@@ -27,8 +29,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     <table>
         <tr>
             <th><strong>Subject</strong></th>
-            <th><strong>Topics</strong></th>
+            <th class="topics"><strong>Topics</strong></th>
             <th><strong>Date</strong></th>
+            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
         </tr>
 
         <?php
@@ -37,14 +40,15 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
         } else {
             foreach ($result as $object) {
 
-                if ($_SESSION['permissions'] != 'User') {
-                    echo "<tr onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"'>";
-                } else {
-                    echo "<tr>";
-                }
+                echo "<tr id='$object->id'>";
                 echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='topics'>", $object->{'topics'}, "</td>";
-                echo "<td class='examDate'>", $object->{'examDate'}, "</td></tr>";
+                echo "<td class='examDate'>", $object->{'examDate'}, "</td>";
+                if ($_SESSION["permissions"] != "User") {
+                    echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='glyphicon glyphicon-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='glyphicon glyphicon-trash'></button></td>";
+                }
+                echo "</tr>";
             }
         } ?>
     </table>
@@ -66,6 +70,10 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
         </form>
     </div>
 <?php } ?>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script src="../js/exams.js"></script>
 
 </body>
 </html>
