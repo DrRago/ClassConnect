@@ -34,8 +34,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     <table>
         <tr>
             <th class='lessonName'><strong>Subject</strong></th>
-            <th><strong>Exercises</strong></th>
-            <th><strong>Date</strong></th>
+            <th class="exercise"><strong>Exercises</strong></th>
+            <th class="homeworkDate"><strong>Date</strong></th>
             <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
         </tr>
 

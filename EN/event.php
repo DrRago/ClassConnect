@@ -30,7 +30,7 @@ $result = json_decode($result);
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 <div class="inputs">
-    <form class="form" method="post" action="../scripts/update_exam.php">
+    <form class="form" method="post" action="../scripts/update_event.php">
         <?php
         if (!is_numeric($_GET['id'])) {
             echo "<div class='alert-box error ticketError'><span>error: </span>The ID ", $_GET['id'], " is no number</div>";

@@ -31,11 +31,11 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <div class="events_tbl">
     <table>
         <tr>
-            <th><strong>Title</strong></th>
-            <th><strong>Description</strong></th>
-            <th><strong>Place</strong></th>
-            <th><strong>Time</strong></th>
-            <th><strong>Date</strong></th>
+            <th class="title"><strong>Title</strong></th>
+            <th class="description"><strong>Description</strong></th>
+            <th class="place"><strong>Place</strong></th>
+            <th class="time"><strong>Time</strong></th>
+            <th class="date"><strong>Date</strong></th>
             <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
         </tr>
 
@@ -50,8 +50,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 echo "<td class='time'>", $object->{'eventStart'}, ' - ', $object->{'eventEnd'}, "</td>";
                 echo "<td class='date'>", $object->{'eventDate'}, "</td>";
                 if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='glyphicon glyphicon-pencil'></button></td>";
-                    echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='glyphicon glyphicon-trash'></button></td>";
+                    echo "<td><button type='submit' onclick='window.location.href=\"event.php?id=", $object->{'id'}, "\"' class='glyphicon glyphicon-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteEvent(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='glyphicon glyphicon-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -78,5 +78,15 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
         } ?>
     </form>
 </div>
+
+<script type="text/javascript">
+    var ele = document.getElementsByClassName("changed")[0];
+    window.scrollTo(ele.offsetLeft, ele.offsetTop);
+</script>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script src="../js/events.js"></script>
+
 </body>
 </html>

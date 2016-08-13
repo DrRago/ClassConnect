@@ -10,7 +10,7 @@ $( ".input" ).focusout(function() {
 
 $(".login").submit(function(){
     var pwIn = $(".pw-in");
-    $(".login").find(".submit i").removeAttr('class').addClass("fa fa-check").css({"color":"#fff"});
+    $(".login").find(".submit i").removeAttr('class').addClass("fa fa-check");
     $("input").prop("readonly", true);
     $(".error").hide().animate(0);
 

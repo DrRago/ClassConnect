@@ -50,20 +50,23 @@ if ($permissions == 'ServerAdmin') {
             <th><strong>GroupID</strong></th>
             <?php if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
                 echo "<th><strong>ClassID</strong></th>";
-            } ?>
-            <?php if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
+            }
+            if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
+                echo "<th></th>";
+            }
+            if ($permissions == "ServerAdmin")  {
                 echo "<th></th>";
             }
             echo "</tr>";
             $user_amount = count($output);
             for ($count = 0; $count < $user_amount; $count++) {
                 if ($_SESSION["username"] == $output[$count]->username) {
-                    echo "<tr class='me'>";
+                    echo "<tr class='me' id='", $output[$count]->id, "'>";
                 } elseif ($_SESSION["changedUser"] == $output[$count]->id) {
                     unset($_SESSION["changedUser"]);
-                    echo "<tr id='changed' class='changed'>";
+                    echo "<tr id='", $output[$count]->id, "' class='changed'>";
                 } else {
-                    echo "<tr>";
+                    echo "<tr id='", $output[$count]->id, "'>";
                 }
                 echo "<td class='", $output[$count]->permissions, "'></td>";
                 if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
@@ -81,9 +84,12 @@ if ($permissions == 'ServerAdmin') {
                     echo "<td>", $output[$count]->classID, "</td>";
                 }
                 if ($permissions == "ServerAdmin" || ($permissions == "ClassAdmin" & $output[$count]->permissions != "ServerAdmin")) {
-                    echo "<td><button type='submit' onclick='window.location.href=\"edit.php?id=", $output[$count]->id, "\"' class='glyphicon glyphicon-pencil'></button></td>";
+                    echo "<td><button onclick='window.location.href=\"edit.php?id=", $output[$count]->id, "\"' class='glyphicon glyphicon-pencil'></button></td>";
                 } elseif ($permissions == "ClassAdmin") {
                     echo "<td></td>";
+                }
+                if ($permissions == "ServerAdmin") {
+                    echo "<td><button content='", $output[$count]->id, "' onclick='deleteUser(this,\"", $_SESSION["sessionID"], "\")' class='glyphicon glyphicon-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -119,9 +125,13 @@ if ($permissions == 'ServerAdmin') {
     </div>
 <?php } ?>
 <script type="text/javascript">
-    var ele = document.getElementById("changed");
+    var ele = document.getElementsByClassName("changed")[0];
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script src="../js/users.js"></script>
 
 </body>
 </html>

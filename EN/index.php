@@ -19,6 +19,7 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
 
     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
 
+    <script type="text/javascript" src="../js/jquery.rotate.1-1.js"></script>
 
     <link rel="stylesheet" href="../css/reset.css">
 
