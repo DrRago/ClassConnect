@@ -59,16 +59,16 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     </table>
 </div>
 
-<div class="inputs">
+<div class="form-inline">
     <form action="../scripts/add_event.php" method="post">
 
-        <input type="text" name="title" id="lesson_in" placeholder="Title" autofocus required>
-        <input type="text" name="description" id="exercises_in" placeholder="Description">
-        <input type="text" name="place" id="exercises_in" placeholder="Place" required>
-        <input type="text" name="eventStart" id="exercises_in" placeholder="Begin" required>
-        <input type="text" name="eventEnd" id="exercises_in" placeholder="End" required>
-        <input type="date" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
-        <button class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
+        <input type="text" class="form-control" name="title" id="lesson_in" placeholder="Title" autofocus required>
+        <input type="text" class="form-control" name="description" id="exercises_in" placeholder="Description">
+        <input type="text" class="form-control" name="place" id="exercises_in" placeholder="Place" required>
+        <input type="text" class="form-control" name="eventStart" id="exercises_in" placeholder="Begin" required>
+        <input type="text" class="form-control" name="eventEnd" id="exercises_in" placeholder="End" required>
+        <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
+        <button class="btn btn-default">&nbsp;Submit <span class="arrow">❯</span></button>
         <?php if ($_SESSION["addEvent"] == "success") {
             echo "<div class='alert-box success'><span>success: </span>Event added successfully.</div>";
             unset($_SESSION["addEvent"]);

@@ -59,10 +59,14 @@ input {
     }
 }
 
-.inputs {
-    margin-left: 0 !important;
-}
-
 .alert-box {
     margin-right: 0 !important;
+}
+
+.select {
+    margin-top: 10px;
+}
+
+.form-inline {
+    margin-left: 1px !important;
 }

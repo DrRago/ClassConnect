@@ -13,6 +13,8 @@ $result = json_decode($result);
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <link rel="stylesheet" href="../css/bootrstrap.css">
+
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/input_container.css">
@@ -50,7 +52,7 @@ $result = json_decode($result);
                 <div class="input"><label>Message:</label><textarea id="note" oninput=""
                                                                     readonly><?php echo $result{0}->content ?></textarea><br>
                 </div>
-                <button class="btn">&nbsp;Delete <span class="arrow">X</span></button>
+                <button class="btn btn-default">&nbsp;Delete <span class="arrow">X</span></button>
                 <?php
             }
         }

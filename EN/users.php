@@ -98,22 +98,22 @@ if ($permissions == 'ServerAdmin') {
 </div>
 
 <?php if ($_SESSION["permissions"] == "ClassAdmin" | $_SESSION["permissions"] == "ServerAdmin") { ?>
-    <div class="inputs">
+    <div class="form-inline">
         <form action="../scripts/add_user.php" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <select name="permissions" title="permissionSelection" required>
+            <input type="text" class="form-control" name="username" placeholder="Username" required>
+            <input type="text" class="form-control" name="name" placeholder="Name" required>
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+            <select name="permissions" class="form-control select" title="permissionSelection" required>
                 <option value="User" selected>User</option>
                 <option value="Moderator">Moderator</option>
                 <option value="ClassAdmin">ClassAdmin</option>
                 <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?>
                     <option value="ServerAdmin">ServerAdmin</option> <?php } ?>
             </select>
-            <input type="text" name="groupID" placeholder="Group ID" required>
-            <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?><input type="number" name="classID"
+            <input type="text" class="form-control" name="groupID" placeholder="Group ID" required>
+            <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?><input type="number" class="form-control" name="classID"
                                                                             placeholder="Class ID" required><?php } ?>
-            <button class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
+            <button class="btn btn-default">&nbsp;Submit <span class="arrow">❯</span></button>
             <?php if ($_SESSION["addUser"] == "success") {
                 echo "<div class='alert-box success'><span>success: </span>User added successfully.</div>";
                 unset($_SESSION["addUser"]);

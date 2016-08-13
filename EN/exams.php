@@ -64,12 +64,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     </table>
 </div>
 <?php if ($_SESSION['permissions'] != 'User') { ?>
-    <div class="inputs">
+    <div class="form-inline">
         <form action="../scripts/add_exam.php" method="post" id="formular">
-            <input type="text" name="lessonName" id="lesson_in" placeholder="subject" required>
-            <input type="text" name="topics" id="topics_in" placeholder="topics" required>
-            <input type="date" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
-            <button class="btn"> &nbsp;Submit <span class="arrow">❯</span></button>
+            <input type="text" class="form-control" name="lessonName" id="lesson_in" placeholder="subject" required>
+            <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics" required>
+            <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
+            <button class="btn btn-default"> &nbsp;Submit <span class="arrow">❯</span></button>
             <?php if ($_SESSION["addExam"] == "success") {
                 echo "<div class='alert-box success'><span>success: </span>Exam added successfully.</div>";
                 unset($_SESSION["addExam"]);

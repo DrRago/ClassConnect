@@ -101,7 +101,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     echo "selected='selected'";
                                 } ?>>ServerAdmin</option> <?php } ?>
                         </select><br></div>
-                    <button type="submit" class="btn">&nbsp;Submit <span class="arrow">❯</span></button>
+                    <button type="submit" class="btn btn-default">&nbsp;Submit <span class="arrow">❯</span></button>
                     <div class="pw">
                         <button type="button"
                                 onclick="window.location.href='../scripts/reset_password.php<?php $_SESSION["resetPassword"] = $_GET["id"] ?>'"

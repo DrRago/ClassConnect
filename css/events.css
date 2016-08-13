@@ -17,3 +17,7 @@ table {
 .description {
     width: 40%;
 }
+
+.form-inline {
+    margin-left: 5%;
+}

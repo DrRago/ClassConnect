@@ -1,17 +1,17 @@
-tr:hover {
+.helpdeskList tr:hover {
     background-color: #a1d2eb;
     cursor: pointer;
 }
 
-th:hover {
+.helpdeskList th:hover {
     cursor: auto;
 }
 
-table {
+.helpdeskList table {
     width: 80%;
 }
 
-table input {
+.helpdeskList table input {
     margin-top: 0 !important;
     margin-left: 0 !important;
     border: none;
@@ -47,15 +47,24 @@ table input {
 
 textarea {
     overflow: hidden;
+    width: 100% !important;
+    margin-top: 3px !important;
 }
 
-.ticketID {
-    cursor: pointer;
-    font-size: inherit;
+.helpdeskInput {
+    line-height: 35px;
 }
 
-.ticketSuccess {
-    margin: 10px 50px -20px;
-    position: relative;
-    left: -40%;
+.helpdeskInput tr td {
+    width: 170px;
+}
+
+select {
+    width: 100% !important;
+}
+
+.helpdeskInput button {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 135px;
 }

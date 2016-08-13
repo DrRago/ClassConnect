@@ -47,7 +47,7 @@ $result = json_decode($result);
                 <div class="input"><label for="date">Date<a class="IsRequired">*</a>:</label><input id="date" name="date" type="date"
                                                                                                     value="<?php echo $result{0}->homeworkDate ?>" required><br></div>
                 <input title="validation" name="validation" value="<?php echo $_SESSION["sessionID"]?>" hidden>
-                <button class="btn" type="submit">&nbsp;Submit <span class="arrow">❯</span></button>
+                <button class="btn btn-default" type="submit">&nbsp;Submit <span class="arrow">❯</span></button>
                 <?php
             }
         }
