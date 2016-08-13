@@ -1,5 +1,5 @@
 .inputs {
-    margin-left: 0 !important;
+    margin-left: 5% !important;
 }
 
 tr:hover {
@@ -8,4 +8,12 @@ tr:hover {
 
 .alert-box {
     margin-right: 0 !important;
+}
+
+table {
+    width: 90%;
+}
+
+.description {
+    width: 40%;
 }

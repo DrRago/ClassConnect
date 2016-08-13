@@ -1,5 +1,5 @@
 input, select, textarea {
-    margin-top: -20px !important;
+    margin-top: -30px !important;
     margin-left: 150px !important;
 }
 
@@ -8,7 +8,7 @@ form {
     font-size: 15px;
     background-color: rgba(72, 72, 72, 0.4);
     padding: 35px 35px 50px;
-    width: 350px;
+    width: 400px;
     float: left;
     left: 50%;
     position: absolute;

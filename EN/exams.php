@@ -11,7 +11,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/bootrstrap.css">
 
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
@@ -25,10 +25,15 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <?php require "navigator.php" ?>
 <div class="filler">
 </div>
+<noscript>
+    <div class="container alert alert-danger" role="alert">
+        <strong>Warning!</strong>
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
+</noscript>
 <div class="examList">
     <table>
         <tr>
-            <th><strong>Subject</strong></th>
+            <th class='lessonName'><strong>Subject</strong></th>
             <th class="topics"><strong>Topics</strong></th>
             <th><strong>Date</strong></th>
             <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
@@ -40,11 +45,16 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
         } else {
             foreach ($result as $object) {
 
-                echo "<tr id='$object->id'>";
+                if ($_SESSION["changedExam"] == $object->id) {
+                    unset($_SESSION["changedExam"]);
+                    echo "<tr id='$object->id' class='changed'>";
+                } else {
+                    echo "<tr id='$object->id'>";
+                }
                 echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='topics'>", $object->{'topics'}, "</td>";
                 echo "<td class='examDate'>", $object->{'examDate'}, "</td>";
-                if ($_SESSION["permissions"] != "User") {
+                if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
                     echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='glyphicon glyphicon-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='glyphicon glyphicon-trash'></button></td>";
                 }
@@ -70,6 +80,11 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
         </form>
     </div>
 <?php } ?>
+
+<script type="text/javascript">
+    var ele = document.getElementsByClassName("changed")[0];
+    window.scrollTo(ele.offsetLeft, ele.offsetTop);
+</script>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 

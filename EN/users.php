@@ -16,6 +16,8 @@ if ($permissions == 'ServerAdmin') {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <link rel="stylesheet" href="../css/bootrstrap.css">
+
     <link rel="stylesheet" href="../css/users.css">
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/formula.css">
@@ -26,6 +28,11 @@ if ($permissions == 'ServerAdmin') {
 <?php require "navigator.php" ?>
 <div class='filler'>
 </div>
+<noscript>
+    <div class="container alert alert-danger" role="alert">
+        <strong>Warning!</strong>
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
+</noscript>
 <div class='userList'>
     <table>
         <tr>
@@ -60,7 +67,7 @@ if ($permissions == 'ServerAdmin') {
                 }
                 echo "<td class='", $output[$count]->permissions, "'></td>";
                 if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
-                    echo "<td><input name='id' type='text' readonly style='width:", strlen($output[$count]->id) * 8, "px;' value='", $output[$count]->id, "'>";
+                    echo "<td><input name='id' type='text' readonly style='width:", strlen($output[$count]->id) * 9, "px;' value='", $output[$count]->id, "'>";
                 }
                 echo "<td>", $output[$count]->name, "</td>";
                 if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
@@ -74,7 +81,7 @@ if ($permissions == 'ServerAdmin') {
                     echo "<td>", $output[$count]->classID, "</td>";
                 }
                 if ($permissions == "ServerAdmin" || ($permissions == "ClassAdmin" & $output[$count]->permissions != "ServerAdmin")) {
-                    echo "<td><button type='submit' onclick='window.location.href=\"edit.php?id=", $output[$count]->id, "\"' class='edit'></button></td>";
+                    echo "<td><button type='submit' onclick='window.location.href=\"edit.php?id=", $output[$count]->id, "\"' class='glyphicon glyphicon-pencil'></button></td>";
                 } elseif ($permissions == "ClassAdmin") {
                     echo "<td></td>";
                 }

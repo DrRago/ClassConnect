@@ -11,6 +11,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <link rel="stylesheet" href="../css/bootrstrap.css">
+
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/table.css">
@@ -21,6 +23,11 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <?php require "navigator.php" ?>
 <div class="filler">
 </div>
+<noscript>
+    <div class="container alert alert-danger" role="alert">
+        <strong>Warning!</strong>
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
+</noscript>
 <div class="events_tbl">
     <table>
         <tr>
@@ -29,6 +36,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
             <th><strong>Place</strong></th>
             <th><strong>Time</strong></th>
             <th><strong>Date</strong></th>
+            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
         </tr>
 
         <?php
@@ -36,11 +44,16 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
             echo "<tr><td colspan='5'>No Events</td></tr>";
         } else {
             foreach ($result as $object) {
-                echo "<tr><td class='title'>", $object->{'title'}, "</td>";
+                echo "<tr id='$object->id'><td class='title'>", $object->{'title'}, "</td>";
                 echo "<td class='description'>", $object->{'description'}, "</td>";
                 echo "<td class='place'>", $object->{'place'}, "</td>";
                 echo "<td class='time'>", $object->{'eventStart'}, ' - ', $object->{'eventEnd'}, "</td>";
-                echo "<td class='date'>", $object->{'eventDate'}, "</td></tr>";
+                echo "<td class='date'>", $object->{'eventDate'}, "</td>";
+                if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
+                    echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='glyphicon glyphicon-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='glyphicon glyphicon-trash'></button></td>";
+                }
+                echo "</tr>";
             }
         } ?>
     </table>

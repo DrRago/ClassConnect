@@ -77,6 +77,8 @@ for ($i = 0; $lessonAmount > $i; $i++) {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <link rel="stylesheet" href="../css/bootrstrap.css">
+
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/timetable.css">
     <link rel="stylesheet" href="../css/navigation.css">
@@ -87,6 +89,11 @@ for ($i = 0; $lessonAmount > $i; $i++) {
 <?php require "navigator.php" ?>
 <div class="filler">
 </div>
+<noscript>
+    <div class="container alert alert-danger" role="alert">
+        <strong>Warning!</strong>
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
+</noscript>
 <table class="timetable">
     <tr>
         <th class="Week"><strong><?php if ((date('W') % 2) == 0) {

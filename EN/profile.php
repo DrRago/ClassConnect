@@ -8,6 +8,8 @@ require "../scripts/check_user.php"; ?>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <link rel="stylesheet" href="../css/bootrstrap.css">
+
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/profile.css">
@@ -18,13 +20,18 @@ require "../scripts/check_user.php"; ?>
 <?php require "navigator.php" ?>
 <body>
 <div class="filler"></div>
+<noscript>
+    <div class="container alert alert-danger" role="alert">
+        <strong>Warning!</strong>
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
+</noscript>
 <div class="inputs">
     <form class="form" method="post" action="../scripts/update_user.php">
         <div class="input"><label class="username">Username:<a class="IsRequired">*</a></label><input name="username"
                                                                                                       type="text"
                                                                                                       value="<?php echo $_SESSION["username"] ?>"
                                                                                                       placeholder="Username"
-                                                                                                      readonly><br>
+                                                                                                      <?php if ($_SESSION["permissions"] == "User" || $_SESSION["permissions"] == "Moderator") { echo "readonly";}?>><br>
         </div>
         <div class="input"><label class="name">Name:<a class="IsRequired">*</a></label><input name="name" type="text"
                                                                                               value="<?php echo $_SESSION["name"] ?>"

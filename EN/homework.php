@@ -12,6 +12,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <link rel="stylesheet" href="../css/bootrstrap.css">
 
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
@@ -24,12 +25,18 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <?php require "navigator.php" ?>
 <div class="filler">
 </div>
+<noscript>
+    <div class="container alert alert-danger" role="alert">
+        <strong>Warning!</strong>
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
+</noscript>
 <div class="homework_tbl">
     <table>
         <tr>
-            <th><strong>Subject</strong></th>
+            <th class='lessonName'><strong>Subject</strong></th>
             <th><strong>Exercises</strong></th>
             <th><strong>Date</strong></th>
+            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
         </tr>
 
         <?php
@@ -37,9 +44,14 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
             echo "<tr><td colspan='3'>No Homework</td></tr>";
         } else {
             foreach ($result as $object) {
-                echo "<tr><td class='lessonName'>", $object->{'lessonName'}, "</td>";
+                echo "<tr id='$object->id'><td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='exercise'>", $object->{'exercises'}, "</td>";
-                echo "<td class='homeworkDate'>", $object->{'homeworkDate'}, "</td></tr>";
+                echo "<td class='homeworkDate'>", $object->{'homeworkDate'}, "</td>";
+                if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
+                    echo "<td><button type='submit' onclick='window.location.href=\"edit_homework.php?id=", $object->{'id'}, "\"' class='glyphicon glyphicon-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteHomework(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='glyphicon glyphicon-trash'></button></td>";
+                }
+                echo "</tr>";
             }
         } ?>
     </table>
@@ -62,5 +74,13 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     </div>
 <?php } ?>
 
+<script type="text/javascript">
+    var ele = document.getElementsByClassName("changed")[0];
+    window.scrollTo(ele.offsetLeft, ele.offsetTop);
+</script>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script src="../js/homework.js"></script>
 </body>
 </html>

@@ -8,6 +8,8 @@ require "../scripts/check_user.php";
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <link rel="stylesheet" href="../css/bootrstrap.css">
+
     <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -20,6 +22,11 @@ require "../scripts/check_user.php";
 <body>
 <?php require "navigator.php" ?>
 <div class="filler"></div>
+<noscript>
+    <div class="container alert alert-danger" role="alert">
+        <strong>Warning!</strong>
+        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
+</noscript>
 <?php if ($_SESSION["permissions"] != "ServerAdmin") { ?>
     <div class="inputs">
         <form class="form" method="post" action="../scripts/add_ticket.php">

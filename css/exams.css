@@ -24,18 +24,6 @@ th {
     margin-top: 20px;
 }
 
-.glyphicon {
-    cursor: pointer;
-    border: none;
-    height: 20px;
-    width: 0!important;
-    position: inherit;
-    background-color: transparent;
-    background-size: 20px 20px;
-    top: 50%;
-    margin-left: -10px;
-    margin-right: auto;
-}
 .topics {
     width: 70%;
 }
@@ -51,6 +39,23 @@ th {
     }
     75% {
         background-color: #a94442;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.changed {
+    animation: 4s bgchanged;
+    -webkit-animation: 4s bgchanged;
+}
+
+@keyframes bgchanged {
+    0% {
+        background-color: #00d200;
+    }
+    75% {
+        background-color: #00d200;
     }
     100% {
         background-color: transparent;

@@ -1,11 +1,11 @@
-function deleteExam(e, sessionID) {
-    if (confirm("Are you sure that you want to delete this Exam?")) {
+function deleteHomework(e, sessionID) {
+    if (confirm("Are you sure that you want to delete this homework?")) {
         $.ajax({
             type: 'POST',
-            url: '../scripts/delete_exam.php',
+            url: '../scripts/delete_homework.php',
             data: "id=" + e.getAttribute("content") + "&validation=" + sessionID,
             success: function (data) {
-                if (data == "a4d6b3047af2c2538b883473b4595bf838f93aed458d89734c10f8e0a05d165315287426d2dd121be73528e27b4838f6d31bd0190e3951ee7b8ba6f68e3f887b") {
+                if (data == "61d85c36464de09e23a96e2f98eca31a1607eed43653246e2966475e15458a4b82f53553c8e12cafecf9c41bf78412088fc2008dba62d676cdbe4b9c3cd09262") {
                     $("#" + e.getAttribute("content")).children('td')
                         .animate({padding: 0})
                         .wrapInner('<div />')
