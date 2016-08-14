@@ -77,6 +77,8 @@ for ($i = 0; $lessonAmount > $i; $i++) {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
@@ -114,7 +116,7 @@ for ($i = 0; $lessonAmount > $i; $i++) {
     <?php
     for ($i = 0; $lessonAmount > $i; $i++) {
         echo "<tr>";
-        echo "<td class='nohover'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
+        echo "<td class='nohover time'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
         for ($e = 0; $e <= 4; $e++) {
             if ($startTimes[$i] == $timetable{$e}{$i - $count[$e]}['lessonStart']) {
                 if ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
@@ -168,7 +170,7 @@ for ($i = 0; $lessonAmount > $i; $i++) {
     <?php
     for ($i = 0; $lessonAmount > $i; $i++) {
         echo "<tr>";
-        echo "<td class='nohover'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
+        echo "<td class='nohover time'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
         for ($e = 0; $e <= 4; $e++) {
             if ($startTimes[$i] == $timetable{$e}{$i - $count[$e]}['lessonStart']) {
                 echo "<td>", $timetable{$e}{$i - $count[$e]}['lessonName'], "<br>", $timetable{$e}{$i - $count[$e]}['room'], "</td>";
@@ -181,5 +183,13 @@ for ($i = 0; $lessonAmount > $i; $i++) {
     }
     ?>
 </table>
+<script>
+    $(".time").hover( function() {
+        $(this).closest("tr").css({"backgroundColor": "rgba(0, 0, 0, 0.2)"})
+    }, function() {
+        $(this).closest("tr").css({"backgroundColor": "rgba(0, 0, 0, 0)"})
+    })
+</script>
+
 </body>
 </html>
