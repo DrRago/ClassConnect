@@ -77,7 +77,8 @@ for ($i = 0; $lessonAmount > $i; $i++) {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootrstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/timetable.css">
@@ -173,7 +174,7 @@ for ($i = 0; $lessonAmount > $i; $i++) {
                 echo "<td>", $timetable{$e}{$i - $count[$e]}['lessonName'], "<br>", $timetable{$e}{$i - $count[$e]}['room'], "</td>";
             } else {
                 $count[$e]++;
-                echo "<td class='nohove'></td>";
+                echo "<td class='nohover'></td>";
             }
         }
         echo "</tr>";

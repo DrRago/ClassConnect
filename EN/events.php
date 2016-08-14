@@ -11,7 +11,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootrstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -50,8 +51,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 echo "<td class='time'>", $object->{'eventStart'}, ' - ', $object->{'eventEnd'}, "</td>";
                 echo "<td class='date'>", $object->{'eventDate'}, "</td>";
                 if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"event.php?id=", $object->{'id'}, "\"' class='glyphicon glyphicon-pencil'></button></td>";
-                    echo "<td><button type='submit' onclick='deleteEvent(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='glyphicon glyphicon-trash'></button></td>";
+                    echo "<td><button type='submit' onclick='window.location.href=\"event.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteEvent(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -61,14 +62,43 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
 <div class="form-inline">
     <form action="../scripts/add_event.php" method="post">
-
-        <input type="text" class="form-control" name="title" id="lesson_in" placeholder="Title" autofocus required>
-        <input type="text" class="form-control" name="description" id="exercises_in" placeholder="Description">
-        <input type="text" class="form-control" name="place" id="exercises_in" placeholder="Place" required>
-        <input type="text" class="form-control" name="eventStart" id="exercises_in" placeholder="Begin" required>
-        <input type="text" class="form-control" name="eventEnd" id="exercises_in" placeholder="End" required>
-        <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
-        <button class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"> </span></button>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-tag"></i>
+            </span>
+            <input type="text" class="form-control" name="title" id="lesson_in" placeholder="Title" autofocus required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-comment"></i>
+            </span>
+            <input type="text" class="form-control" name="description" id="description" placeholder="Description">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-map-marker"></i>
+            </span>
+            <input type="text" class="form-control" name="place" id="place" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+            </span>
+            <input type="time" class="form-control" name="eventStart" id="start" placeholder="Begin" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+            </span>
+            <input type="time" class="form-control" name="eventEnd" id="end" placeholder="End" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </span>
+            <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
+        </div>
+        <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
         <?php if ($_SESSION["addEvent"] == "success") {
             echo "<div class='alert alert-success'><strong>success: </strong>Event added successfully.</div>";
             unset($_SESSION["addEvent"]);
@@ -87,6 +117,29 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
 <script src="../js/events.js"></script>
+
+<script>
+    function initMap() {
+        var map = new google.maps.Map({
+            center: {lat: -33.8688, lng: 151.2195}
+        });
+        var input = /** @type {!HTMLInputElement} */(
+            document.getElementById('place'));
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        autocomplete.addListener('place_changed', function() {
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+            }
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATsPCAd6yPq5ayeqlXjlraM48WAl6tM5s&signed_in=true&libraries=places&callback=initMap" async defer></script>
 
 </body>
 </html>

@@ -26,9 +26,17 @@ textarea {
 }
 
 .form-inline table tr td {
-    width: 170px;
+    width: 200px;
 }
 
 .alert strong {
     text-transform: uppercase !important;
+}
+
+.input-group {
+    width: 200px;
+}
+
+.input-group input {
+    width: 165px !important;
 }

@@ -8,7 +8,8 @@ require "../scripts/check_user.php";
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootrstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -71,7 +72,7 @@ require "../scripts/check_user.php";
                     <td><textarea class="form-control" maxlength="500" oninput="resize()" id="message" name="message" placeholder="message"><?php echo $_SESSION["ticketMessage"] ?></textarea></td>
                 </tr>
             </table>
-            <button type="submit" class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"> </span></button>
+            <button type="submit" class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
 
             <?php if ($_SESSION["addTicket"] == "success") {
                 echo "<div class='alert alert-success' style='margin-top: 40px;margin-bottom: -40px'><strong>success: </strong>Ticket raised successfully.</div>";

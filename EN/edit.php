@@ -28,7 +28,8 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
 
         <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-        <link rel="stylesheet" href="../css/bootrstrap.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="../css/navigation.css">
         <link rel="stylesheet" href="../css/style.css">
@@ -56,74 +57,107 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                     <table>
                         <tr>
                             <td><label class="id">User ID:<a class="IsRequired">*</a></label></td>
-                            <td><input class="form-control" name="id"
-                                       type="number"
-                                       value="<?php echo $result{0}->id ?>"
-                                       placeholder="Username"
-                                       readonly></td>
+                            <td><div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-list-ol"></i>
+                                    </span>
+                                    <input class="form-control" name="id" type="number" value="<?php echo $result{0}->id ?>" placeholder="Username" readonly>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td><label class="username">Username:<a class="IsRequired">*</a></label></td>
-                            <td><input class="form-control" name="username" type="text" value="<?php echo $result{0}->username ?>" placeholder="Username"></td>
+                            <td><div class="input-group">
+                                    <span class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                    </span>
+                                    <input class="form-control" name="username" type="text" value="<?php echo $result{0}->username ?>" placeholder="Username" readonly>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td><label class="name">Name:<a class="IsRequired">*</a></label></td>
-                            <td><input class="form-control"
-                                       name="name"
-                                       type="text"
-                                       value="<?php echo $result{0}->name ?>"
-                                       placeholder="Name"
-                                       required></td>
+                            <td><div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-male"></i>
+                                    </span>
+                                    <input class="form-control" name="name" type="text" value="<?php echo $result{0}->name ?>" placeholder="Name" required>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td><label class="phone">Phone:</label></td>
-                            <td><input class="form-control"
-                                       name="phone" type="tel"
-                                       value="<?php echo $result{0}->phone ?>"
-                                       placeholder="Phone"></td>
+                            <td><div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </span>
+                                    <input class="form-control" name="phone" type="tel" value="<?php echo $result{0}->phone ?>" placeholder="Phone">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td><label class="email">Email address:</label></td>
-                            <td><input class="form-control"
-                                       name="email" type="email"
-                                       value="<?php echo $result{0}->email ?>"
-                                       placeholder="Email"></td>
+                            <td><div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa  fa-at"></i>
+                                    </span>
+                                    <input class="form-control" name="email" type="email" value="<?php echo $result{0}->email ?>" placeholder="Email">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td><label class="group">Group:<a class="IsRequired">*</a></label></td>
-                            <td><input class="form-control" name="groupID" type="text" value="<?php echo $result{0}->groupID ?>" placeholder="GroupID" required></td>
+                            <td><div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-group"></i>
+                                    </span>
+                                    <input class="form-control" name="groupID" type="text" value="<?php echo $result{0}->groupID ?>" placeholder="GroupID" required>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td><label class="classID">Class ID:<a class="IsRequired">*</a></label></td>
-                            <td><input class="form-control" name="classID" type="number" value="<?php echo $result{0}->classID ?>" placeholder="ClassID" required></td>
+                            <td><div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </span>
+                                    <input class="form-control" name="classID" type="number" value="<?php echo $result{0}->classID ?>" placeholder="ClassID" required>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td><label class="permissions">Permissions:<a class="IsRequired">*</a></label></td>
-                            <td><select class="form-control" name="permissions" title="permissionSelection" style="width: 100% !important;" required>
-                                    <option value="User" <?php if ($result{0}->permissions == "User") {
-                                        echo "selected='selected'";
-                                    } ?>>User
-                                    </option>
-                                    <option value="Moderator" <?php if ($result{0}->permissions == "Moderator") {
-                                        echo "selected='selected'";
-                                    } ?>>Moderator
-                                    </option>
-                                    <option value="ClassAdmin" <?php if ($result{0}->permissions == "ClassAdmin") {
-                                        echo "selected='selected'";
-                                    } ?>>ClassAdmin
-                                    </option>
-                                    <?php if ($_SESSION["permissions"] == "ServerAdmin" | $result{0}->permissions == "ServerAdmin") { ?>
-                                        <option value="ServerAdmin" <?php if ($result{0}->permissions == "ServerAdmin") {
+                            <td><div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-key"></i>
+                                    </span>
+                                    <select class="form-control" name="permissions" title="permissionSelection" style="width: 165px" required>
+                                        <option value="User" <?php if ($result{0}->permissions == "User") {
                                             echo "selected='selected'";
-                                        } ?>>ServerAdmin</option> <?php } ?>
-                                </select></td>
+                                        } ?>>User
+                                        </option>
+                                        <option value="Moderator" <?php if ($result{0}->permissions == "Moderator") {
+                                            echo "selected='selected'";
+                                        } ?>>Moderator
+                                        </option>
+                                        <option value="ClassAdmin" <?php if ($result{0}->permissions == "ClassAdmin") {
+                                            echo "selected='selected'";
+                                        } ?>>ClassAdmin
+                                        </option>
+                                        <?php if ($_SESSION["permissions"] == "ServerAdmin" | $result{0}->permissions == "ServerAdmin") { ?>
+                                            <option value="ServerAdmin" <?php if ($result{0}->permissions == "ServerAdmin") {
+                                                echo "selected='selected'";
+                                            } ?>>ServerAdmin</option> <?php } ?>
+                                    </select>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                     <div class="btn-group">
                         <button type="button"
                                 onclick="window.location.href='../scripts/reset_password.php<?php $_SESSION["resetPassword"] = $_GET["id"] ?>'"
-                                class="right btn btn-default">&nbsp;Reset Password <span class="glyphicon glyphicon-lock"></span></button>
-                        <button type="submit" class="left btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"> </span></button>
+                                class="right btn btn-default">&nbsp;Reset Password <span class="fa fa-lock"></span></button>
+                        <button type="submit" class="left btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
                     </div>
                     <?php
                     if ($_SESSION["resetStatus"] == "success") {

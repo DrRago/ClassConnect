@@ -26,7 +26,7 @@ th {
     color: #fff;
 }
 
-table .glyphicon {
+table .fa {
     cursor: pointer;
     border: none;
     height: 20px;
@@ -37,4 +37,8 @@ table .glyphicon {
     top: 50%;
     margin-left: -10px;
     margin-right: auto;
+}
+
+tr:hover {
+    background-color: rgba(0, 0, 0, 0.2);
 }

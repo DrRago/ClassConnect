@@ -11,7 +11,8 @@ $result = json_decode($result);
 <head>
     <title>Exam <?php echo $_GET["id"]?></title>
 
-    <link rel="stylesheet" href="../css/bootrstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
@@ -41,23 +42,47 @@ if ($result == null || ($result{0}->classID != $_SESSION["classID"] && $_SESSION
         <table>
             <tr>
                 <td><label for="id">Exam ID<a class="IsRequired">*</a>:</label></td>
-                <td><input id="id" class="form-control" name="id" type="text" value="<?php echo $result{0}->id ?>" readonly required></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-list-ol"></i>
+                        </span>
+                        <input id="id" class="form-control" name="id" type="text" value="<?php echo $result{0}->id ?>" readonly required>
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td><label for="lesson">Lesson<a class="IsRequired">*</a>:</label></td>
-                <td><input id="lesson" class="form-control" name="lesson" type="text" value="<?php echo $result{0}->lessonName ?>" required></td>
+                <td><label for="lesson">Subject<a class="IsRequired">*</a>:</label></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-book"></i>
+                        </span>
+                        <input id="lesson" class="form-control" name="lesson" type="text" value="<?php echo $result{0}->lessonName ?>" required>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label for="topics">Topics<a class="IsRequired">*</a>:</label></td>
-                <td><input id="topics" class="form-control" name="topics" type="text" value="<?php echo $result{0}->topics ?>" required></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-tasks"></i>
+                        </span>
+                        <input id="topics" class="form-control" name="topics" type="text" value="<?php echo $result{0}->topics ?>" placeholder="Tasks" required>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label for="date">Date<a class="IsRequired">*</a>:</label></td>
-                <td><input id="date" class="form-control" name="date" type="date" value="<?php echo $result{0}->examDate ?>" style="width: 100% !important;" required></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                        <input id="date" class="form-control" name="date" type="date" value="<?php echo $result{0}->examDate ?>" required>
+                    </div>
+                </td>
             </tr>
         </table>
-        <input title="validation" name="validation" value="<?php echo $_SESSION["sessionID"]?>" hidden>
-        <button class="btn btn-default" type="submit">&nbsp;Submit <span class="glyphicon glyphicon-send"> </span></button>
+        <input title="validation" name="validation" value="<?php echo $_SESSION["sessionID"]?>" style="display: none" hidden>
+        <button class="btn btn-default" type="submit">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
         <?php
         }
         }

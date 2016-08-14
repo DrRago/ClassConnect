@@ -8,7 +8,8 @@ require "../scripts/check_user.php"; ?>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootrstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -29,54 +30,83 @@ require "../scripts/check_user.php"; ?>
         <table>
             <tr>
                 <td><label class="username">Username:<a class="IsRequired">*</a></label></td>
-                <td><input class="form-control" name="username"
-                           type="text"
-                           value="<?php echo $_SESSION["username"] ?>"
-                           placeholder="Username"
-                        <?php if ($_SESSION["permissions"] == "User" || $_SESSION["permissions"] == "Moderator") { echo "readonly";}?>></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input class="form-control" name="username" type="text" value="<?php echo $_SESSION["username"] ?>" placeholder="Username" readonly>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label class="name">Name:<a class="IsRequired">*</a></label></td>
-                <td><input class="form-control" name="name" type="text"
-                           value="<?php echo $_SESSION["name"] ?>"
-                           placeholder="Name"
-                           required></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-male"></i>
+                        </span>
+                        <input class="form-control" name="name" type="text" value="<?php echo $_SESSION["name"] ?>" placeholder="Name" required>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label class="phone">Phone:</label></td>
-                <td><input class="form-control" name="phone" type="tel"
-                           value="<?php echo $_SESSION["phone"] ?>"
-                           placeholder="Phone"></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-phone"></i>
+                        </span>
+                        <input class="form-control" name="phone" type="tel" value="<?php echo $_SESSION["phone"] ?>" placeholder="Phone">
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label class="email">Email address:</label></td>
-                <td><input class="form-control" name="email" type="email"
-                           value="<?php echo $_SESSION["email"] ?>"
-                           placeholder="Email"></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-at"></i>
+                        </span>
+                        <input class="form-control" name="email" type="email" value="<?php echo $_SESSION["email"] ?>" placeholder="Email">
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label class="group">Group:<a class="IsRequired">*</a></label></td>
-                <td><input class="form-control" name="groupID"
-                           type="text"
-                           value="<?php echo $_SESSION["groupID"] ?>"
-                           placeholder="GroupID"
-                           required></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-users"></i>
+                        </span>
+                        <input class="form-control" name="groupID" type="text" value="<?php echo $_SESSION["groupID"] ?>" placeholder="GroupID" required>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label class="new_password_1">New Password:</label></td>
-                <td><input class="form-control" name="new_password_1"
-                           type="password"
-                           placeholder="New Password"></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                        <input class="form-control" name="new_password_1" type="password" placeholder="New Password">
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label class="new_password_2">New Password:</label></td>
-                <td><input class="form-control" name="new_password_2"
-                           type="password"
-                           placeholder="Repeat Password"></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                        <input class="form-control" name="new_password_2" type="password" placeholder="Repeat Password">
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td><label class="old_password">Old Password:<a class="IsRequired">*</a></label></td>
-                <td><input class="form-control" name="old_password" type="password" placeholder="Current Password" required></td>
+                <td><div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-unlock"></i>
+                        </span>
+                        <input class="form-control" name="old_password" type="password" placeholder="Current Password" required>
+                    </div>
+                </td>
             </tr>
             <?php if ($_SESSION["editUser"] == "success") {
                 echo "<div class='alert alert-success'><strong>success: </strong>Change was successful.</div>";
@@ -91,7 +121,7 @@ require "../scripts/check_user.php"; ?>
 
             ?>
         </table>
-        <button class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"></span></button>
+        <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"></span></button>
     </form>
 </div>
 </body>

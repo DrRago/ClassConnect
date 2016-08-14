@@ -16,10 +16,10 @@ if ($permissions == 'ServerAdmin') {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootrstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/table.css">
-
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/formula.css">
@@ -85,12 +85,12 @@ if ($permissions == 'ServerAdmin') {
                     echo "<td>", $output[$count]->classID, "</td>";
                 }
                 if ($permissions == "ServerAdmin" || ($permissions == "ClassAdmin" & $output[$count]->permissions != "ServerAdmin")) {
-                    echo "<td><button onclick='window.location.href=\"edit.php?id=", $output[$count]->id, "\"' class='glyphicon glyphicon-pencil'></button></td>";
+                    echo "<td><button onclick='window.location.href=\"edit.php?id=", $output[$count]->id, "\"' class='fa fa-pencil'></button></td>";
                 } elseif ($permissions == "ClassAdmin") {
                     echo "<td></td>";
                 }
                 if ($permissions == "ServerAdmin") {
-                    echo "<td><button content='", $output[$count]->id, "' onclick='deleteUser(this,\"", $_SESSION["sessionID"], "\")' class='glyphicon glyphicon-trash'></button></td>";
+                    echo "<td><button content='", $output[$count]->id, "' onclick='deleteUser(this,\"", $_SESSION["sessionID"], "\")' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -101,20 +101,52 @@ if ($permissions == 'ServerAdmin') {
 <?php if ($_SESSION["permissions"] == "ClassAdmin" | $_SESSION["permissions"] == "ServerAdmin") { ?>
     <div class="form-inline">
         <form action="../scripts/add_user.php" method="post">
-            <input type="text" class="form-control" name="username" placeholder="Username" required>
-            <input type="text" class="form-control" name="name" placeholder="Name" required>
-            <input type="password" class="form-control" name="password" placeholder="Password" required>
-            <select name="permissions" class="form-control select" title="permissionSelection" required>
-                <option value="User" selected>User</option>
-                <option value="Moderator">Moderator</option>
-                <option value="ClassAdmin">ClassAdmin</option>
-                <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?>
-                    <option value="ServerAdmin">ServerAdmin</option> <?php } ?>
-            </select>
-            <input type="text" class="form-control" name="groupID" placeholder="Group ID" required>
-            <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?><input type="number" class="form-control" name="classID"
-                                                                            placeholder="Class ID" required><?php } ?>
-            <button class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"></span></button>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                </span>
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-male"></i>
+                </span>
+                <input type="text" class="form-control" name="name" placeholder="Name" required>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                </span>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-key"></i>
+                </span>
+                <select name="permissions" class="form-control select" title="permissionSelection" required>
+                    <option value="User" selected>User</option>
+                    <option value="Moderator">Moderator</option>
+                    <option value="ClassAdmin">ClassAdmin</option>
+                    <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?>
+                        <option value="ServerAdmin">ServerAdmin</option> <?php } ?>
+                </select>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-users"></i>
+                </span>
+                <input type="text" class="form-control" name="groupID" placeholder="Group ID" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-graduation-cap"></i>
+                </span>
+                <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?><input type="number" class="form-control" name="classID" placeholder="Class ID" required><?php } ?>
+            </div>
+
+
+            <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"></span></button>
             <?php if ($_SESSION["addUser"] == "success") {
                 echo "<div class='alert alert-success'><strong>success: </strong>User added successfully.</div>";
                 unset($_SESSION["addUser"]);

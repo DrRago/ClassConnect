@@ -12,7 +12,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootrstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
@@ -48,8 +49,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 echo "<td class='exercise'>", $object->{'exercises'}, "</td>";
                 echo "<td class='homeworkDate'>", $object->{'homeworkDate'}, "</td>";
                 if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"edit_homework.php?id=", $object->{'id'}, "\"' class='glyphicon glyphicon-pencil'></button></td>";
-                    echo "<td><button type='submit' onclick='deleteHomework(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='glyphicon glyphicon-trash'></button></td>";
+                    echo "<td><button type='submit' onclick='window.location.href=\"edit_homework.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteHomework(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -59,10 +60,25 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <?php if ($_SESSION['permissions'] != 'User') { ?>
     <div class="form-inline">
         <form action="../scripts/add_homework.php" method="post">
-            <input type="text" class="form-control" name="lessonName" id="lesson_in" placeholder="subject" required>
-            <input type="text" class="form-control" name="exercises" id="exercises_in" placeholder="exercises" required>
-            <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="yyyy-mm-dd" required>
-            <button class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"></span></button>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-book"></i>
+                </span>
+                <input type="text" class="form-control" name="lessonName" id="lesson_in" placeholder="subject" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-tasks"></i>
+                </span>
+                <input type="text" class="form-control" name="exercises" id="exercises_in" placeholder="exercises" required>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </span>
+                <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="yyyy-mm-dd" required>
+            </div>
+            <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"></span></button>
             <?php if ($_SESSION["addHomework"] == "success") {
                 echo "<div class='alert alert-success'><strong>success: </strong>Homework added successfully.</div>";
                 unset($_SESSION["addHomework"]);

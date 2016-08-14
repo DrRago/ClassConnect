@@ -3,8 +3,12 @@
     color: black;
 }
 
+tr:hover {
+    background-color: transparent;
+}
+
 td:hover {
-    background-color: #a1d2eb;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .nohover:hover {
