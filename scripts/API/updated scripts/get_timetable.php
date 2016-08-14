@@ -11,12 +11,12 @@ $week = $_POST["w"];
 $groupID = $_POST["g"];
 //Holds classID (IS required)
 $classID = $_POST["c"];
-//Hold if all timetables should be pulled
+//Hold if complete timetable should be pulled
 $all = $_POST["a"];
 
-if (isset($a)) {
+if (isset($all)) {
 //Set SQL Query
-    $sql = "SELECT * FROM `tbl_Timetable` WHERE 1;";
+    $sql = "SELECT * FROM `tbl_Timetable` WHERE `classID` = '$all';";
 } else {
 //Set SQL Query
     $sql = "SELECT * FROM `tbl_Timetable` WHERE `day` = '$day' AND `week` = '$week' AND `classID` = '$classID' AND groupID LIKE '%$groupID%';";
