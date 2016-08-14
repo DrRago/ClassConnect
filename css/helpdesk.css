@@ -37,34 +37,3 @@
 .reason {
     width: 2%;
 }
-
-.success, .error {
-    width: 60% !important;
-    margin: 40px 50px -20px;
-    position: relative;
-    left: 7%;
-}
-
-textarea {
-    overflow: hidden;
-    width: 100% !important;
-    margin-top: 3px !important;
-}
-
-.helpdeskInput {
-    line-height: 35px;
-}
-
-.helpdeskInput tr td {
-    width: 170px;
-}
-
-select {
-    width: 100% !important;
-}
-
-.helpdeskInput button {
-    position: absolute;
-    margin-top: 10px;
-    margin-left: 135px;
-}

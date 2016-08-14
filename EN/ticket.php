@@ -19,40 +19,48 @@ $result = json_decode($result);
     <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/input_container.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/ticket.css">
 </head>
 
 <body>
 <?php require "navigator.php"; ?>
 <div class="filler">
 </div>
-<div class="inputs">
+<div class="form-inline">
     <form class="form" method="post" action="../scripts/delete_ticket.php">
         <?php
         if (!is_numeric($_GET['id'])) {
-            echo "<div class='alert-box error ticketError'><span>error: </span>The ID ", $_GET['id'], " is no number</div>";
+            echo "<div class='alert alert-danger'><strong>error: </strong>The ID ", $_GET['id'], " is no number</div>";
         } else {
             if ($result == null) {
-                echo "<div class='alert-box error ticketError'><span>error: </span>No ticket with the ID ", $_GET['id'], " found</div>";
+                echo "<div class='alert alert-danger'><strong>error: </st>No ticket with the ID ", $_GET['id'], " found</div>";
             } else { ?>
-                <div class="input"><label>Ticket ID:</label><input name="id" type="text"
-                                                                   value="<?php echo $result{0}->id ?>" readonly><br>
-                </div>
-                <div class="input"><label>Creator ID:</label><input type="text"
-                                                                    value="<?php echo $result{0}->creatorID ?>"
-                                                                    readonly><br></div>
-                <div class="input"><label>Creator Name:</label><input name="name" type="text"
-                                                                      value="<?php echo $result{0}->creatorName ?>"
-                                                                      readonly><br></div>
-                <div class="input"><label>Creator Email:</label><input type="text"
-                                                                       value="<?php echo $result{0}->creatorEmail ?>"
-                                                                       readonly><br></div>
-                <div class="input"><label>Topic:</label><input type="text" value="<?php echo $result{0}->reason ?>"
-                                                               readonly><br></div>
-                <div class="input"><label>Message:</label><textarea id="note" oninput=""
-                                                                    readonly><?php echo $result{0}->content ?></textarea><br>
-                </div>
-                <button class="btn btn-default">&nbsp;Delete <span class="arrow">X</span></button>
+                <table>
+                    <tr>
+                        <td><label for="id">Ticket ID:</label></td>
+                        <td><input id="id" class="form-control" name="id" type="text" value="<?php echo $result{0}->id ?>" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="creatorID">Creator ID:</label></td>
+                        <td><input id="creatorID" class="form-control" type="text" value="<?php echo $result{0}->creatorID ?>" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="creatorName">Creator Name:</label></td>
+                        <td><input id="creatorName" class="form-control" name="name" type="text" value="<?php echo $result{0}->creatorName ?>" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="creatorEmail">Creator Email:</label></td>
+                        <td><input id="creatorEmail" class="form-control" type="text" value="<?php echo $result{0}->creatorEmail ?>" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="reason">Topic:</label></td>
+                        <td><input id="reason" class="form-control" type="text" value="<?php echo $result{0}->reason ?>" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="message">Message:</label></td>
+                        <td><textarea id="message" class="form-control" readonly><?php echo $result{0}->content ?></textarea></td>
+                    </tr>
+                </table>
+                <button class="btn btn-default">&nbsp;Delete <span class="glyphicon glyphicon-trash"></span></button>
                 <?php
             }
         }

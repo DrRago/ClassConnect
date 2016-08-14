@@ -18,11 +18,12 @@ if ($permissions == 'ServerAdmin') {
 
     <link rel="stylesheet" href="../css/bootrstrap.css">
 
-    <link rel="stylesheet" href="../css/users.css">
     <link rel="stylesheet" href="../css/table.css">
-    <link rel="stylesheet" href="../css/formula.css">
+
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/users.css">
 </head>
 <body>
 <?php require "navigator.php" ?>
@@ -113,12 +114,12 @@ if ($permissions == 'ServerAdmin') {
             <input type="text" class="form-control" name="groupID" placeholder="Group ID" required>
             <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?><input type="number" class="form-control" name="classID"
                                                                             placeholder="Class ID" required><?php } ?>
-            <button class="btn btn-default">&nbsp;Submit <span class="arrow">❯</span></button>
+            <button class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"></span></button>
             <?php if ($_SESSION["addUser"] == "success") {
-                echo "<div class='alert-box success'><span>success: </span>User added successfully.</div>";
+                echo "<div class='alert alert-success'><strong>success: </strong>User added successfully.</div>";
                 unset($_SESSION["addUser"]);
             } elseif ($_SESSION["addUser"] == "error") {
-                echo "<div class='alert-box error'><span>error: </span>Equal username found.</div>";
+                echo "<div class='alert alert-danger'><strong>error: </strong>Equal username found.</div>";
                 unset($_SESSION["addUser"]);
             } ?>
         </form>

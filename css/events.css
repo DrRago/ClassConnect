@@ -1,23 +1,24 @@
-.inputs {
-    margin-left: 5% !important;
-}
-
 tr:hover {
     background-color: #a1d2eb;
-}
-
-.alert-box {
-    margin-right: 0 !important;
 }
 
 table {
     width: 90%;
 }
 
-.description {
+table .description {
     width: 40%;
 }
 
 .form-inline {
     margin-left: 5%;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.alert {
+    display: inline-block !important;
 }

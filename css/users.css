@@ -2,47 +2,36 @@ tr:hover {
     background-color: #a1d2eb;
 }
 
-.free_space {
+table .free_space {
     width: 1%;
 }
 
-.ServerAdmin {
+table .ServerAdmin {
     background-color: red !important;
 }
 
-.ClassAdmin {
+table .ClassAdmin {
     background-color: blue !important;
 }
 
-.Moderator {
+table .Moderator {
     background-color: darkgray !important;
 }
 
-.id {
+table .id {
     width: auto;
 }
 
-.me {
+table .me {
     background-color: #0adcff !important;
 }
 
-.glyphicon {
-    cursor: pointer;
-    border: none;
-    height: 20px;
-    width: 20px;
-    position: inherit;
-    background-color: transparent;
-    top: 50%;
-    left: 50%;
-}
-
-input {
+table input {
     border: none;
     background: none;
 }
 
-.changed {
+table .changed {
     animation: 4s bgcolorchange;
     -webkit-animation: 4s bgcolorchange;
 }
@@ -59,14 +48,15 @@ input {
     }
 }
 
-.alert-box {
-    margin-right: 0 !important;
-}
-
-.select {
-    margin-top: 10px;
-}
-
 .form-inline {
     margin-left: 1px !important;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.alert {
+    display: inline-block !important;
 }

@@ -68,12 +68,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
         <input type="text" class="form-control" name="eventStart" id="exercises_in" placeholder="Begin" required>
         <input type="text" class="form-control" name="eventEnd" id="exercises_in" placeholder="End" required>
         <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
-        <button class="btn btn-default">&nbsp;Submit <span class="arrow">❯</span></button>
+        <button class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"> </span></button>
         <?php if ($_SESSION["addEvent"] == "success") {
-            echo "<div class='alert-box success'><span>success: </span>Event added successfully.</div>";
+            echo "<div class='alert alert-success'><strong>success: </strong>Event added successfully.</div>";
             unset($_SESSION["addEvent"]);
         } elseif ($_SESSION["addEvent"] == "error") {
-            echo "<div class='alert-box error'><span>error: </span>Wrong date format.</div>";
+            echo "<div class='alert alert-danger'><strong>error: </strong>Wrong date format.</div>";
             unset($_SESSION["addEvent"]);
         } ?>
     </form>

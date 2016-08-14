@@ -14,6 +14,7 @@ require "../scripts/check_user.php";
     <link rel="stylesheet" href="../css/style.css">
     <?php if ($_SESSION["permissions"] == "ServerAdmin") { echo "<link rel='stylesheet' href='../css/table.css'>";}?>
     <link rel="stylesheet" href="../css/helpdesk.css">
+    <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/input_container.css">
 
 </head>
@@ -57,7 +58,7 @@ require "../scripts/check_user.php";
                 </tr>
                 <tr>
                     <td><label class="topic">Topic:<a class="IsRequired">*</a></label></td>
-                    <td> <select class="form-control" name="topic" title="topicSelection" required>
+                    <td> <select class="form-control" name="topic" title="topicSelection" style="width: 100% !important;" required>
                             <option value="Bug">Bug</option>
                             <option value="Add Class">Add Class</option>
                             <option value="Delete User">Delete User</option>
@@ -69,22 +70,20 @@ require "../scripts/check_user.php";
                     <td><label class="message">Message:<a class="IsRequired">*</a></label></td>
                     <td><textarea class="form-control" maxlength="500" oninput="resize()" id="message" name="message" placeholder="message"><?php echo $_SESSION["ticketMessage"] ?></textarea></td>
                 </tr>
-                <tr>
-                    <td><button type="submit" class="btn btn-default">&nbsp;Submit <span class="arrow">❯</span></button></td>
-                </tr>
-
-                <?php if ($_SESSION["addTicket"] == "success") {
-                    echo "<div class='alert alert-success'><strong>success: </strong>Ticket raised successfully.</div>";
-                    unset($_SESSION["addTicket"]);
-                } elseif ($_SESSION["addTicket"] == "error") {
-                    echo "<div class='alert alert-danger'><strong>error: </strong>Wrong email format.</div>";
-                    unset($_SESSION["addTicket"]);
-                }
-                unset($_SESSION["ticketEmail"]);
-                unset($_SESSION["ticketName"]);
-                unset($_SESSION["ticketMessage"]);
-                ?>
             </table>
+            <button type="submit" class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"> </span></button>
+
+            <?php if ($_SESSION["addTicket"] == "success") {
+                echo "<div class='alert alert-success' style='margin-top: 40px;margin-bottom: -40px'><strong>success: </strong>Ticket raised successfully.</div>";
+                unset($_SESSION["addTicket"]);
+            } elseif ($_SESSION["addTicket"] == "error") {
+                echo "<div class='alert alert-danger' style='margin-top: 40px;margin-bottom: -40px'><strong>error: </strong>Wrong email format.</div>";
+                unset($_SESSION["addTicket"]);
+            }
+            unset($_SESSION["ticketEmail"]);
+            unset($_SESSION["ticketName"]);
+            unset($_SESSION["ticketMessage"]);
+            ?>
         </form>
     </div>
 <?php } else {
@@ -116,7 +115,7 @@ require "../scripts/check_user.php";
         </table>
         <?php
         if (isset($_SESSION["deleteTicket"])) {
-            echo "<div class='alert alert-success'><span>success: </span>Ticket ", $_SESSION['deleteTicket'], " deleted successfully.</div>";
+            echo "<div class='alert alert-success' style='margin-left: 10%;margin-right: 10%'><strong>success: </strong>Ticket ", $_SESSION['deleteTicket'], " deleted successfully.</div>";
             unset($_SESSION["deleteTicket"]);
         }
         ?>

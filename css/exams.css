@@ -11,24 +11,24 @@ th {
     cursor: auto;
 }
 
-.lessonName {
+table .lessonName {
     width: 15%;
 }
 
-.examDate {
+table .examDate {
     width: 15%;
 }
 
-.inputs {
+table .inputs {
     margin-left: 10%;
     margin-top: 20px;
 }
 
-.topics {
+table .topics {
     width: 70%;
 }
 
-.notDeleted {
+table .notDeleted {
     animation: 4s bgcolorchange;
     -webkit-animation: 4s bgcolorchange;
 }
@@ -45,7 +45,7 @@ th {
     }
 }
 
-.changed {
+table .changed {
     animation: 4s bgchanged;
     -webkit-animation: 4s bgchanged;
 }
@@ -60,4 +60,14 @@ th {
     100% {
         background-color: transparent;
     }
+}
+
+
+.btn {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.alert {
+    display: inline-block !important;
 }

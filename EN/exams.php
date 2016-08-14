@@ -69,12 +69,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
             <input type="text" class="form-control" name="lessonName" id="lesson_in" placeholder="subject" required>
             <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics" required>
             <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
-            <button class="btn btn-default"> &nbsp;Submit <span class="arrow">❯</span></button>
+            <button class="btn btn-default"> &nbsp;Submit <span class="glyphicon glyphicon-send"> </span></button>
             <?php if ($_SESSION["addExam"] == "success") {
-                echo "<div class='alert-box success'><span>success: </span>Exam added successfully.</div>";
+                echo "<div class='alert alert-success'><strong>success: </strong>Exam added successfully.</div>";
                 unset($_SESSION["addExam"]);
             } elseif ($_SESSION["addExam"] == "error") {
-                echo "<div class='alert-box error'><span>error: </span>Wrong date format.</div>";
+                echo "<div class='alert alert-danger'><strong>error: </str>Wrong date format.</div>";
                 unset($_SESSION["addExam"]);
             } ?>
         </form>

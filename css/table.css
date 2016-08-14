@@ -26,7 +26,7 @@ th {
     color: #fff;
 }
 
-.glyphicon {
+table .glyphicon {
     cursor: pointer;
     border: none;
     height: 20px;

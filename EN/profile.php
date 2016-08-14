@@ -12,7 +12,7 @@ require "../scripts/check_user.php"; ?>
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/input_container.css">
 
 </head>
@@ -78,9 +78,6 @@ require "../scripts/check_user.php"; ?>
                 <td><label class="old_password">Old Password:<a class="IsRequired">*</a></label></td>
                 <td><input class="form-control" name="old_password" type="password" placeholder="Current Password" required></td>
             </tr>
-            <tr>
-                <td><button class="btn btn-default">&nbsp;Submit <span class="arrow">❯</span></button></td>
-            </tr>
             <?php if ($_SESSION["editUser"] == "success") {
                 echo "<div class='alert alert-success'><strong>success: </strong>Change was successful.</div>";
                 unset($_SESSION["editUser"]);
@@ -88,12 +85,13 @@ require "../scripts/check_user.php"; ?>
                 echo "<div class='alert alert-danger'><strong>error: </strong>Wrong password.</div>";
                 unset($_SESSION["editUser"]);
             } elseif ($_SESSION["editUser"] == "matchError") {
-                echo "<div class='alert alert-danger'><strong>error: </st>Passwords don't match.</div>";
+                echo "<div class='alert alert-danger'><strong>error: </strong>Passwords don't match.</div>";
                 unset($_SESSION["editUser"]);
             }
 
             ?>
         </table>
+        <button class="btn btn-default">&nbsp;Submit <span class="glyphicon glyphicon-send"></span></button>
     </form>
 </div>
 </body>
