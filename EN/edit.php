@@ -111,7 +111,11 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                         <i class="fa fa-group"></i>
                                     </span>
-                                    <input class="form-control" name="groupID" type="text" value="<?php echo $result{0}->groupID ?>" placeholder="GroupID" required>
+                                    <input class="form-control" name="groupID" type="text" maxlength="1" onkeypress='return event.charCode >= 65 && event.charCode <= 66' value="<?php echo $result{0}->groupID ?>" placeholder="GroupID" list="suggestions" required>
+                                    <datalist id="suggestions">
+                                        <option value="B">
+                                        <option value="A">
+                                    </datalist>
                                 </div>
                             </td>
                         </tr>
@@ -131,7 +135,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                         <i class="fa fa-key"></i>
                                     </span>
-                                    <select class="form-control" name="permissions" title="permissionSelection" style="width: 165px" required>
+                                    <select class="form-control" name="permissions" title="permissionSelection" required>
                                         <option value="User" <?php if ($result{0}->permissions == "User") {
                                             echo "selected='selected'";
                                         } ?>>User

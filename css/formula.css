@@ -18,7 +18,7 @@ textarea {
 }
 
 .btn-group {
-    margin-left: 40px;
+    margin-left: 65px;
 }
 
 .form-inline table {
@@ -34,9 +34,9 @@ textarea {
 }
 
 .input-group {
-    width: 200px;
+    width: 250px;
 }
 
-.input-group input {
-    width: 165px !important;
+.input-group input, .input-group select {
+    width: 215px !important;
 }
