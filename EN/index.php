@@ -17,11 +17,9 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/index.css">
 
 
@@ -57,7 +55,7 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='../js/jquery-3.1.0.min.js'></script>
 <script src="../js/index.js"></script>
 
 </body>

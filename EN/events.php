@@ -12,7 +12,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -78,7 +78,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
             <span class="input-group-addon">
                 <i class="fa fa-map-marker"></i>
             </span>
-            <input type="text" class="form-control" name="place" id="place" required>
+            <input type="text" class="form-control" name="place" id="place" placeholder="Enter a location" required>
         </div>
         <div class="input-group">
             <span class="input-group-addon">
@@ -114,7 +114,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='../js/jquery-3.1.0.min.js'></script>
 
 <script src="../js/events.js"></script>
 

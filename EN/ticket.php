@@ -14,7 +14,7 @@ $result = json_decode($result);
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/formula.css">

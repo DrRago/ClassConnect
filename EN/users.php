@@ -17,7 +17,7 @@ if ($permissions == 'ServerAdmin') {
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
@@ -162,7 +162,7 @@ if ($permissions == 'ServerAdmin') {
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
 
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='../js/jquery-3.1.0.min.js'></script>
 
 <script src="../js/users.js"></script>
 
