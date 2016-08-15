@@ -2,8 +2,8 @@
     cursor: pointer;
 }
 
-.helpdeskList th:hover {
-    cursor: auto;
+.helpdeskList th:hover, .nohover {
+    cursor: auto !important;
 }
 
 .helpdeskList table {

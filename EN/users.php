@@ -138,13 +138,14 @@ if ($permissions == 'ServerAdmin') {
                 </span>
                 <input type="text" class="form-control" name="groupID" placeholder="Group ID" required>
             </div>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-graduation-cap"></i>
-                </span>
-                <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?><input type="number" class="form-control" name="classID" placeholder="Class ID" required><?php } ?>
-            </div>
-
+            <?php if ($_SESSION["permissions"] == "ServerAdmin") { ?>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-graduation-cap"></i>
+                    </span>
+                    <input type="number" class="form-control" name="classID" placeholder="Class ID" required>
+                </div>
+            <?php } ?>
 
             <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"></span></button>
             <?php if ($_SESSION["addUser"] == "success") {

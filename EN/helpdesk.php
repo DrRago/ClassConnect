@@ -11,6 +11,8 @@ require "../scripts/check_user.php";
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
+    <script src="../js/autosize.min.js"></script>
+
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
     <?php if ($_SESSION["permissions"] == "ServerAdmin") { echo "<link rel='stylesheet' href='../css/table.css'>";}?>
@@ -34,42 +36,63 @@ require "../scripts/check_user.php";
             <table class="helpdeskInput">
                 <tr>
                     <td><label class="username">Username:<a class="IsRequired">*</a></label></td>
-                    <td><input class="name form-control" name="username" type="text" value="<?php echo $_SESSION['username'] ?>" placeholder="Username" readonly></td>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input class="name form-control" name="username" type="text" value="<?php echo $_SESSION['username'] ?>" placeholder="Username" readonly>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label class="name">Name:<a class="IsRequired">*</a></label></td>
-                    <td><input class="form-control" name="name" type="text"
-                               value="<?php if (isset($_SESSION["ticketName"])) {
-                                   echo $_SESSION["ticketName"];
-                               } else {
-                                   echo $_SESSION['name'];
-                               } ?>"
-                               placeholder="Name" required></td>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-male"></i>
+                            </span>
+                            <input class="form-control" name="name" type="text" value="<?php if (isset($_SESSION["ticketName"])) { echo $_SESSION["ticketName"]; } else { echo $_SESSION['name']; } ?>" placeholder="Name" required>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label class="email">Email Address:<a class="IsRequired">*</a></label></td>
-                    <td><input class="form-control" name="email" type="email"
-                               value="<?php if (isset($_SESSION["ticketEmail"])) {
-                                   echo $_SESSION["ticketEmail"];
-                               } else {
-                                   echo $_SESSION['email'];
-                               } ?>"
-                               placeholder="Email"
-                               required></td>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-at"></i>
+                            </span>
+                            <input class="form-control" name="email" type="email" value="<?php if (isset($_SESSION["ticketEmail"])) { echo $_SESSION["ticketEmail"]; } else { echo $_SESSION['email']; } ?>" placeholder="Email" required>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label class="topic">Topic:<a class="IsRequired">*</a></label></td>
-                    <td> <select class="form-control" name="topic" title="topicSelection" style="width: 100% !important;" required>
-                            <option value="Bug">Bug</option>
-                            <option value="Add Class">Add Class</option>
-                            <option value="Delete User">Delete User</option>
-                            <option value="Other">Other</option>
-                        </select>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-tag"></i>
+                            </span>
+                            <select class="form-control" name="topic" title="topicSelection" required>
+                                <option value="Bug">Bug</option>
+                                <option value="Add Class">Add Class</option>
+                                <option value="Delete User">Delete User</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td><label class="message">Message:<a class="IsRequired">*</a></label></td>
-                    <td><textarea class="form-control" maxlength="500" oninput="resize()" id="message" name="message" placeholder="message"><?php echo $_SESSION["ticketMessage"] ?></textarea></td>
+                    <td>
+                        <div class="input-group textarea">
+                            <span class="input-group-addon">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                            <textarea class="form-control" maxlength="500" id="message" name="message" placeholder="message"><?php echo $_SESSION["ticketMessage"] ?></textarea>
+                        </div>
+                    </td>
                 </tr>
             </table>
             <button type="submit" class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
@@ -103,7 +126,7 @@ require "../scripts/check_user.php";
             </tr>
             <?php
             if (!isset($result)) {
-                echo "<tr><td colspan='5'>No Tickets</td></tr>";
+                echo "<tr class='nohover'><td colspan='5'>No Tickets</td></tr>";
             } else {
                 foreach ($result as $object) {
                     echo "<tr onclick='window.location.href=\"ticket.php?id=", $object->{'id'}, "\"'><td><input class='ticketID' name='id' type='text' readonly style='width:", strlen($object->{'id'}) * 10, "px;' value='", $object->{'id'}, "'>";
@@ -124,10 +147,7 @@ require "../scripts/check_user.php";
 <?php } ?>
 
 <script>
-    function resize() {
-        var s_height = document.getElementById('message').scrollHeight;
-        document.getElementById('message').setAttribute('style', 'height:' + s_height + 'px')
-    }
+    autosize(document.getElementById('message'));
 </script>
 </body>
 </html>

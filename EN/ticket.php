@@ -16,6 +16,8 @@ $result = json_decode($result);
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
+    <script src="../js/autosize.min.js"></script>
+
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/input_container.css">
@@ -38,27 +40,69 @@ $result = json_decode($result);
                 <table>
                     <tr>
                         <td><label for="id">Ticket ID:</label></td>
-                        <td><input id="id" class="form-control" name="id" type="text" value="<?php echo $result{0}->id ?>" readonly></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-list-ol"></i>
+                                </span>
+                                <input id="id" class="form-control" name="id" type="text" value="<?php echo $result{0}->id ?>" readonly>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="creatorID">Creator ID:</label></td>
-                        <td><input id="creatorID" class="form-control" type="text" value="<?php echo $result{0}->creatorID ?>" readonly></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-list-ol"></i>
+                                </span>
+                                <input id="creatorID" class="form-control" type="text" value="<?php echo $result{0}->creatorID ?>" readonly>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="creatorName">Creator Name:</label></td>
-                        <td><input id="creatorName" class="form-control" name="name" type="text" value="<?php echo $result{0}->creatorName ?>" readonly></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-male"></i>
+                                </span>
+                                <input id="creatorName" class="form-control" name="name" type="text" value="<?php echo $result{0}->creatorName ?>" readonly>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="creatorEmail">Creator Email:</label></td>
-                        <td><input id="creatorEmail" class="form-control" type="text" value="<?php echo $result{0}->creatorEmail ?>" readonly></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-at"></i>
+                                </span>
+                                <input id="creatorEmail" class="form-control" type="text" value="<?php echo $result{0}->creatorEmail ?>" readonly>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="reason">Topic:</label></td>
-                        <td><input id="reason" class="form-control" type="text" value="<?php echo $result{0}->reason ?>" readonly></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tag"></i>
+                                </span>
+                                <input id="reason" class="form-control" type="text" value="<?php echo $result{0}->reason ?>" readonly>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="message">Message:</label></td>
-                        <td><textarea id="message" class="form-control" readonly><?php echo $result{0}->content ?></textarea></td>
+                        <td>
+                            <div class="input-group textarea">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                                <textarea id="message" class="form-control" readonly><?php echo $result{0}->content ?></textarea>
+                            </div>
+                        </td>
                     </tr>
                 </table>
                 <button class="btn btn-default">&nbsp;Delete <span class="fa fa-trash"></span></button>
@@ -69,8 +113,7 @@ $result = json_decode($result);
     </form>
 </div>
 <script>
-    var s_height = document.getElementById('note').scrollHeight + 10;
-    document.getElementById('note').setAttribute('style', 'height:' + s_height + 'px');
+    autosize(document.getElementById('message'));
 </script>
 
 </body>

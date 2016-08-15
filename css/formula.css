@@ -1,9 +1,10 @@
 textarea {
     resize: vertical;
-    min-height: 35px;
     overflow: hidden;
-    width: 100% !important;
-    margin-top: 3px !important;
+}
+
+.textarea {
+    margin-top: 3px;
 }
 
 .form-inline {
@@ -37,6 +38,6 @@ textarea {
     width: 250px;
 }
 
-.input-group input, .input-group select {
+.input-group input, .input-group select, .input-group textarea {
     width: 215px !important;
 }
