@@ -11,5 +11,11 @@ function getContent($data, $path) {
         CURLOPT_POSTFIELDS => $data // required if POST-Option is set to 'true'
     ));
 
-    return(curl_exec($curl));
+    $result = curl_exec($curl);
+
+    if (curl_errno($curl) == 0) {
+        return($result);
+    } else {
+        return curl_errno($curl);
+    }
 }

@@ -12,6 +12,7 @@ require "../scripts/check_user.php";
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <script src="../js/autosize.min.js"></script>
+    <script src="../js/ticket.js"></script>
 
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -123,17 +124,23 @@ require "../scripts/check_user.php";
                 <th class="mail"><strong>Email</strong></th>
                 <th class="reason"><strong>Reason</strong></th>
                 <th class="crID"><strong>Creator ID</strong></th>
+                <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
             </tr>
             <?php
             if (!isset($result)) {
                 echo "<tr class='nohover'><td colspan='5'>No Tickets</td></tr>";
             } else {
                 foreach ($result as $object) {
-                    echo "<tr onclick='window.location.href=\"ticket.php?id=", $object->{'id'}, "\"'><td><input class='ticketID' name='id' type='text' readonly style='width:", strlen($object->{'id'}) * 10, "px;' value='", $object->{'id'}, "'>";
+                    echo "<tr id='$object->id'><td><input class='ticketID' name='id' type='text' readonly style='width:", strlen($object->{'id'}) * 10, "px;' value='", $object->{'id'}, "'>";
                     echo "<td class='name'>", $object->{'creatorName'}, "</td>";
                     echo "<td class='email'>", $object->{'creatorEmail'}, "</td>";
                     echo "<td class='reason'>", $object->{'reason'}, "</td>";
-                    echo "<td class='creatorID'>", $object->{'creatorID'}, "</td></tr>";
+                    echo "<td class='creatorID'>", $object->{'creatorID'}, "</td>";
+                    if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
+                        echo "<td><button type='submit' onclick='window.location.href=\"ticket.php?id=", $object->id, "\"' class='fa fa-pencil'></button></td>";
+                        echo "<td><button type='submit' onclick='deleteTicket(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
+                    }
+                    echo "</tr>";
                 }
             } ?>
         </table>

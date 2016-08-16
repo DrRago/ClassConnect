@@ -7,7 +7,7 @@
 }
 
 .helpdeskList table {
-    width: 80%;
+    width: 70%;
 }
 
 .helpdeskList table input {
@@ -22,17 +22,17 @@
 }
 
 .crID {
-    width: 3%;
+    width: 20%;
 }
 
 .creator {
-    width: 7%;
+    width: 30%;
 }
 
 .mail {
-    width: 9%;
+    width: 35%;
 }
 
 .reason {
-    width: 2%;
+    width: 20%;
 }
