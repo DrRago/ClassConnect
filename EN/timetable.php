@@ -3,6 +3,202 @@ session_start();
 error_reporting(1);
 require "../scripts/check_user.php";
 
+function getLessonAmount ($timetable) {
+    $lessons = array();
+    foreach ($timetable as $object) {
+        $lessons{$object->day} += 1;
+    }
+    return $lessons;
+}
+
+function getTimes($timetable, $start) {
+    $times = array();
+    foreach ($timetable as $object) {
+        if ($start) {
+            array_push($times, $object->lessonStart);
+        } else {
+            array_push($times, $object->lessonEnd);
+        }
+    }
+    return array_values(array_unique($times));
+}
+
+function sortTimetable($timetable) {
+    $temp = array(
+        "Monday" => array(),
+        "Tuesday" => array(),
+        "Wednesday" => array(),
+        "Thursday" => array(),
+        "Friday" => array()
+    );
+    foreach ($timetable as $value) {
+        array_push($temp{$value->day}, $value);
+    }
+    return $temp;
+}
+
+$result = getContent(array(
+    "week" => date('W') % 2,
+    "cid" => $_SESSION["classID"],
+    "g" => $_SESSION["groupID"]
+), "get_ordered_timetable.php");
+
+$startTimes = getTimes($result, true);
+$endTimes = getTimes($result, false);
+$result = sortTimetable($result);
+
+?>
+<html>
+<head>
+    <title>Timetable</title>
+
+    <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
+
+    <script src='../js/jquery-3.1.0.min.js'></script>
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/table.css">
+    <link rel="stylesheet" href="../css/timetable.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<?php require "navigator.php" ?>
+<div class="filler"></div>
+
+<table class="timetable">
+    <tr>
+        <th class="Week"><strong><?php if ((date('W') % 2) == 0) {
+                    echo "Even Week";
+                } else {
+                    echo "Odd Week";
+                } ?> (This Week)</strong></th>
+    </tr>
+    <tr>
+        <th><strong>Lesson</strong></th>
+        <th><strong>Monday</strong></th>
+        <th><strong>Tuesday</strong></th>
+        <th><strong>Wednesday</strong></th>
+        <th><strong>Thursday</strong></th>
+        <th><strong>Friday</strong></th>
+    </tr>
+<?php
+$count = 0;
+for ($i = 0; $i < count($startTimes); $i ++) {
+    echo "<tr>";
+    echo "<td class='nohover time'>", $startTimes{$count}, " - ", $endTimes{$count}, "<br>Room</td>";
+    if (isset($result{'Monday'}[$i]->lessonName)) {
+        echo "<td>", $result{'Monday'}[$i]->lessonName, "</td>";
+    } else {
+        echo "<td class='nohover'></td>";
+    }
+    if (isset($result{'Tuesday'}[$i]->lessonName)) {
+        echo "<td>", $result{'Tuesday'}[$i]->lessonName, "</td>";
+    } else {
+        echo "<td class='nohover'></td>";
+    }
+    if (isset($result{'Wednesday'}[$i]->lessonName)) {
+        echo "<td>", $result{'Wednesday'}[$i]->lessonName, "</td>";
+    } else {
+        echo "<td class='nohover'></td>";
+    }
+    if (isset($result{'Thursday'}[$i]->lessonName)) {
+        echo "<td>", $result{'Thursday'}[$i]->lessonName, "</td>";
+    } else {
+        echo "<td class='nohover'></td>";
+    }
+    if (isset($result{'Friday'}[$i]->lessonName)) {
+        echo "<td>", $result{'Friday'}[$i]->lessonName, "</td>";
+    } else {
+        echo "<td class='nohover'></td>";
+    }
+    echo "</tr>";
+    $count ++;
+}
+
+?>
+</table>
+
+<?php
+$result = getContent(array(
+    "week" => (date('W') + 1) % 2,
+    "cid" => $_SESSION["classID"],
+    "g" => $_SESSION["groupID"]
+), "get_ordered_timetable.php");
+
+$startTimes = getTimes($result, true);
+$endTimes = getTimes($result, false);
+$result = sortTimetable($result);
+?>
+
+<table class="timetable">
+    <tr>
+        <th class="Week"><strong><?php if (((date('W') + 1) % 2) == 0) {
+                    echo "Even Week";
+                } else {
+                    echo "Odd Week";
+                } ?> </strong></th>
+    </tr>
+    <tr>
+        <th><strong>Lesson</strong></th>
+        <th><strong>Monday</strong></th>
+        <th><strong>Tuesday</strong></th>
+        <th><strong>Wednesday</strong></th>
+        <th><strong>Thursday</strong></th>
+        <th><strong>Friday</strong></th>
+    </tr>
+    <?php
+    $count = 0;
+    for ($i = 0; $i < count($startTimes); $i ++) {
+        echo "<tr>";
+        echo "<td class='nohover time'>", $startTimes{$count}, " - ", $endTimes{$count}, "<br>Room</td>";
+        if (isset($result{'Monday'}[$i]->lessonName)) {
+            echo "<td>", $result{'Monday'}[$i]->lessonName, "</td>";
+        } else {
+            echo "<td class='nohover'></td>";
+        }
+        if (isset($result{'Tuesday'}[$i]->lessonName)) {
+            echo "<td>", $result{'Tuesday'}[$i]->lessonName, "</td>";
+        } else {
+            echo "<td class='nohover'></td>";
+        }
+        if (isset($result{'Wednesday'}[$i]->lessonName)) {
+            echo "<td>", $result{'Wednesday'}[$i]->lessonName, "</td>";
+        } else {
+            echo "<td class='nohover'></td>";
+        }
+        if (isset($result{'Thursday'}[$i]->lessonName)) {
+            echo "<td>", $result{'Thursday'}[$i]->lessonName, "</td>";
+        } else {
+            echo "<td class='nohover'></td>";
+        }
+        if (isset($result{'Friday'}[$i]->lessonName)) {
+            echo "<td>", $result{'Friday'}[$i]->lessonName, "</td>";
+        } else {
+            echo "<td class='nohover'></td>";
+        }
+        echo "</tr>";
+        $count ++;
+    }
+
+    ?>
+</table>
+
+<script>
+    $(".time").hover( function() {
+        $(this).closest("tr").css({"backgroundColor": "rgba(0, 0, 0, 0.2)"})
+    }, function() {
+        $(this).closest("tr").css({"backgroundColor": "rgba(0, 0, 0, 0)"})
+    })
+</script>
+</body>
+</html>
+<?php
+/*
 function getLessonAmount($timetable)
 {
     $length = count($timetable);
@@ -183,13 +379,7 @@ for ($i = 0; $lessonAmount > $i; $i++) {
     }
     ?>
 </table>
-<script>
-    $(".time").hover( function() {
-        $(this).closest("tr").css({"backgroundColor": "rgba(0, 0, 0, 0.2)"})
-    }, function() {
-        $(this).closest("tr").css({"backgroundColor": "rgba(0, 0, 0, 0)"})
-    })
-</script>
+
 
 </body>
-</html>
+</html>*/

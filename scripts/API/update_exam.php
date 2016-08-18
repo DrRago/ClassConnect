@@ -1,7 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: DrragoGangsta
- * Date: 19.05.2016
- * Time: 16:02
- */
+require "init.php";
+
+$id = $_POST["id"];
+$lessonName = $_POST["lesson"];
+$topics = $_POST["topics"];
+$examDate = $_POST["date"];
+
+$sql = "UPDATE tbl_Exams SET lessonName = '$lessonName', topics = '$topics', examDate = '$examDate' WHERE id = '$id';";
+
+$result = mysql_query($sql);
+
+
+if (!$result)
+    echo "UpdateFailed";
