@@ -12,7 +12,7 @@ require "../scripts/check_user.php";
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <script src="../js/autosize.min.js"></script>
-    <script src="../js/ticket.min.js"></script>
+    <script src="../js/ticket.js"></script>
 
     <link rel="stylesheet" href="../css/navigation.min.css">
     <link rel="stylesheet" href="../css/style.min.css">
@@ -144,12 +144,6 @@ require "../scripts/check_user.php";
                 }
             } ?>
         </table>
-        <?php
-        if (isset($_SESSION["deleteTicket"])) {
-            echo "<div class='alert alert-success' style='margin-left: 10%;margin-right: 10%'><strong>success: </strong>Ticket ", $_SESSION['deleteTicket'], " deleted successfully.</div>";
-            unset($_SESSION["deleteTicket"]);
-        }
-        ?>
     </div>
 <?php } ?>
 
