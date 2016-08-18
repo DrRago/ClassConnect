@@ -11,14 +11,14 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="../css/navigation.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/table.css">
-    <link rel="stylesheet" href="../css/formula.css">
-    <link rel="stylesheet" href="../css/events.css">
+    <link rel="stylesheet" href="../css/navigation.min.css">
+    <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/table.min.css">
+    <link rel="stylesheet" href="../css/formula.min.css">
+    <link rel="stylesheet" href="../css/events.min.css">
 </head>
 <body>
 <?php require "navigator.php" ?>
@@ -116,7 +116,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
 <script src='../js/jquery-3.1.0.min.js'></script>
 
-<script src="../js/events.js"></script>
+<script src="../js/events.min.js"></script>
 
 <script>
     function initMap() {

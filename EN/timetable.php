@@ -24,15 +24,23 @@ function getTimes($timetable, $start) {
 }
 
 function sortTimetable($timetable) {
+    $days = array(
+        "Monday" => 0,
+        "Tuesday" => 1,
+        "Wednesday" => 2,
+        "Thursday" => 3,
+        "Friday" => 4
+    );
+
     $temp = array(
-        "Monday" => array(),
-        "Tuesday" => array(),
-        "Wednesday" => array(),
-        "Thursday" => array(),
-        "Friday" => array()
+        0 => array(),
+        1 => array(),
+        2 => array(),
+        3 => array(),
+        4 => array()
     );
     foreach ($timetable as $value) {
-        array_push($temp{$value->day}, $value);
+        array_push($temp{$days{$value->day}}, $value);
     }
     return $temp;
 }
@@ -45,9 +53,7 @@ $result = json_decode(getContent(array(
 
 $startTimes = getTimes($result, true);
 $endTimes = getTimes($result, false);
-$result = sortTimetable($result);
-
-?>
+$result = sortTimetable($result); ?>
 <html>
 <head>
     <title>Timetable</title>
@@ -56,13 +62,13 @@ $result = sortTimetable($result);
 
     <script src='../js/jquery-3.1.0.min.js'></script>
 
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="../css/table.css">
-    <link rel="stylesheet" href="../css/timetable.css">
-    <link rel="stylesheet" href="../css/navigation.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/table.min.css">
+    <link rel="stylesheet" href="../css/timetable.min.css">
+    <link rel="stylesheet" href="../css/navigation.min.css">
+    <link rel="stylesheet" href="../css/style.min.css">
 </head>
 
 <body>
@@ -87,24 +93,22 @@ $result = sortTimetable($result);
         <th><strong>Friday</strong></th>
     </tr>
     <?php
-    $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
-    $count = 0;
-    for ($i = 0; $i < count($startTimes); $i ++) {
+    $count = array();
+    for ($i = 0; count($startTimes) > $i; $i++) {
         echo "<tr>";
-        echo "<td class='nohover time'>", $startTimes{$count}, " - ", $endTimes{$count}, "<br>Room</td>";
-        foreach ($days as $day) {
-            if (isset($result{$day}[$i]->lessonName) && $result{$day}[$i]->lessonStart <= date("H:i") && $result{$day}[$i]->lessonEnd >= date("H:i") && date("l") == $day) {
-                echo "<td class='now'>", $result{$day}[$i]->lessonName, "<br>", $result{$day}[$i]->room, "</td>";
-            } elseif (isset($result{$day}[$i]->lessonName)) {
-                echo "<td>", $result{$day}[$i]->lessonName, "<br>", $result{$day}[$i]->room, "</td>";
+        echo "<td class='nohover time'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
+        for ($e = 0; $e <= 4; $e++) {
+            if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart && ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1)) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
+                echo "<td class='now'>", $result{$e}{$i - $count[$e]}['lessonName'], "<br>", $result{$e}{$i - $count[$e]}['room'], "</td>";
+            } elseif ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
+                echo "<td>", $result{$e}{$i - $count[$e]}->lessonName, "<br>", $result{$e}{$i - $count[$e]}->room, "</td>";
             } else {
+                $count[$e]++;
                 echo "<td class='nohover'></td>";
             }
         }
         echo "</tr>";
-        $count ++;
-    }
-    ?>
+    } ?>
 </table>
 
 <?php
@@ -116,8 +120,7 @@ $result = json_decode(getContent(array(
 
 $startTimes = getTimes($result, true);
 $endTimes = getTimes($result, false);
-$result = sortTimetable($result);
-?>
+$result = sortTimetable($result); ?>
 
 <table class="timetable">
     <tr>
@@ -136,20 +139,21 @@ $result = sortTimetable($result);
         <th><strong>Friday</strong></th>
     </tr>
     <?php
-    $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
-    $count = 0;
-    for ($i = 0; $i < count($startTimes); $i ++) {
+    $count = array();
+    for ($i = 0; count($startTimes) > $i; $i++) {
         echo "<tr>";
-        echo "<td class='nohover time'>", $startTimes{$count}, " - ", $endTimes{$count}, "<br>Room</td>";
-        foreach ($days as $day) {
-            if (isset($result{$day}[$i]->lessonName)) {
-                echo "<td>", $result{$day}[$i]->lessonName, "<br>", $result{$day}[$i]->room, "</td>";
+        echo "<td class='nohover time'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
+        for ($e = 0; $e <= 4; $e++) {
+            if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart && ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1)) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
+                echo "<td class='now'>", $result{$e}{$i - $count[$e]}['lessonName'], "<br>", $result{$e}{$i - $count[$e]}['room'], "</td>";
+            } elseif ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
+                echo "<td>", $result{$e}{$i - $count[$e]}->lessonName, "<br>", $result{$e}{$i - $count[$e]}->room, "</td>";
             } else {
+                $count[$e]++;
                 echo "<td class='nohover'></td>";
             }
         }
         echo "</tr>";
-        $count ++;
     }
     ?>
 </table>
@@ -163,189 +167,3 @@ $result = sortTimetable($result);
 </script>
 </body>
 </html>
-<?php
-/*
-function getLessonAmount($timetable)
-{
-    $length = count($timetable);
-    $count = 0;
-    $amount = 0;;
-    while ($length > $count) {
-        $length_2 = count($timetable{$count});
-        if ($length_2 > $amount) {
-            $amount = $length_2;
-        }
-        $count++;
-    }
-    return $amount;
-}
-
-function getLargestDay($timetable)
-{
-    $length = count($timetable);
-    $count = 0;
-    $amount = 0;
-    $largest_day = 0;
-    while ($length > $count) {
-        $length_2 = count($timetable{$count});
-        if ($length_2 > $amount) {
-            $amount = $length_2;
-            $largest_day = $count;
-        }
-        $count++;
-    }
-    return $largest_day;
-}
-
-function addDay($timetable, $index, $day, $week)
-{
-    $result = json_decode(getContent(array('d' => $day, 'w' => $week, 'g' => $_SESSION["groupID"], 'c' => $_SESSION["classID"]), "get_timetable.php"));
-    $length = count($result);
-    $count = 0;
-
-    while ($length > $count) {
-        $timetable[$index][$count]['id'] = $result{$count}->id;
-        $timetable[$index][$count]['lessonName'] = $result{$count}->lessonName;
-        $timetable[$index][$count]['lessonStart'] = $result{$count}->lessonStart;
-        $timetable[$index][$count]['lessonEnd'] = $result{$count}->lessonEnd;
-        $timetable[$index][$count]['room'] = $result{$count}->room;
-        $timetable[$index][$count]['week'] = $result{$count}->week;
-        $timetable[$index][$count]['groupID'] = $result{$count}->groupID;
-        $timetable[$index][$count]['classID'] = $result{$count}->classID;
-        $count++;
-    }
-    return $timetable;
-}
-
-$timetable = array();
-$timetable = addDay($timetable, 0, 'monday', date('W') % 2);
-$timetable = addDay($timetable, 1, 'tuesday', date('W') % 2);
-$timetable = addDay($timetable, 2, 'wednesday', date('W') % 2);
-$timetable = addDay($timetable, 3, 'thursday', date('W') % 2);
-$timetable = addDay($timetable, 4, 'friday', date('W') % 2);
-$lessonAmount = getLessonAmount($timetable);
-$startTimes = array();
-$endTimes = array();
-$largest_day = getLargestDay($timetable);
-$count = array();
-for ($i = 0; $lessonAmount > $i; $i++) {
-    $startTimes[$i] = $timetable{$largest_day}{$i}['lessonStart'];
-    $endTimes[$i] = $timetable{$largest_day}{$i}['lessonEnd'];
-}
-?>
-<html>
-<head>
-    <title>Timetable</title>
-
-    <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
-
-    <script src='../js/jquery-3.1.0.min.js'></script>
-
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="../css/table.css">
-    <link rel="stylesheet" href="../css/timetable.css">
-    <link rel="stylesheet" href="../css/navigation.css">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-
-<body>
-<?php require "navigator.php" ?>
-<div class="filler">
-</div>
-<noscript>
-    <div class="container alert alert-danger" role="alert">
-        <strong>Warning!</strong>
-        For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
-</noscript>
-<table class="timetable">
-    <tr>
-        <th class="Week"><strong><?php if ((date('W') % 2) == 0) {
-                    echo "Even Week";
-                } else {
-                    echo "Odd Week";
-                } ?> (This Week)</strong></th>
-    </tr>
-    <tr>
-        <th><strong>Lesson</strong></th>
-        <th><strong>Monday</strong></th>
-        <th><strong>Tuesday</strong></th>
-        <th><strong>Wednesday</strong></th>
-        <th><strong>Thursday</strong></th>
-        <th><strong>Friday</strong></th>
-    </tr>
-    <?php
-    for ($i = 0; $lessonAmount > $i; $i++) {
-        echo "<tr>";
-        echo "<td class='nohover time'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
-        for ($e = 0; $e <= 4; $e++) {
-            if ($startTimes[$i] == $timetable{$e}{$i - $count[$e]}['lessonStart']) {
-                if ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
-                    echo "<td class='now'>", $timetable{$e}{$i - $count[$e]}['lessonName'], "<br>", $timetable{$e}{$i - $count[$e]}['room'], "</td>";
-                } else {
-                    echo "<td>", $timetable{$e}{$i - $count[$e]}['lessonName'], "<br>", $timetable{$e}{$i - $count[$e]}['room'], "</td>";
-                }
-            } else {
-                $count[$e]++;
-                echo "<td class='nohover'></td>";
-            }
-        }
-        echo "</tr>";
-    }
-    ?>
-</table>
-<div class="filler"></div>
-<?php
-$timetable = array();
-$timetable = addDay($timetable, 0, 'monday', ((date('W') % 2) + 1) % 2);
-$timetable = addDay($timetable, 1, 'tuesday', ((date('W') % 2) + 1) % 2);
-$timetable = addDay($timetable, 2, 'wednesday', ((date('W') % 2) + 1) % 2);
-$timetable = addDay($timetable, 3, 'thursday', ((date('W') % 2) + 1) % 2);
-$timetable = addDay($timetable, 4, 'friday', ((date('W') % 2) + 1) % 2);
-$lessonAmount = getLessonAmount($timetable);
-$startTimes = array();
-$endTimes = array();
-$largest_day = getLargestDay($timetable);
-$count = array();
-for ($i = 0; $lessonAmount > $i; $i++) {
-    $startTimes[$i] = $timetable{$largest_day}{$i}['lessonStart'];
-    $endTimes[$i] = $timetable{$largest_day}{$i}['lessonEnd'];
-}
-?>
-<table class="timetable">
-    <tr>
-        <th><strong><?php if (((date('W') + 1) % 2) == 0) {
-                    echo "Even Week";
-                } else {
-                    echo "Odd Week";
-                } ?></strong></th>
-    </tr>
-    <tr>
-        <th><strong>Lesson</strong></th>
-        <th><strong>Monday</strong></th>
-        <th><strong>Tuesday</strong></th>
-        <th><strong>Wednesday</strong></th>
-        <th><strong>Thursday</strong></th>
-        <th><strong>Friday</strong></th>
-    </tr>
-    <?php
-    for ($i = 0; $lessonAmount > $i; $i++) {
-        echo "<tr>";
-        echo "<td class='nohover time'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
-        for ($e = 0; $e <= 4; $e++) {
-            if ($startTimes[$i] == $timetable{$e}{$i - $count[$e]}['lessonStart']) {
-                echo "<td>", $timetable{$e}{$i - $count[$e]}['lessonName'], "<br>", $timetable{$e}{$i - $count[$e]}['room'], "</td>";
-            } else {
-                $count[$e]++;
-                echo "<td class='nohover'></td>";
-            }
-        }
-        echo "</tr>";
-    }
-    ?>
-</table>
-
-
-</body>
-</html>*/

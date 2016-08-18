@@ -8,18 +8,18 @@ require "../scripts/check_user.php";
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <script src="../js/autosize.min.js"></script>
-    <script src="../js/ticket.js"></script>
+    <script src="../js/ticket.min.js"></script>
 
-    <link rel="stylesheet" href="../css/navigation.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <?php if ($_SESSION["permissions"] == "ServerAdmin") { echo "<link rel='stylesheet' href='../css/table.css'>";}?>
-    <link rel="stylesheet" href="../css/helpdesk.css">
-    <link rel="stylesheet" href="../css/formula.css">
-    <link rel="stylesheet" href="../css/input_container.css">
+    <link rel="stylesheet" href="../css/navigation.min.css">
+    <link rel="stylesheet" href="../css/style.min.css">
+    <?php if ($_SESSION["permissions"] == "ServerAdmin") { echo "<link rel='stylesheet' href='../css/table.min.css'>";}?>
+    <link rel="stylesheet" href="../css/helpdesk.min.css">
+    <link rel="stylesheet" href="../css/formula.min.css">
+    <link rel="stylesheet" href="../css/input_container.min.css">
 
 </head>
 

@@ -1,7 +1,3 @@
-.helpdeskList tr:hover {
-    cursor: pointer;
-}
-
 .helpdeskList th:hover, .nohover {
     cursor: auto !important;
 }

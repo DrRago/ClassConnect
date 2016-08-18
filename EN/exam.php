@@ -11,15 +11,15 @@ $result = json_decode($result);
 <head>
     <title>Exam <?php echo $_GET["id"]?></title>
 
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/navigation.css">
-    <link rel="stylesheet" href="../css/formula.css">
-    <link rel="stylesheet" href="../css/input_container.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.min.css">
+    <link rel="stylesheet" href="../css/formula.min.css">
+    <link rel="stylesheet" href="../css/input_container.min.css">
+    <link rel="stylesheet" href="../css/style.min.css">
 </head>
 <body>
 <?php require "navigator.php"; ?>

@@ -8,13 +8,13 @@ require "../scripts/check_user.php"; ?>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="../css/navigation.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/formula.css">
-    <link rel="stylesheet" href="../css/input_container.css">
+    <link rel="stylesheet" href="../css/navigation.min.css">
+    <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/formula.min.css">
+    <link rel="stylesheet" href="../css/input_container.min.css">
 
 </head>
 <?php require "navigator.php" ?>
