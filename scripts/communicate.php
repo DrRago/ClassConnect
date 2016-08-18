@@ -1,21 +1,16 @@
 <?php
-function getContent($data, $path) {
-    $curl = curl_init();
-
-    // set options
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://dqi.tandashi.de/API/' . $path, // required
-        CURLOPT_RETURNTRANSFER => true, // required for correct json_encoded output
-        CURLOPT_TIMEOUT => 10,
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => $data // required if POST-Option is set to 'true'
-    ));
-
-    $result = curl_exec($curl);
-
-    if (curl_errno($curl) == 0) {
-        return($result);
-    } else {
-        return curl_errno($curl);
-    }
+function getContent($data, $path)
+{
+    $url = 'http://dqi.tandashi.de/API/' . $path;
+    // use key 'http' even if you send the request to https://...
+    $options = array(
+        'http' => array(
+            'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+            'method' => 'POST',
+            'content' => http_build_query($data),
+        ),
+    );
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    return $result;
 }
