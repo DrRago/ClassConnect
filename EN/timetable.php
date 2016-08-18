@@ -37,11 +37,11 @@ function sortTimetable($timetable) {
     return $temp;
 }
 
-$result = getContent(array(
+$result = json_decode(getContent(array(
     "week" => date('W') % 2,
     "cid" => $_SESSION["classID"],
     "g" => $_SESSION["groupID"]
-), "get_ordered_timetable.php");
+), "get_ordered_timetable.php"));
 
 $startTimes = getTimes($result, true);
 $endTimes = getTimes($result, false);
@@ -86,49 +86,33 @@ $result = sortTimetable($result);
         <th><strong>Thursday</strong></th>
         <th><strong>Friday</strong></th>
     </tr>
-<?php
-$count = 0;
-for ($i = 0; $i < count($startTimes); $i ++) {
-    echo "<tr>";
-    echo "<td class='nohover time'>", $startTimes{$count}, " - ", $endTimes{$count}, "<br>Room</td>";
-    if (isset($result{'Monday'}[$i]->lessonName)) {
-        echo "<td>", $result{'Monday'}[$i]->lessonName, "</td>";
-    } else {
-        echo "<td class='nohover'></td>";
+    <?php
+    $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
+    $count = 0;
+    for ($i = 0; $i < count($startTimes); $i ++) {
+        echo "<tr>";
+        echo "<td class='nohover time'>", $startTimes{$count}, " - ", $endTimes{$count}, "<br>Room</td>";
+        foreach ($days as $day) {
+            if (isset($result{$day}[$i]->lessonName) && $result{$day}[$i]->lessonStart <= date("H:i") && $result{$day}[$i]->lessonEnd >= date("H:i") && date("l") == $day) {
+                echo "<td class='now'>", $result{$day}[$i]->lessonName, "<br>", $result{$day}[$i]->room, "</td>";
+            } elseif (isset($result{$day}[$i]->lessonName)) {
+                echo "<td>", $result{$day}[$i]->lessonName, "<br>", $result{$day}[$i]->room, "</td>";
+            } else {
+                echo "<td class='nohover'></td>";
+            }
+        }
+        echo "</tr>";
+        $count ++;
     }
-    if (isset($result{'Tuesday'}[$i]->lessonName)) {
-        echo "<td>", $result{'Tuesday'}[$i]->lessonName, "</td>";
-    } else {
-        echo "<td class='nohover'></td>";
-    }
-    if (isset($result{'Wednesday'}[$i]->lessonName)) {
-        echo "<td>", $result{'Wednesday'}[$i]->lessonName, "</td>";
-    } else {
-        echo "<td class='nohover'></td>";
-    }
-    if (isset($result{'Thursday'}[$i]->lessonName)) {
-        echo "<td>", $result{'Thursday'}[$i]->lessonName, "</td>";
-    } else {
-        echo "<td class='nohover'></td>";
-    }
-    if (isset($result{'Friday'}[$i]->lessonName)) {
-        echo "<td>", $result{'Friday'}[$i]->lessonName, "</td>";
-    } else {
-        echo "<td class='nohover'></td>";
-    }
-    echo "</tr>";
-    $count ++;
-}
-
-?>
+    ?>
 </table>
 
 <?php
-$result = getContent(array(
+$result = json_decode(getContent(array(
     "week" => (date('W') + 1) % 2,
     "cid" => $_SESSION["classID"],
     "g" => $_SESSION["groupID"]
-), "get_ordered_timetable.php");
+), "get_ordered_timetable.php"));
 
 $startTimes = getTimes($result, true);
 $endTimes = getTimes($result, false);
@@ -152,39 +136,21 @@ $result = sortTimetable($result);
         <th><strong>Friday</strong></th>
     </tr>
     <?php
+    $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday");
     $count = 0;
     for ($i = 0; $i < count($startTimes); $i ++) {
         echo "<tr>";
         echo "<td class='nohover time'>", $startTimes{$count}, " - ", $endTimes{$count}, "<br>Room</td>";
-        if (isset($result{'Monday'}[$i]->lessonName)) {
-            echo "<td>", $result{'Monday'}[$i]->lessonName, "</td>";
-        } else {
-            echo "<td class='nohover'></td>";
-        }
-        if (isset($result{'Tuesday'}[$i]->lessonName)) {
-            echo "<td>", $result{'Tuesday'}[$i]->lessonName, "</td>";
-        } else {
-            echo "<td class='nohover'></td>";
-        }
-        if (isset($result{'Wednesday'}[$i]->lessonName)) {
-            echo "<td>", $result{'Wednesday'}[$i]->lessonName, "</td>";
-        } else {
-            echo "<td class='nohover'></td>";
-        }
-        if (isset($result{'Thursday'}[$i]->lessonName)) {
-            echo "<td>", $result{'Thursday'}[$i]->lessonName, "</td>";
-        } else {
-            echo "<td class='nohover'></td>";
-        }
-        if (isset($result{'Friday'}[$i]->lessonName)) {
-            echo "<td>", $result{'Friday'}[$i]->lessonName, "</td>";
-        } else {
-            echo "<td class='nohover'></td>";
+        foreach ($days as $day) {
+            if (isset($result{$day}[$i]->lessonName)) {
+                echo "<td>", $result{$day}[$i]->lessonName, "<br>", $result{$day}[$i]->room, "</td>";
+            } else {
+                echo "<td class='nohover'></td>";
+            }
         }
         echo "</tr>";
         $count ++;
     }
-
     ?>
 </table>
 
