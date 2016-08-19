@@ -99,7 +99,7 @@ $result = sortTimetable($result); ?>
         echo "<td class='nohover time'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
         for ($e = 0; $e <= 4; $e++) {
             if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart && ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1)) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
-                echo "<td class='now'>", $result{$e}{$i - $count[$e]}['lessonName'], "<br>", $result{$e}{$i - $count[$e]}['room'], "</td>";
+                echo "<td class='now'>", $result{$e}{$i - $count[$e]}->lessonName, "<br>", $result{$e}{$i - $count[$e]}->room, "</td>";
             } elseif ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
                 echo "<td>", $result{$e}{$i - $count[$e]}->lessonName, "<br>", $result{$e}{$i - $count[$e]}->room, "</td>";
             } else {
@@ -144,9 +144,7 @@ $result = sortTimetable($result); ?>
         echo "<tr>";
         echo "<td class='nohover time'>", $startTimes[$i], " - ", $endTimes[$i], "<br>Room</td>";
         for ($e = 0; $e <= 4; $e++) {
-            if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart && ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1)) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
-                echo "<td class='now'>", $result{$e}{$i - $count[$e]}['lessonName'], "<br>", $result{$e}{$i - $count[$e]}['room'], "</td>";
-            } elseif ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
+            if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
                 echo "<td>", $result{$e}{$i - $count[$e]}->lessonName, "<br>", $result{$e}{$i - $count[$e]}->room, "</td>";
             } else {
                 $count[$e]++;

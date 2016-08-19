@@ -12,7 +12,7 @@ require "../scripts/check_user.php";
     <link rel="stylesheet" href="../css/font-awesome.min.css">
 
     <script src="../js/autosize.min.js"></script>
-    <script src="../js/ticket.js"></script>
+    <script src="../js/ticket.min.js"></script>
 
     <link rel="stylesheet" href="../css/navigation.min.css">
     <link rel="stylesheet" href="../css/style.min.css">
