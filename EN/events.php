@@ -2,7 +2,7 @@
 session_start();
 error_reporting(1);
 require "../scripts/check_user.php";
-
+//TODO Check edit buttons for Users and Moderators
 $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_events.php"));
 ?>
 <html>
@@ -37,7 +37,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
             <th class="place"><strong>Place</strong></th>
             <th class="time"><strong>Time</strong></th>
             <th class="date"><strong>Date</strong></th>
-            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
+            <th class='ico'></th>
+            <th class='ico'></th>
         </tr>
 
         <?php
@@ -50,8 +51,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 echo "<td class='place'>", $object->{'place'}, "</td>";
                 echo "<td class='time'>", $object->{'eventStart'}, ' - ', $object->{'eventEnd'}, "</td>";
                 echo "<td class='date'>", $object->{'eventDate'}, "</td>";
-                if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"event.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                echo "<td><button type='submit' onclick='window.location.href=\"event.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                if ($_SESSION["username"] == $object->creator) {
                     echo "<td><button type='submit' onclick='deleteEvent(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";

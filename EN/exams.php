@@ -5,7 +5,7 @@ require "../scripts/check_user.php";
 
 $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_exams.php"));
 ?>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Exams</title>
 
@@ -18,7 +18,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     <link rel="stylesheet" href="../css/navigation.min.css">
     <link rel="stylesheet" href="../css/formula.min.css">
     <link rel="stylesheet" href="../css/style.min.css">
-    <link rel="stylesheet" href="../css/exams.min.css">
+    <link rel="stylesheet" href="../css/exams.css">
 
 </head>
 
@@ -37,6 +37,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
             <th class='lessonName'><strong>Subject</strong></th>
             <th class="topics"><strong>Topics</strong></th>
             <th><strong>Date</strong></th>
+            <th class="ico calendar"></th>
             <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
         </tr>
 
@@ -55,13 +56,22 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='topics'>", $object->{'topics'}, "</td>";
                 echo "<td class='examDate'>", $object->{'examDate'}, "</td>";
-                if ($_SESSION["permissions"] != "User" || $_SESSION["permissions"] != "Moderator") {
+                echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
+                echo "<td class='hidden' hidden><button onclick='window.open(\"http://www.google.com/calendar/event?action=template&text=Exam ", $object->lessonName, "&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: ", $object->topics, "&trp=false&sprop=&sprop=name:\")'", "class='fa fa-calendar-plus-o'>", "</button></td>";
+                if ($_SESSION["permissions"] != "User") {
                     echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
         } ?>
+        <script>
+            var ele2 = document.getElementsByClassName('hidden');
+
+            for (var i = 0; i < ele2.length; i++) {
+                ele2[i].removeAttribute("hidden")
+            }
+        </script>
     </table>
 </div>
 <?php if ($_SESSION['permissions'] != 'User') { ?>
