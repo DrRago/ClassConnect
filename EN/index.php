@@ -53,7 +53,6 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
 
 <script src='../js/jquery-3.1.0.min.js'></script>
 <script src="../js/jquery.download.min.js"></script>
-<script src="../js/jquery.cookie.min.js"></script>
 <script src="../js/index.min.js"></script>
 
 </body>
