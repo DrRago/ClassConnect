@@ -1,0 +1,58 @@
+table .free_space {
+    width: 1%;
+}
+
+table .ServerAdmin {
+    background-color: red !important;
+}
+
+table .ClassAdmin {
+    background-color: blue !important;
+}
+
+table .Moderator {
+    background-color: darkgray !important;
+}
+
+table .id {
+    width: auto;
+}
+
+table .me {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+table input {
+    border: none;
+    background: none;
+}
+
+table .changed {
+    animation: 4s bgcolorchange;
+    -webkit-animation: 4s bgcolorchange;
+}
+
+@keyframes bgcolorchange {
+    0% {
+        background-color: #00d200;
+    }
+    75% {
+        background-color: #00d200;
+    }
+    100% {
+        background-color: #f5f5f5;
+    }
+}
+
+.form-inline {
+    margin-left: 1px !important;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.alert {
+    display: inline-block !important;
+}

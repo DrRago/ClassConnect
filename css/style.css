@@ -1,0 +1,11 @@
+.filler {
+    height: 50px;
+}
+
+body {
+    background: url("../img/sativa.png") repeat fixed;
+}
+
+.fa {
+    width: 10px !important;
+}

@@ -1,0 +1,24 @@
+table {
+    width: 80%;
+}
+
+th {
+    width: 0 !important;
+}
+
+table .examDate {
+    width: 15%;
+}
+
+table .exercise {
+    width: 75%;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.alert {
+    display: inline-block !important;
+}
