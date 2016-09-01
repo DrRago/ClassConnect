@@ -2,6 +2,7 @@
 error_reporting(1);
 require "../scripts/check_user.php";
 ?>
+<!-- TODO fix delete Ticket -->
 <html>
 <head>
     <title>Helpdesk</title>
@@ -136,7 +137,7 @@ require "../scripts/check_user.php";
                     echo "<td class='email'>", $object->{'creatorEmail'}, "</td>";
                     echo "<td class='reason'>", $object->{'reason'}, "</td>";
                     echo "<td class='creatorID'>", $object->{'creatorID'}, "</td>";
-                    echo "<td><button type='submit' onclick='window.location.href=\"ticket.php?id=", $object->id, "\"' class='fa fa-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='window.location.href=\"ticket.php?id=", $object->id, "\"' class='fa fa-eye'></button></td>";
                     echo "<td><button type='submit' onclick='deleteTicket(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                     echo "</tr>";
                 }
