@@ -37,3 +37,18 @@ $(".login").submit(function(){
     });
     return false;
 });
+function download(url) {
+    $.fileDownload(url)
+        .done(function () {
+            $(".download i").removeAttr("class").addClass("fa fa-check");
+            $(".download").css({"background":"#2ecc71", "border-color":"#2ecc71", "color":"#EDEDED"});
+            setTimeout(function () {
+                $(".download i").removeAttr("class").addClass("fa fa-download");
+                $(".download").css({"background":"#fff", "border-color":"#26697F", "color":"#26697F"});
+            }, 1000);
+        })
+        .fail(function () {
+            $(".download i").removeAttr('class').addClass("fa fa-times").css({"color":"#fff"});
+            $(".download").css({"background":"#FF7052", "border-color":"#FF7052", "color":"#EDEDED"});
+        });
+};

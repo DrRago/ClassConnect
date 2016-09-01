@@ -36,13 +36,9 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
             <input class="pw-in" type="password" name="password" placeholder="Password" required />
             <span><i class="fa fa-lock"></i></span>
         </div>
-        <button type="submit" class="submit"><i class="fa fa-arrow-right" style="margin-top: -2px"></i></button>
+        <button type="submit" class="submit" style="margin-right: 70px;"><i class="fa fa-arrow-right" style="margin-top: -2px"></i></button>
+        <button type="button" class="download" onclick="download('<?php echo $links[count($links) - 1]->link?>')" style="margin-left: 60px;margin-top: -45px"><i class="fa fa-download" style="margin-top: -2px"></i></button>
     </fieldset>
-
-    <div class="feedback">
-        login successful <br />
-        redirecting...
-    </div>
     <div class="error">
         wrong username or password <br />
         try again
@@ -56,6 +52,8 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
 </noscript>
 
 <script src='../js/jquery-3.1.0.min.js'></script>
+<script src="../js/jquery.download.min.js"></script>
+<script src="../js/jquery.cookie.min.js"></script>
 <script src="../js/index.min.js"></script>
 
 </body>

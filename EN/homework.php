@@ -47,7 +47,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
             foreach ($result as $object) {
                 echo "<tr id='$object->id'><td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='exercise'>", $object->{'exercises'}, "</td>";
-                echo "<td class='homeworkDate'>", $object->{'homeworkDate'}, "</td>";
+                echo "<td class='homeworkDate'>", date("d/m/Y", strtotime($object->{'homeworkDate'})), "</td>";
                 if ($_SESSION["permissions"] != "User") {
                     echo "<td><button type='submit' onclick='window.location.href=\"edit_homework.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteHomework(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
