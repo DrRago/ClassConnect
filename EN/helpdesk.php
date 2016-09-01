@@ -2,7 +2,6 @@
 error_reporting(1);
 require "../scripts/check_user.php";
 ?>
-<!-- TODO fix delete Ticket -->
 <html>
 <head>
     <title>Helpdesk</title>
@@ -14,6 +13,7 @@ require "../scripts/check_user.php";
 
     <script src="../js/autosize.min.js"></script>
     <script src="../js/ticket.min.js"></script>
+    <script src="../js/jquery-3.1.0.min.js"></script>
 
     <link rel="stylesheet" href="../css/navigation.min.css">
     <link rel="stylesheet" href="../css/style.min.css">
