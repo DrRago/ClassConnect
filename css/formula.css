@@ -1,0 +1,43 @@
+textarea {
+    resize: vertical;
+    overflow: hidden;
+}
+
+.textarea {
+    margin-top: 3px;
+}
+
+.form-inline {
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+.btn {
+    position: relative;
+    margin: 30px auto -20px;
+    display: block;
+}
+
+.btn-group {
+    margin-left: 65px;
+}
+
+.form-inline table {
+    line-height: 35px;
+}
+
+.form-inline table tr td {
+    width: 200px;
+}
+
+.alert strong {
+    text-transform: uppercase !important;
+}
+
+.input-group {
+    width: 250px;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 215px !important;
+}

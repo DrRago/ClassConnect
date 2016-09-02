@@ -1,0 +1,16 @@
+.now {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: black;
+}
+
+tr:hover {
+    background-color: transparent;
+}
+
+td:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+table {
+    background: none;
+}
