@@ -51,7 +51,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 echo "<td class='place'>", $object->{'place'}, "</td>";
                 echo "<td class='time'>", $object->{'eventStart'}, ' - ', $object->{'eventEnd'}, "</td>";
                 echo "<td class='date'>", date("d/m/Y", strtotime($object->{'eventDate'})), "</td>";
-                echo "<td><button type='submit' onclick='window.open(\"https://maps.google.com/maps/place/", $object->place, "\", \"_blank\");' class='fa fa-map'></button></td>";
+                echo "<td><button type='submit' onclick='window.open(\"https://maps.google.com/maps/place/", $object->place, "\", \"_blank\");' class='fa fa-map></button></td>";
                 echo "<td><button type='submit' onclick='window.location.href=\"event.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
                 if ($_SESSION["username"] == $object->creator || $_SESSION["permissions"] == "ServerAdmin") {
                     echo "<td><button type='submit' onclick='deleteEvent(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
