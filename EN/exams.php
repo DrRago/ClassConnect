@@ -54,7 +54,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                     echo "<tr id='$object->id'>";
                 }
                 echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
-                echo "<td class='topics'>", $object->{'topics'}, "</td>";
+
+                if (filter_var($object->{'topics'}, FILTER_VALIDATE_URL)) {
+                    echo "<td class='topics'><a target='_blank' href='", $object->{'topics'}, "'>", $object->{'topics'}, "</a></td>";
+                } else {
+                    echo "<td class='topics'>", $object->{'topics'}, "</td>";
+                }
                 echo "<td class='examDate'>", date("d/m/Y", strtotime($object->{'examDate'})), "</td>";
                 echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
                 echo "<td class='hidden' hidden><button onclick='window.open(\"http://www.google.com/calendar/event?action=template&text=Exam ", $object->lessonName, "&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: ", $object->topics, "&trp=false&sprop=&sprop=name:\")'", "class='fa fa-calendar-plus-o'>", "</button></td>";

@@ -163,17 +163,5 @@ $result = sortTimetable($result); ?>
         $(this).closest("tr").css({"backgroundColor": "rgba(0, 0, 0, 0)"})
     })
 </script>
-<!-- TODO edit this here -->
-<a href="http://www.google.com/calendar/event?
-action=TEMPLATE
-&text=Exam Englisch
-&dates=20160819/20160819
-&details=Klausur du affe
-&location=School
-&trp=false
-&sprop=
-&sprop=name:"
-   target="_blank" rel="nofollow">Add to my calendar</a>
-
 </body>
 </html>
