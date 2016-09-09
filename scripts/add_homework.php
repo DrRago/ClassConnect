@@ -17,7 +17,7 @@ $result = getContent(
         'd' => $_POST["date"],
         'c' => $_SESSION["classID"]
     ),
-    "add_homework.php"
+    "add_homework"
 );
 
 if ($result == "Data Inserted") {

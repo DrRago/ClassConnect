@@ -13,7 +13,7 @@ $result = getContent(array(
     'end' => $_POST['end'],
     'place' => $_POST['place'],
     'date' => $_POST['date']
-), "update_event.php");
+), "update_event");
 
 if ($result == "Quary Failed") {
     print hash_pbkdf2("sha512", "Fail", md5("secure_hashing"), 500);

@@ -4,7 +4,7 @@ error_reporting(1);
 
 include_once "../scripts/communicate.php";
 
-$links = json_decode(getContent(array(), "get_patchnotes.php"));
+$links = json_decode(getContent(array(), "get_app"));
 
 if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
     header('Location: timetable.php');

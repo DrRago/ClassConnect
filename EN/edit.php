@@ -17,7 +17,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
         array(
             'uid' => $_GET["id"]
         ),
-        "get_user.php"
+        "get_user"
     );
 
     $result = json_decode($result);

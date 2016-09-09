@@ -15,7 +15,7 @@ $result = getContent(
         'p' => $_POST["password"],
         'p_type' => "clean"
     ),
-    "get_user_login.php"
+    "get_user_login"
 );
 
 if ($result == 'null' || $result == null) {

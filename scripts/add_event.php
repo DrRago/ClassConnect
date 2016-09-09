@@ -21,7 +21,7 @@ $result = getContent(
         'p' => $_POST["place"],
         'c' => $_SESSION["classID"]
     ),
-    "add_events.php"
+    "add_events"
 );
 
 if ($result == 'Data Inserted') {

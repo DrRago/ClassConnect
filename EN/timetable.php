@@ -73,7 +73,7 @@ function sortTimetable($timetable) {
         "week" => date('W') % 2,
         "cid" => $_SESSION["classID"],
         "g" => $_SESSION["groupID"]
-    ), "get_ordered_timetable.php"));
+    ), "get_ordered_timetable"));
 
     $startTimes = getTimes($result, true);
     $endTimes = getTimes($result, false);
@@ -113,7 +113,7 @@ function sortTimetable($timetable) {
         "week" => (date('W') + 1) % 2,
         "cid" => $_SESSION["classID"],
         "g" => $_SESSION["groupID"]
-    ), "get_ordered_timetable.php"));
+    ), "get_ordered_timetable"));
 
     $startTimes = getTimes($result, true);
     $endTimes = getTimes($result, false);
@@ -135,7 +135,7 @@ function sortTimetable($timetable) {
             echo "<td class='time'>", $startTimes[$i], " - ", $endTimes[$i], "</td>";
             for ($e = 0; $e <= 4; $e++) {
                 if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
-                    echo "<td data-tooltip='", $result{$e}{$i - $count[$e]}->lessonName, "'>", $result{$e}{$i - $count[$e]}->lessonShort, " [", $result{$e}{$i - $count[$e]}->room, "]</td>";
+                    echo "<td data-tooltip='", $result{$e}{$i - $count[$e]}->lessonName, "'>", $result{$e}{$i - $count[$e]}->lessonShort, " <br>", $result{$e}{$i - $count[$e]}->room, "</td>";
                 } else {
                     $count[$e]++;
                     echo "<td class='nohover'></td>";

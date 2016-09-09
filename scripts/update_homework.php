@@ -10,7 +10,7 @@ $result = getContent(array(
     'lesson' => $_POST['lesson'],
     'exercises' => $_POST['exercises'],
     'date' => $_POST['date']
-), "update_homework.php");
+), "update_homework");
 
 if ($result == "Quary Failed") {
     print hash_pbkdf2("sha512", "Fail", md5("secure_hashing"), 500);

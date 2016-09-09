@@ -23,7 +23,7 @@ if (md5($_POST["old_password"]) == $_SESSION["password"]) {
                 'email' => $_POST['email'],
                 'group' => $_POST['groupID']
             ),
-            "update_user.php"
+            "update_user"
         );
 
         $_SESSION["editUser"] = "success";

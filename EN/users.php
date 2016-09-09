@@ -4,10 +4,15 @@ error_reporting(1);
 require "../scripts/check_user.php";
 $permissions = $_SESSION['permissions'];
 
-if ($permissions == 'ServerAdmin') {
-    $output = json_decode(getContent(array(), "get_every_user.php"));
-} else {
-    $output = json_decode(getContent(array('cid' => $_SESSION["classID"]), "get_class.php"));
+$output = json_decode(getContent(array(), "get_every_user"));
+if ($permissions != 'ServerAdmin') {
+    $temp = array();
+    foreach ($output as  $object) {
+        if ($object->classID == $_SESSION["classID"] || $object->permissions == "ServerAdmin") {
+            array_push($temp, $object);
+        }
+    }
+    $output = $temp;
 }
 ?>
 <html>

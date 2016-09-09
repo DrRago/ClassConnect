@@ -19,7 +19,7 @@ $result = getContent(
         "g" => $_POST["groupID"],
         "c" => $classID
     ),
-    "add_user.php"
+    "add_user"
 );
 
 if ($result == "Data Inserted") {

@@ -13,7 +13,7 @@ if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             "creatorName" => $_POST["name"],
             "email" => $_POST["email"]
         ),
-        "add_ticket.php"
+        "add_ticket"
     );
 
     if ($result == "Data Inserted") {

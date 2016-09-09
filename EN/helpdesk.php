@@ -114,7 +114,7 @@ require "../scripts/check_user.php";
     </div>
 <?php } else {
     include_once "../scripts/communicate.php";
-    $result = getContent(array(), "get_every_ticket.php");
+    $result = getContent(array(), "get_every_ticket");
     $result = json_decode($result);
     ?>
     <div class="helpdeskList">

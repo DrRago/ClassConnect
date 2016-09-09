@@ -1,7 +1,7 @@
 <?php
 function getContent($data, $path)
 {
-    $url = 'http://dqi.tandashi.de/API/' . $path;
+    $url = 'http://dqi.tandashi.de/API/' . $path . ".php";
     // use key 'http' even if you send the request to https://...
     $options = array(
         'http' => array(

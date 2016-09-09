@@ -2,7 +2,7 @@
 error_reporting(1);
 session_start();
 require "../scripts/check_user.php";
-$result = json_decode(getContent(array('id' => $_GET['id']), "get_event.php")); ?>
+$result = json_decode(getContent(array('id' => $_GET['id']), "get_event")); ?>
 <html>
 <head>
     <title>Event <?php echo $_GET["id"] ?></title>

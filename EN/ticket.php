@@ -8,7 +8,7 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
     echo "<meta http-equiv='refresh' content='3; URL=../scripts/logout.php'>";
     echo "Sorry Brudah, du kommst hier net rein";
 } else {
-    $result = json_decode(getContent(array('id' => $_GET['id']), "get_ticket.php")); ?>
+    $result = json_decode(getContent(array('id' => $_GET['id']), "get_ticket")); ?>
     <html>
     <head>
         <title>Ticket <?php echo $_GET['id'] ?></title>

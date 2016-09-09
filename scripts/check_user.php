@@ -7,7 +7,7 @@ if (isset($_SESSION["username"]) & isset($_SESSION["password"])) {
         array(
             'uid' => $_SESSION['id']
         ),
-        "get_user.php"
+        "get_user"
     );
     $result = json_decode($result);
 

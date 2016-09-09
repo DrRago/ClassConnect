@@ -15,7 +15,7 @@ $result = getContent(
         'group' => $_POST['groupID'],
         'class' => $_POST["classID"]
     ),
-    "update_user_nopw.php"
+    "update_user_nopw"
 );
 
 $_SESSION["changedUser"] = $_POST["id"];

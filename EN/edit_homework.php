@@ -9,7 +9,7 @@ if ($_SESSION["permissions"] == "User") {
     echo "Sorry Brudah, du kommst hier net rein";
 } else {
 
-    $result = json_decode(getContent(array('id' => $_GET['id']), "get_single_homework.php")); ?>
+    $result = json_decode(getContent(array('id' => $_GET['id']), "get_assignment")); ?>
     <html>
     <head>
         <title>Homework <?php echo $_GET["id"] ?></title>

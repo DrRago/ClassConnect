@@ -2,7 +2,7 @@
 session_start();
 error_reporting(1);
 require "../scripts/check_user.php";
-$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_events.php"));
+$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_events"));
 ?>
 <html>
 <head>

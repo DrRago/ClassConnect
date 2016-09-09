@@ -10,7 +10,7 @@ $result = getContent(
     array(
         'uid' => $id
     ),
-    "reset_password.php"
+    "reset_password"
 );
 if ($result == null) {
     $_SESSION["resetStatus"] = "error";

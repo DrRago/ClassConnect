@@ -3,7 +3,7 @@ session_start();
 error_reporting(1);
 require "../scripts/check_user.php";
 
-$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_exams.php"));
+$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_exams"));
 ?>
 <html xmlns="http://www.w3.org/1999/html">
 <head>

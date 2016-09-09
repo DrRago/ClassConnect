@@ -5,7 +5,7 @@ require "checkSession.php";
 
 include "communicate.php";
 
-$result = getContent(array('id' => $_POST['id']), "delete_event.php");
+$result = getContent(array('id' => $_POST['id']), "delete_event");
 
 if ($result == "Quary Failed") {
     print hash_pbkdf2("sha512", "Fail", md5("secure_hashing"), 500);
