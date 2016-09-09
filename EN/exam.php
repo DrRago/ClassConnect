@@ -72,14 +72,14 @@ if ($_SESSION["permissions"] == "User") {
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="topics">Topics<a class="IsRequired">*</a>:</label></td>
+                    <td><label for="topics">Topics:</label></td>
                     <td>
                         <div class="input-group">
                         <span class="input-group-addon">
                             <i class="fa fa-tasks"></i>
                         </span>
                             <input id="topics" class="form-control" name="topics" type="text"
-                                   value="<?php echo $result{0}->topics ?>" placeholder="Tasks" required>
+                                   value="<?php echo $result{0}->topics ?>" placeholder="Tasks">
                         </div>
                     </td>
                 </tr>

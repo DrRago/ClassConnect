@@ -18,7 +18,7 @@ $result = getContent(
     "get_user_login.php"
 );
 
-if ($result == 'null') {
+if ($result == 'null' || $result == null) {
     if ($_GET["js"] == "false") {
         $_SESSION["login"] = "wrong";
         header('Location: ../index.php');

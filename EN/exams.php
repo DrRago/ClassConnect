@@ -62,7 +62,10 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 }
                 echo "<td class='examDate'>", $object->{'examDate'}, "</td>";
                 echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
-                echo "<td class='hidden' hidden><button onclick='window.open(\"http://www.google.com/calendar/event?action=template&text=Exam ", $object->lessonName, "&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: ", $object->topics, "&trp=false&sprop=&sprop=name:\")'", "class='fa fa-calendar-plus-o'>", "</button></td>";
+                ?>
+                <td class='hidden' hidden><button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick='window.open("http://www.google.com/calendar/event?action=template&text=Exam <?= $object->lessonName ?>&dates=<?= date('Ymd', strtotime($object->examDate)) ?>/<?= date('Ymd', strtotime($object->examDate)) + 1 ?>&details=Topics: <?= $object->topics ?>&trp=false&sprop=&sprop=name:")' class='fa fa-calendar-plus-o dropdown-toggle'></button></td>
+
+                <?php
                 if ($_SESSION["permissions"] != "User") {
                     echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
@@ -92,7 +95,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 <span class="input-group-addon">
                     <i class="fa fa-tasks"></i>
                 </span>
-                <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics" required>
+                <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics">
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
@@ -120,6 +123,5 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 <script src='../js/jquery-3.1.0.min.js'></script>
 
 <script src="../js/exams.min.js"></script>
-
 </body>
 </html>
