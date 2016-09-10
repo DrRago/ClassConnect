@@ -2,7 +2,7 @@
 session_start();
 error_reporting(1);
 
-// require "../scripts/check_user.php";
+require "../scripts/check_user.php";
 
 function getLessonAmount ($timetable) {
     $lessons = array();
@@ -70,9 +70,9 @@ function sortTimetable($timetable) {
 <div class='timetable1'>
     <?php
     $result = json_decode(getContent(array(
-        "week" => date('W') % 2,
+        "w" => date('W') % 2,
         "cid" => $_SESSION["classID"],
-        "g" => $_SESSION["groupID"]
+        "gid" => $_SESSION["groupID"]
     ), "get_ordered_timetable"));
 
     $startTimes = getTimes($result, true);
@@ -95,9 +95,9 @@ function sortTimetable($timetable) {
             echo "<td class='time'>", $startTimes[$i], " - ", $endTimes[$i], "</td>";
             for ($e = 0; $e <= 4; $e++) {
                 if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart && ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1)) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
-                    echo "<td class='now' data-tooltip='", $result{$e}{$i - $count[$e]}->lessonName, "'>", $result{$e}{$i - $count[$e]}->lessonShort, " <br>", $result{$e}{$i - $count[$e]}->room, "</td>";
+                    echo "<td class='now' data-tooltip='", $result{$e}{$i - $count[$e]}->lessonName, "'>", $result{$e}{$i - $count[$e]}->lessonNameShort, " <br>", $result{$e}{$i - $count[$e]}->room, "</td>";
                 } elseif ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
-                    echo "<td data-tooltip='", $result{$e}{$i - $count[$e]}->lessonName, "'>", $result{$e}{$i - $count[$e]}->lessonShort, "<br>", $result{$e}{$i - $count[$e]}->room, "</td>";
+                    echo "<td data-tooltip='", $result{$e}{$i - $count[$e]}->lessonName, "'>", $result{$e}{$i - $count[$e]}->lessonNameShort, "<br>", $result{$e}{$i - $count[$e]}->room, "</td>";
                 } else {
                     $count[$e]++;
                     echo "<td class='nohover'></td>";
@@ -110,9 +110,9 @@ function sortTimetable($timetable) {
 
     <?php
     $result = json_decode(getContent(array(
-        "week" => (date('W') + 1) % 2,
+        "w" => (date('W') + 1) % 2,
         "cid" => $_SESSION["classID"],
-        "g" => $_SESSION["groupID"]
+        "gid" => $_SESSION["groupID"]
     ), "get_ordered_timetable"));
 
     $startTimes = getTimes($result, true);
@@ -135,7 +135,7 @@ function sortTimetable($timetable) {
             echo "<td class='time'>", $startTimes[$i], " - ", $endTimes[$i], "</td>";
             for ($e = 0; $e <= 4; $e++) {
                 if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
-                    echo "<td data-tooltip='", $result{$e}{$i - $count[$e]}->lessonName, "'>", $result{$e}{$i - $count[$e]}->lessonShort, " <br>", $result{$e}{$i - $count[$e]}->room, "</td>";
+                    echo "<td data-tooltip='", $result{$e}{$i - $count[$e]}->lessonName, "'>", $result{$e}{$i - $count[$e]}->lessonNameShort, " <br>", $result{$e}{$i - $count[$e]}->room, "</td>";
                 } else {
                     $count[$e]++;
                     echo "<td class='nohover'></td>";

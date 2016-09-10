@@ -12,16 +12,21 @@ if (!preg_match('/\d{4}-\d{2}-\d{2}/', $_POST["date"])) {
 
 $result = getContent(
     array(
-        'l' => $_POST["lessonName"],
-        't' => $_POST["topics"],
+        'lesson' => $_POST["lessonName"],
+        'topics' => $_POST["topics"],
         'd' => $_POST["date"],
-        'c' => $_SESSION["classID"]
+        'cid' => $_SESSION["classID"],
+        'creator' => $_SESSION["username"]
     ),
-    "add_exams"
+    "add_exam"
 );
 
-if ($result == "Data Inserted") {
-    $_SESSION["addExam"] = "success";
+switch ($result) {
+    case 0:
+        $_SESSION["addExam"] = "error";
+        break;
+    case 1:
+        $_SESSION["addExam"] = "success";
+        break;
 }
-
 header('Location: ../' . $_SESSION["language"] . '/exams.php');

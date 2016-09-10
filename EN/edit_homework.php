@@ -91,7 +91,7 @@ if ($_SESSION["permissions"] == "User") {
                                 <i class="fa fa-calendar"></i>
                             </span>
                             <input id="date" class="form-control" name="date" type="date"
-                                   value="<?php echo $result{0}->homeworkDate ?>" required>
+                                   value="<?php echo $result{0}->date ?>" required>
                         </div>
                     </td>
                 </tr>

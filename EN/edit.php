@@ -15,7 +15,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
 
     $result = getContent(
         array(
-            'uid' => $_GET["id"]
+            'id' => $_GET["id"]
         ),
         "get_user"
     );

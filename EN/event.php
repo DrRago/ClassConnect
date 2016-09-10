@@ -120,7 +120,7 @@ if ($result == null || ($result{0}->classID != $_SESSION["classID"] && $_SESSION
                             <i class="fa fa-calendar"></i>
                         </span>
                         <input id="date" class="form-control" name="date" type="date"
-                               value="<?php echo $result{0}->eventDate ?>" required>
+                               value="<?php echo $result{0}->date ?>" required>
                     </div>
                 </td>
             </tr>

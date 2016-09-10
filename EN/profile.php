@@ -1,7 +1,6 @@
 <?php
-session_start();
 error_reporting(1);
-require "../scripts/check_user.php"; ?>
+require "../scripts/check_user.php";?>
 <html>
 <head>
     <title>User</title>

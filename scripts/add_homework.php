@@ -12,12 +12,13 @@ if (!preg_match('/\d{4}-\d{2}-\d{2}/', $_POST["date"])) {
 
 $result = getContent(
     array(
-        'l' => $_POST["lessonName"],
-        'e' => $_POST["exercises"],
+        'lesson' => $_POST["lessonName"],
+        'exercise' => $_POST["exercises"],
         'd' => $_POST["date"],
-        'c' => $_SESSION["classID"]
+        'cid' => $_SESSION["classID"],
+        'creator' => $_SESSION["username"]
     ),
-    "add_homework"
+    "add_assignment"
 );
 
 if ($result == "Data Inserted") {

@@ -17,9 +17,9 @@ $result = getContent(
     array(
         'reason' => $_POST["topic"],
         'content' => $_POST["message"],
-        'creatorID' => $_SESSION["id"],
-        'creatorName' => $_POST["name"],
-        'email' => $_POST["email"]
+        'creator_id' => $_SESSION["id"],
+        'creator_name' => $_POST["name"],
+        'creator_email' => $_POST["email"]
     ),
     "add_ticket"
 );

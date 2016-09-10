@@ -12,9 +12,11 @@ $result = getContent(array(
     'date' => $_POST['date']
 ), "update_exam");
 
-if ($result == "Quary Failed") {
-    print hash_pbkdf2("sha512", "Fail", md5("secure_hashing"), 500);
-} else {
-    $_SESSION["changedExam"] = $_POST["id"];
-    header("Location: ../" . $_SESSION["language"] . "/exams.php");
+switch ($result) {
+    case 0:
+        print hash_pbkdf2("sha512", "Fail", md5("secure_hashing"), 500);
+        break;
+    case 1:
+        $_SESSION["changedExam"] = $_POST["id"];
+        header("Location: ../" . $_SESSION["language"] . "/exams.php");
 }

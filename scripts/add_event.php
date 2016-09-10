@@ -12,20 +12,24 @@ if (!preg_match('/\d{4}-\d{2}-\d{2}/', $_POST["date"])) {
 
 $result = getContent(
     array(
-        't' => $_POST["title"],
-        'cr' => $_SESSION["username"],
+        'title' => $_POST["title"],
+        'creator' => $_SESSION["username"],
         'd' => $_POST["date"],
-        's' => $_POST["eventStart"],
-        'e' => $_POST["eventEnd"],
-        'desc' => $_POST["description"],
-        'p' => $_POST["place"],
-        'c' => $_SESSION["classID"]
+        'start' => $_POST["eventStart"],
+        'end' => $_POST["eventEnd"],
+        'description' => $_POST["description"],
+        'place' => $_POST["place"],
+        'cid' => $_SESSION["classID"]
     ),
-    "add_events"
+    "add_event"
 );
 
-if ($result == 'Data Inserted') {
-    $_SESSION['addEvent'] = 'success';
+switch ($result) {
+    case 0:
+        $_SESSION['addEvent'] = 'error';
+        break;
+    case 1:
+        $_SESSION['addEvent'] = 'success';
+        break;
 }
-
 header('Location: ../' . $_SESSION["language"] . '/events.php');

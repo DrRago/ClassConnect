@@ -41,6 +41,7 @@ table {
 }
 
 .time {
+    min-width: 90px;
     width: 2em !important;
     color: #efefef;
 }

@@ -9,13 +9,13 @@ $result = getContent(
         'id' => $_POST["id"],
         'username' => $_POST["username"],
         'name' => $_POST["name"],
-        'phone' => $_POST["phone"],
         'permissions' => $_POST["permissions"],
+        'phone' => $_POST["phone"],
         'email' => $_POST['email'],
-        'group' => $_POST['groupID'],
-        'class' => $_POST["classID"]
+        'gid' => $_POST['groupID'],
+        'cid' => $_POST["classID"]
     ),
-    "update_user_nopw"
+    "update_user_general"
 );
 
 $_SESSION["changedUser"] = $_POST["id"];

@@ -3,7 +3,7 @@ session_start();
 error_reporting(1);
 require "../scripts/check_user.php";
 
-$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_exams"));
+$result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION["classID"]), "get_exams"));
 ?>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -43,7 +43,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
         <?php
         if (!isset($result)) {
-            echo "<tr><td colspan='3'>No Exams</td></tr>";
+            echo "<tr><td colspan='6'>No Exams</td></tr>";
         } else {
             foreach ($result as $object) {
 
@@ -60,7 +60,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 } else {
                     echo "<td class='topics'>", $object->{'topics'}, "</td>";
                 }
-                echo "<td class='examDate'>", $object->{'examDate'}, "</td>";
+                echo "<td class='examDate'>", $object->{'date'}, "</td>";
                 echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
                 ?>
                 <td class='hidden' hidden><button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick='window.open("http://www.google.com/calendar/event?action=template&text=Exam <?= $object->lessonName ?>&dates=<?= date('Ymd', strtotime($object->examDate)) ?>/<?= date('Ymd', strtotime($object->examDate)) + 1 ?>&details=Topics: <?= $object->topics ?>&trp=false&sprop=&sprop=name:")' class='fa fa-calendar-plus-o dropdown-toggle'></button></td>

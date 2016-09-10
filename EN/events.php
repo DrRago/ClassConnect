@@ -2,7 +2,7 @@
 session_start();
 error_reporting(1);
 require "../scripts/check_user.php";
-$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_events"));
+$result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION["classID"]), "get_events"));
 ?>
 <html>
 <head>
@@ -17,7 +17,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     <link rel="stylesheet" href="../css/style.min.css">
     <link rel="stylesheet" href="../css/table.min.css">
     <link rel="stylesheet" href="../css/formula.min.css">
-    <link rel="stylesheet" href="../css/events.min.css">
+    <link rel="stylesheet" href="../css/events.css">
 </head>
 <body>
 <?php require "navigator.php" ?>
@@ -43,14 +43,20 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
         <?php
         if (!isset($result)) {
-            echo "<tr><td colspan='5'>No Events</td></tr>";
+            echo "<tr><td colspan='8'>No Events</td></tr>";
         } else {
             foreach ($result as $object) {
-                echo "<tr id='$object->id'><td class='title'>", $object->{'title'}, "</td>";
+                if ($object->id == $_SESSION["changedEvent"]) {
+                    echo "<tr id='$object->id' class='changed'>";
+                    unset($_SESSION["changedEvent"]);
+                } else {
+                    echo "<tr id='$object->id'>";
+                }
+                echo "<td class='title'>", $object->{'title'}, "</td>";
                 echo "<td class='description'>", $object->{'description'}, "</td>";
                 echo "<td class='place'>", $object->{'place'}, "</td>";
                 echo "<td class='time'>", $object->{'eventStart'}, ' - ', $object->{'eventEnd'}, "</td>";
-                echo "<td class='date'>", $object->{'eventDate'}, "</td>";
+                echo "<td class='date'>", $object->{'date'}, "</td>";
                 echo "<td><button type='submit' onclick='window.open(\"https://maps.google.com/maps/place/", $object->place, "\", \"_blank\");' class='fa fa-map'></button></td>";
                 echo "<td><button type='submit' onclick='window.location.href=\"event.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
                 if ($_SESSION["username"] == $object->creator || $_SESSION["permissions"] == "ServerAdmin") {

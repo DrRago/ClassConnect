@@ -12,20 +12,26 @@ if (isset($_POST["classID"])) {
 
 $result = getContent(
     array(
-        "n" => $_POST["name"],
-        "u" => $_POST["username"],
-        "pass" => $_POST["password"],
-        "perm" => $_POST["permissions"],
-        "g" => $_POST["groupID"],
-        "c" => $classID
+        "name" => $_POST["name"],
+        "username" => $_POST["username"],
+        "p" => md5($_POST["password"]),
+        "p_type" => "encrypted",
+        "permissions" => $_POST["permissions"],
+        "gid" => $_POST["groupID"],
+        "cid" => $classID,
+        "phone" => "",
+        "email" => ""
     ),
     "add_user"
 );
 
-if ($result == "Data Inserted") {
-    $_SESSION["addUser"] = "success";
-} elseif ($result == "Failed") {
-    $_SESSION["addUser"] = "error";
+switch ($result) {
+    case 0:
+        $_SESSION["addUser"] = "error";
+        break;
+    case 1:
+        $_SESSION["addUser"] = "success";
+        break;
 }
 
 header("Location: ../" . $_SESSION["language"] . "/users.php");

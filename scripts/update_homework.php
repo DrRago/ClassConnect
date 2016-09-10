@@ -8,13 +8,16 @@ include "communicate.php";
 $result = getContent(array(
     'id' => $_POST['id'],
     'lesson' => $_POST['lesson'],
-    'exercises' => $_POST['exercises'],
-    'date' => $_POST['date']
-), "update_homework");
+    'exercise' => $_POST['exercises'],
+    'd' => $_POST['date']
+), "update_assignment");
 
-if ($result == "Quary Failed") {
-    print hash_pbkdf2("sha512", "Fail", md5("secure_hashing"), 500);
-} else {
-    $_SESSION["changedExam"] = $_POST["id"];
-    header("Location: ../" . $_SESSION["language"] . "/homework.php");
+switch ($result) {
+    case 0:
+        print hash_pbkdf2("sha512", "Fail", md5("secure_hashing"), 500);
+        break;
+    case 1:
+        $_SESSION["changedHomework"] = $_POST["id"];
+        header("Location: ../" . $_SESSION["language"] . "/homework.php");
+        break;
 }

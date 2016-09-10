@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once "../scripts/communicate.php";
 
 $links = getContent(array(), "get_app");

@@ -1,11 +1,11 @@
 <?php
+session_start();
 include "communicate.php";
-
-if (isset($_SESSION["username"]) & isset($_SESSION["password"])) {
+if (isset($_SESSION["username"])) {
 
     $result = getContent(
         array(
-            'uid' => $_SESSION['id']
+            'id' => $_SESSION['id']
         ),
         "get_user"
     );
@@ -14,7 +14,6 @@ if (isset($_SESSION["username"]) & isset($_SESSION["password"])) {
     if ($_SESSION['id'] == $result{0}->id &
         $_SESSION['name'] == $result{0}->name &
         $_SESSION['username'] == $result{0}->username &
-        $_SESSION['password'] == $result{0}->password &
         $_SESSION['email'] == $result{0}->email &
         $_SESSION['phone'] == $result{0}->phone &
         $_SESSION['permissions'] == $result{0}->permissions &
@@ -22,7 +21,7 @@ if (isset($_SESSION["username"]) & isset($_SESSION["password"])) {
         $_SESSION['classID'] == $result{0}->classID
     ) {
         $_SESSION['validation'] = true;
-    } else {
+   /* } else {
         $_SESSION = array();
         $_SESSION["login"] = "error";
         header("Location: ../index.php");
@@ -30,4 +29,4 @@ if (isset($_SESSION["username"]) & isset($_SESSION["password"])) {
 } else {
     $_SESSION = array();
     header("Location: ../index.php");
-}
+*/}}

@@ -6,19 +6,26 @@ include "communicate.php";
 
 $id = $_SESSION['resetPassword'];
 
+$password = substr(md5(rand()), 0, 7);
+
 $result = getContent(
     array(
-        'uid' => $id
+        'id' => $id,
+        'p' => md5($password),
+        'p_type' => "encrypted"
     ),
     "reset_password"
 );
-if ($result == null) {
-    $_SESSION["resetStatus"] = "error";
-} else {
-    $_SESSION["resetStatus"] = "success";
-    $_SESSION["newPassword"] = $result;
-}
 
+switch ($result) {
+    case 0:
+        $_SESSION["resetStatus"] = "error";
+        break;
+    case 1:
+        $_SESSION["resetStatus"] = "success";
+        $_SESSION["newPassword"] = $password;
+        break;
+}
 unset($_SESSION['resetPassword']);
 
 header("Location: ../" . $_SESSION["language"] . "/edit.php?id=" . $id);

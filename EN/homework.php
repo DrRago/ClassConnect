@@ -4,7 +4,7 @@ error_reporting(1);
 require "../scripts/check_user.php";
 
 
-$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_homework"));
+$result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION["classID"]), "get_assignments"));
 ?>
 <html>
 <head>
@@ -19,7 +19,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     <link rel="stylesheet" href="../css/navigation.min.css">
     <link rel="stylesheet" href="../css/formula.min.css">
     <link rel="stylesheet" href="../css/style.min.css">
-    <link rel="stylesheet" href="../css/homework.min.css">
+    <link rel="stylesheet" href="../css/homework.css">
 </head>
 
 <body>
@@ -42,12 +42,18 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
         <?php
         if (!isset($result)) {
-            echo "<tr><td colspan='3'>No Homework</td></tr>";
+            echo "<tr><td colspan='5'>No Homework</td></tr>";
         } else {
             foreach ($result as $object) {
-                echo "<tr id='$object->id'><td class='lessonName'>", $object->{'lessonName'}, "</td>";
+                if ($object->id == $_SESSION["changedHomework"]) {
+                    echo "<tr id='$object->id' class='changed'>";
+                    unset($_SESSION["changedHomework"]);
+                } else {
+                    echo "<tr id='$object->id'>";
+                }
+                echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='exercise'>", $object->{'exercises'}, "</td>";
-                echo "<td class='homeworkDate'>", $object->{'homeworkDate'}, "</td>";
+                echo "<td class='homeworkDate'>", $object->{'date'}, "</td>";
                 if ($_SESSION["permissions"] != "User") {
                     echo "<td><button type='submit' onclick='window.location.href=\"edit_homework.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteHomework(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";

@@ -114,7 +114,7 @@ require "../scripts/check_user.php";
     </div>
 <?php } else {
     include_once "../scripts/communicate.php";
-    $result = getContent(array(), "get_every_ticket");
+    $result = getContent(array(), "get_tickets");
     $result = json_decode($result);
     ?>
     <div class="helpdeskList">
@@ -128,8 +128,8 @@ require "../scripts/check_user.php";
                 <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
             </tr>
             <?php
-            if (!isset($result)) {
-                echo "<tr class='nohover'><td colspan='5'>No Tickets</td></tr>";
+            if ($result == null) {
+                echo "<tr><td colspan='7'>No Tickets</td></tr>";
             } else {
                 foreach ($result as $object) {
                     echo "<tr id='$object->id'><td><input class='ticketID' name='id' type='text' readonly style='width:", strlen($object->{'id'}) * 10, "px;' value='", $object->{'id'}, "'>";
