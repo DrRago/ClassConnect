@@ -51,15 +51,15 @@ function sortTimetable($timetable) {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <script src='../js/jquery-3.1.0.min.js'></script>
+    <script src='../js/jquery-3.1.0.js'></script>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
 
-    <link rel="stylesheet" href="../css/table.min.css">
+    <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/timetable.css">
-    <link rel="stylesheet" href="../css/navigation.min.css">
-    <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -80,6 +80,14 @@ function sortTimetable($timetable) {
     $result = sortTimetable($result); ?>
 
     <table border='0' cellpadding='0' cellspacing='0'>
+        <tr>
+            <th colspan="2"><strong><?php if ((date('W') % 2) == 0) {
+                        echo "Even Week";
+                    } else {
+                        echo "Odd Week";
+                    } ?> (This Week)</strong>
+            </th>
+        </tr>
         <tr class='days'>
             <th class="time"></th>
             <th>Monday</th>
@@ -120,6 +128,14 @@ function sortTimetable($timetable) {
     $result = sortTimetable($result); ?>
 
     <table border='0' cellpadding='0' cellspacing='0'>
+        <tr>
+            <th colspan="2"><strong><?php if (((date('W') + 1) % 2) == 0) {
+                        echo "Even Week";
+                    } else {
+                        echo "Odd Week";
+                    } ?></strong>
+            </th>
+        </tr>
         <tr class='days'>
             <th class="time"></th>
             <th>Monday</th>

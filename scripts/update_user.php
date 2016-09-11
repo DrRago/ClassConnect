@@ -3,6 +3,7 @@ session_start();
 error_reporting(1);
 
 include "communicate.php";
+
 if ($_POST["new_password_1"] == $_POST["new_password_2"]) {
     if ($_POST["new_password_1"] == "") {
         $new_pw = $_POST["old_password"];
