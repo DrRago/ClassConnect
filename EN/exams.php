@@ -3,7 +3,7 @@ session_start();
 error_reporting(1);
 require "../scripts/check_user.php";
 
-$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_exams.php"));
+$result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION["classID"]), "get_exams"));
 ?>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
@@ -11,13 +11,13 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
 
-    <link rel="stylesheet" href="../css/table.min.css">
-    <link rel="stylesheet" href="../css/navigation.min.css">
-    <link rel="stylesheet" href="../css/formula.min.css">
-    <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/exams.css">
 
 </head>
@@ -43,7 +43,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
         <?php
         if (!isset($result)) {
-            echo "<tr><td colspan='3'>No Exams</td></tr>";
+            echo "<tr><td colspan='6'>No Exams</td></tr>";
         } else {
             foreach ($result as $object) {
 
@@ -60,9 +60,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 } else {
                     echo "<td class='topics'>", $object->{'topics'}, "</td>";
                 }
-                echo "<td class='examDate'>", date("d/m/Y", strtotime($object->{'examDate'})), "</td>";
+                echo "<td class='examDate'>", $object->{'date'}, "</td>";
                 echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
-                echo "<td class='hidden' hidden><button onclick='window.open(\"http://www.google.com/calendar/event?action=template&text=Exam ", $object->lessonName, "&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: ", $object->topics, "&trp=false&sprop=&sprop=name:\")'", "class='fa fa-calendar-plus-o'>", "</button></td>";
+                ?>
+                <td><button onclick='window.open("http://www.google.com/calendar/event?action=template&text=Exam <?= $object->lessonName ?>&dates=<?= date('Ymd', strtotime($object->examDate)) ?>/<?= date('Ymd', strtotime($object->examDate)) + 1 ?>&details=Topics: <?= $object->topics ?>&trp=false&sprop=&sprop=name:")' class='fa fa-calendar-plus-o'></button></td>
+
+                <?php
                 if ($_SESSION["permissions"] != "User") {
                     echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
@@ -92,7 +95,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
                 <span class="input-group-addon">
                     <i class="fa fa-tasks"></i>
                 </span>
-                <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics" required>
+                <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics">
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
@@ -117,9 +120,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
 
-<script src='../js/jquery-3.1.0.min.js'></script>
+<script src='../js/jquery-3.1.0.js'></script>
 
-<script src="../js/exams.min.js"></script>
-
+<script src="../js/exams.js"></script>
 </body>
 </html>

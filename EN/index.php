@@ -4,7 +4,7 @@ error_reporting(1);
 
 include_once "../scripts/communicate.php";
 
-$links = json_decode(getContent(array(), "get_patchnotes.php"));
+$links = json_decode(getContent(array(), "get_app"));
 
 if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
     header('Location: timetable.php');
@@ -17,10 +17,10 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/reset.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/index.min.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/index.css">
 
 
 </head>
@@ -51,9 +51,9 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 
-<script src='../js/jquery-3.1.0.min.js'></script>
-<script src="../js/jquery.download.min.js"></script>
-<script src="../js/index.min.js"></script>
+<script src='../js/jquery-3.1.0.js'></script>
+<script src="../js/jquery.download.js"></script>
+<script src="../js/index.js"></script>
 
 </body>
 </html>

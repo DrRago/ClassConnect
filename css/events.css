@@ -2,7 +2,7 @@ table {
     width: 90% !important;
 }
 
-table .description {
+table .place {
     width: 40%;
 }
 
@@ -17,4 +17,21 @@ table .description {
 
 .alert {
     display: inline-block !important;
+}
+
+table .changed {
+    animation: 4s bgcolorchange;
+    -webkit-animation: 4s bgcolorchange;
+}
+
+@keyframes bgcolorchange {
+    0% {
+        background-color: #00d200;
+    }
+    75% {
+        background-color: #00d200;
+    }
+    100% {
+        background-color: #f5f5f5;
+    }
 }

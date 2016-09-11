@@ -9,20 +9,20 @@ if ($_SESSION["permissions"] == "User") {
     echo "Sorry Brudah, du kommst hier net rein";
 } else {
 
-    $result = json_decode(getContent(array('id' => $_GET['id']), "get_exam.php")); ?>
+    $result = json_decode(getContent(array('id' => $_GET['id']), "get_exam")); ?>
     <html>
     <head>
         <title>Exam <?php echo $_GET["id"] ?></title>
 
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/font-awesome.css">
 
         <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-        <link rel="stylesheet" href="../css/navigation.min.css">
-        <link rel="stylesheet" href="../css/formula.min.css">
-        <link rel="stylesheet" href="../css/input_container.min.css">
-        <link rel="stylesheet" href="../css/style.min.css">
+        <link rel="stylesheet" href="../css/navigation.css">
+        <link rel="stylesheet" href="../css/formula.css">
+        <link rel="stylesheet" href="../css/input_container.css">
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
     <?php require "navigator.php"; ?>
@@ -72,14 +72,14 @@ if ($_SESSION["permissions"] == "User") {
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="topics">Topics<a class="IsRequired">*</a>:</label></td>
+                    <td><label for="topics">Topics:</label></td>
                     <td>
                         <div class="input-group">
                         <span class="input-group-addon">
                             <i class="fa fa-tasks"></i>
                         </span>
                             <input id="topics" class="form-control" name="topics" type="text"
-                                   value="<?php echo $result{0}->topics ?>" placeholder="Tasks" required>
+                                   value="<?php echo $result{0}->topics ?>" placeholder="Tasks">
                         </div>
                     </td>
                 </tr>
@@ -91,7 +91,7 @@ if ($_SESSION["permissions"] == "User") {
                             <i class="fa fa-calendar"></i>
                         </span>
                             <input id="date" class="form-control" name="date" type="date"
-                                   value="<?php echo $result{0}->examDate ?>" required>
+                                   value="<?php echo $result{0}->date ?>" required>
                         </div>
                     </td>
                 </tr>

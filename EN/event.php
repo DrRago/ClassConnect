@@ -2,20 +2,20 @@
 error_reporting(1);
 session_start();
 require "../scripts/check_user.php";
-$result = json_decode(getContent(array('id' => $_GET['id']), "get_event.php")); ?>
+$result = json_decode(getContent(array('id' => $_GET['id']), "get_event")); ?>
 <html>
 <head>
     <title>Event <?php echo $_GET["id"] ?></title>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/navigation.min.css">
-    <link rel="stylesheet" href="../css/formula.min.css">
-    <link rel="stylesheet" href="../css/input_container.min.css">
-    <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/input_container.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 <?php require "navigator.php"; ?>
@@ -120,7 +120,7 @@ if ($result == null || ($result{0}->classID != $_SESSION["classID"] && $_SESSION
                             <i class="fa fa-calendar"></i>
                         </span>
                         <input id="date" class="form-control" name="date" type="date"
-                               value="<?php echo $result{0}->eventDate ?>" required>
+                               value="<?php echo $result{0}->date ?>" required>
                     </div>
                 </td>
             </tr>

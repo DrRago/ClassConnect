@@ -1,8 +1,7 @@
 <?php
-session_start();
 include_once "../scripts/communicate.php";
 
-$links = getContent(array(), "get_patchnotes.php");
+$links = getContent(array(), "get_app");
 $links = json_decode($links);
 
 $items = array(

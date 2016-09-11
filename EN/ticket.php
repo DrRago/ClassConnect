@@ -8,22 +8,22 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
     echo "<meta http-equiv='refresh' content='3; URL=../scripts/logout.php'>";
     echo "Sorry Brudah, du kommst hier net rein";
 } else {
-    $result = json_decode(getContent(array('id' => $_GET['id']), "get_ticket.php")); ?>
+    $result = json_decode(getContent(array('id' => $_GET['id']), "get_ticket")); ?>
     <html>
     <head>
         <title>Ticket <?php echo $_GET['id'] ?></title>
 
         <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/font-awesome.css">
 
-        <script src="../js/autosize.min.js"></script>
+        <script src="../js/autosize.js"></script>
 
-        <link rel="stylesheet" href="../css/navigation.min.css">
-        <link rel="stylesheet" href="../css/formula.min.css">
-        <link rel="stylesheet" href="../css/input_container.min.css">
-        <link rel="stylesheet" href="../css/style.min.css">
+        <link rel="stylesheet" href="../css/navigation.css">
+        <link rel="stylesheet" href="../css/formula.css">
+        <link rel="stylesheet" href="../css/input_container.css">
+        <link rel="stylesheet" href="../css/style.css">
     </head>
 
     <body>

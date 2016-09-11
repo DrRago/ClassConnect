@@ -4,7 +4,7 @@ error_reporting(1);
 require "../scripts/check_user.php";
 
 
-$result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["classID"]), "get_homework.php"));
+$result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION["classID"]), "get_assignments"));
 ?>
 <html>
 <head>
@@ -12,14 +12,14 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
 
-    <link rel="stylesheet" href="../css/table.min.css">
-    <link rel="stylesheet" href="../css/navigation.min.css">
-    <link rel="stylesheet" href="../css/formula.min.css">
-    <link rel="stylesheet" href="../css/style.min.css">
-    <link rel="stylesheet" href="../css/homework.min.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="../css/formula.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/homework.css">
 </head>
 
 <body>
@@ -42,12 +42,18 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
 
         <?php
         if (!isset($result)) {
-            echo "<tr><td colspan='3'>No Homework</td></tr>";
+            echo "<tr><td colspan='5'>No Homework</td></tr>";
         } else {
             foreach ($result as $object) {
-                echo "<tr id='$object->id'><td class='lessonName'>", $object->{'lessonName'}, "</td>";
+                if ($object->id == $_SESSION["changedHomework"]) {
+                    echo "<tr id='$object->id' class='changed'>";
+                    unset($_SESSION["changedHomework"]);
+                } else {
+                    echo "<tr id='$object->id'>";
+                }
+                echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='exercise'>", $object->{'exercises'}, "</td>";
-                echo "<td class='homeworkDate'>", date("d/m/Y", strtotime($object->{'homeworkDate'})), "</td>";
+                echo "<td class='homeworkDate'>", $object->{'date'}, "</td>";
                 if ($_SESSION["permissions"] != "User") {
                     echo "<td><button type='submit' onclick='window.location.href=\"edit_homework.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteHomework(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
@@ -95,8 +101,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'c' => $_SESSION["c
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
 
-<script src='../js/jquery-3.1.0.min.js'></script>
+<script src='../js/jquery-3.1.0.js'></script>
 
-<script src="../js/homework.min.js"></script>
+<script src="../js/homework.js"></script>
 </body>
 </html>

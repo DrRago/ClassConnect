@@ -15,9 +15,9 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
 
     $result = getContent(
         array(
-            'uid' => $_GET["id"]
+            'id' => $_GET["id"]
         ),
-        "get_user.php"
+        "get_user"
     );
 
     $result = json_decode($result);
@@ -28,13 +28,13 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
 
         <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/font-awesome.css">
 
-        <link rel="stylesheet" href="../css/navigation.min.css">
-        <link rel="stylesheet" href="../css/style.min.css">
-        <link rel="stylesheet" href="../css/formula.min.css">
-        <link rel="stylesheet" href="../css/input_container.min.css">
+        <link rel="stylesheet" href="../css/navigation.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/formula.css">
+        <link rel="stylesheet" href="../css/input_container.css">
 
     </head>
     <body>
@@ -164,11 +164,11 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                         <button type="submit" class="left btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
                     </div>
                     <?php
-                    if ($_SESSION["resetStatus"] == "success") {
+                    if ($_SESSION["resetStatus"] && $_SESSION["resetStatus"] == "success") {
                         echo "<div style='margin-top: 50px;margin-bottom: -30px' class='alert alert-success'><strong>success: </strong>Password reset successful! New password is ", $_SESSION["newPassword"], ".</div>";
                         unset($_SESSION["resetStatus"]);
                         unset($_SESSION["newPassword"]);
-                    } elseif ($_SESSION["resetStatus"] == "error") {
+                    } elseif ($_SESSION["resetStatus"] && $_SESSION["resetStatus"] == "error") {
                         echo "<div style='margin-top: 50px;margin-bottom: -30px' class='alert alert-danger'><strong>error: </st>Password not reset!</div>";
                         unset($_SESSION["resetStatus"]);
                     }
