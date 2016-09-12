@@ -21,7 +21,7 @@ if (isset($_SESSION["username"])) {
         $_SESSION['classID'] == $result{0}->classID
     ) {
         $_SESSION['validation'] = true;
-   /* } else {
+    } else {
         $_SESSION = array();
         $_SESSION["login"] = "error";
         header("Location: ../index.php");
@@ -29,4 +29,4 @@ if (isset($_SESSION["username"])) {
 } else {
     $_SESSION = array();
     header("Location: ../index.php");
-*/}}
+}

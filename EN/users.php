@@ -24,6 +24,9 @@ if ($permissions != 'ServerAdmin') {
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -40,7 +43,7 @@ if ($permissions != 'ServerAdmin') {
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 <div class='userList'>
-    <table>
+    <table id="tbl">
         <tr>
             <th class="free_space"></th>
             <?php if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
@@ -168,7 +171,12 @@ if ($permissions != 'ServerAdmin') {
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
 
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
+
 <script src='../js/jquery-3.1.0.js'></script>
+<script src="../js/stacktable.js"></script>
 
 <script src="../js/users.js"></script>
 

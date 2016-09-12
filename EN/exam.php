@@ -17,6 +17,9 @@ if ($_SESSION["permissions"] == "User") {
         <link rel="stylesheet" href="../css/bootstrap.css">
         <link rel="stylesheet" href="../css/font-awesome.css">
 
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script src="../js/responsive-nav.js"></script>
+
         <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
         <link rel="stylesheet" href="../css/navigation.css">
@@ -105,6 +108,10 @@ if ($_SESSION["permissions"] == "User") {
             ?>
         </form>
     </div>
+
+    <script src="../js/fastclick.js"></script>
+    <script src="../js/scroll.js"></script>
+    <script src="../js/fixed-responsive-nav.js"></script>
 
     </body>
     </html>

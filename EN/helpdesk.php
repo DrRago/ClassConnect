@@ -11,6 +11,9 @@ require "../scripts/check_user.php";
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
     <script src="../js/autosize.js"></script>
     <script src="../js/ticket.js"></script>
     <script src="../js/jquery-3.1.0.js"></script>
@@ -145,6 +148,10 @@ require "../scripts/check_user.php";
         </table>
     </div>
 <?php } ?>
+
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
 
 <script>
     autosize(document.getElementById('message'));

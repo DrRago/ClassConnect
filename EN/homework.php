@@ -15,6 +15,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/formula.css">
@@ -32,7 +35,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 <div class="homework_tbl">
-    <table>
+    <table id="tbl">
         <tr>
             <th class='lessonName'><strong>Subject</strong></th>
             <th class="exercise"><strong>Exercises</strong></th>
@@ -101,7 +104,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
 
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
+
 <script src='../js/jquery-3.1.0.js'></script>
+<script src="../js/stacktable.js"></script>
 
 <script src="../js/homework.js"></script>
 </body>

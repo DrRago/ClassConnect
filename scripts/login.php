@@ -4,11 +4,6 @@ error_reporting(0);
 
 include "communicate.php";
 
-if ($_POST["username"] == "Felsmann" && $_POST["password"] == "Hut") {
-    header('Location: ../felsmann.php');
-    exit;
-}
-
 $result = getContent(
     array(
         'u' => $_POST["username"],
@@ -18,9 +13,9 @@ $result = getContent(
     "get_user_login"
 );
 
-if ($result == 'null' || $result == null) {
+if ($result == "[]") {
     if ($_GET["js"] == "false") {
-        header('Location: ../index.php');
+       header('Location: ../index.php');
     } else {
         print hash_pbkdf2("sha512", "wrong", md5("secure_hashing"), 500);
     }

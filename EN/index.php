@@ -19,6 +19,8 @@ if (isset($_SESSION['name'])) {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">

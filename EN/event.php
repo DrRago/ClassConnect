@@ -10,6 +10,9 @@ $result = json_decode(getContent(array('id' => $_GET['id']), "get_event")); ?>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
     <link rel="stylesheet" href="../css/navigation.css">
@@ -133,6 +136,10 @@ if ($result == null || ($result{0}->classID != $_SESSION["classID"] && $_SESSION
         ?>
     </form>
 </div>
+
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
 
 <script>
     function initMap() {

@@ -56,6 +56,10 @@ function sortTimetable($timetable) {
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
+
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/timetable.css">
     <link rel="stylesheet" href="../css/navigation.css">
@@ -161,6 +165,10 @@ function sortTimetable($timetable) {
         } ?>
     </table>
 </div>
+
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
 
 <script>
     $(".time").hover(
