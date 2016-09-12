@@ -135,8 +135,9 @@ body {
 }
 
 .error:before  {
+    /* change left for downloadbutton */
     bottom: 100%;
-    left: 50%;
+    left: 37%;
     border: solid transparent;
     content: "";
     height: 0;

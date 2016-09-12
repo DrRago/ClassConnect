@@ -2,11 +2,13 @@
 session_start();
 error_reporting(1);
 
-include_once "../scripts/communicate.php";
+/*
+ *  APP Link
+ *  include_once "../scripts/communicate.php";
+ *  $links = json_decode(getContent(array(), "get_app"));
+*/
 
-$links = json_decode(getContent(array(), "get_app"));
-
-if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
+if (isset($_SESSION['name'])) {
     header('Location: timetable.php');
     exit;
 }
@@ -36,8 +38,9 @@ if (isset($_SESSION['name']) | $_SESSION['login'] == 'success') {
             <input class="pw-in" type="password" name="password" placeholder="Password" required />
             <span><i class="fa fa-lock"></i></span>
         </div>
-        <button type="submit" class="submit" style="margin-right: 70px;"><i class="fa fa-arrow-right" style="margin-top: -2px"></i></button>
-        <button type="button" class="download" onclick="download('<?php echo $links[count($links) - 1]->link?>')" style="margin-left: 60px;margin-top: -45px"><i class="fa fa-download" style="margin-top: -2px"></i></button>
+        <!--add margin-right: 70px; for APP download Button -->
+        <button type="submit" class="submit"><i class="fa fa-arrow-right" style="margin-top: -2px"></i></button>
+        <!--<button type="button" class="download" onclick="download('<?php //echo $links[count($links) - 1]->link?>')" style="margin-left: 60px;margin-top: -45px"><i class="fa fa-download" style="margin-top: -2px"></i></button>-->
     </fieldset>
     <div class="error">
         wrong username or password <br />

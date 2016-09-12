@@ -14,7 +14,7 @@ table .ClassAdmin {
 }
 
 table .Moderator {
-    background-color: darkgray !important;
+    background-color: green !important;
 }
 
 table .id {
@@ -43,7 +43,7 @@ table .changed {
         background-color: #00d200;
     }
     100% {
-        background-color: #f5f5f5;
+        background-color: transparent;
     }
 }
 

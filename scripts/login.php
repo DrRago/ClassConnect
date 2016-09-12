@@ -20,7 +20,6 @@ $result = getContent(
 
 if ($result == 'null' || $result == null) {
     if ($_GET["js"] == "false") {
-        $_SESSION["login"] = "wrong";
         header('Location: ../index.php');
     } else {
         print hash_pbkdf2("sha512", "wrong", md5("secure_hashing"), 500);
@@ -30,7 +29,6 @@ if ($result == 'null' || $result == null) {
 
 $result = json_decode($result);
 
-$_SESSION['login'] = 'successful';
 $_SESSION['id'] = $result{0}->id;
 $_SESSION['name'] = $result{0}->name;
 $_SESSION['username'] = $result{0}->username;
