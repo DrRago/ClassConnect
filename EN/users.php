@@ -178,6 +178,21 @@ if ($permissions != 'ServerAdmin') {
 <script src='../js/jquery-3.1.0.js'></script>
 <script src="../js/stacktable.js"></script>
 
+<script>
+    $('#tbl').stacktable();
+
+    $(".small-only tbody tr:first-child").remove();
+    $(".small-only button").closest("tr").remove();
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $(".large-only").remove();
+    } else {
+        $(".small-only").remove();
+    }
+
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+</script>
+
 <script src="../js/users.js"></script>
 
 </body>

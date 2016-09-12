@@ -83,7 +83,7 @@ function sortTimetable($timetable) {
     $endTimes = getTimes($result, false);
     $result = sortTimetable($result); ?>
 
-    <table border='0' cellpadding='0' cellspacing='0'>
+    <table id="timetable1" border='0' cellpadding='0' cellspacing='0'>
         <tr>
             <th colspan="2"><strong><?php if ((date('W') % 2) == 0) {
                         echo "Even Week";
@@ -93,7 +93,7 @@ function sortTimetable($timetable) {
             </th>
         </tr>
         <tr class='days'>
-            <th class="time"></th>
+            <th class="time">Time</th>
             <th>Monday</th>
             <th>Tuesday</th>
             <th>Wednesday</th>
@@ -131,7 +131,7 @@ function sortTimetable($timetable) {
     $endTimes = getTimes($result, false);
     $result = sortTimetable($result); ?>
 
-    <table border='0' cellpadding='0' cellspacing='0'>
+    <table id="timetable2" border='0' cellpadding='0' cellspacing='0'>
         <tr>
             <th colspan="2"><strong><?php if (((date('W') + 1) % 2) == 0) {
                         echo "Even Week";
@@ -169,6 +169,9 @@ function sortTimetable($timetable) {
 <script src="../js/fastclick.js"></script>
 <script src="../js/scroll.js"></script>
 <script src="../js/fixed-responsive-nav.js"></script>
+
+<script src='../js/jquery-3.1.0.js'></script>
+<script src="../js/stacktable.js"></script>
 
 <script>
     $(".time").hover(

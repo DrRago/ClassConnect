@@ -188,16 +188,3 @@
     };
 
 }(jQuery));
-
-$('#tbl').stacktable();
-
-$(".small-only tbody tr:first-child").remove();
-$(".small-only button").closest("tr").remove();
-
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-    $(".large-only").remove();
-} else {
-    $(".small-only").remove();
-}
-
-$("html, body").animate({ scrollTop: 0 }, "slow");
