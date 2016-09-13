@@ -7,8 +7,8 @@ include "communicate.php";
 $result = getContent(
     array(
         'u' => $_POST["username"],
-        'p' => ($_POST["password"]),
-        'p_type' => "clean"
+        'p' => md5($_POST["password"]),
+        'p_type' => "encrypted"
     ),
     "get_user_login"
 );
