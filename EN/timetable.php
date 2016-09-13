@@ -174,6 +174,18 @@ function sortTimetable($timetable) {
 <script src="../js/stacktable.js"></script>
 
 <script>
+
+    $('#timetable1').stacktable();
+
+    $(".small-only tbody tr:first-child").remove();
+    $(".small-only button").closest("tr").remove();
+
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $(".large-only").remove();
+    } else {
+        $(".small-only").remove();
+    }
+
     $(".time").hover(
         function() {
             window.globalVar =  $(this).closest("tr").css("backgroundColor");

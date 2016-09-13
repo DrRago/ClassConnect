@@ -7,8 +7,8 @@ include "communicate.php";
 $result = getContent(
     array(
         'u' => $_POST["username"],
-        'p' => md5($_POST["password"]),
-        'p_type' => "encrypted"
+        'p' => ($_POST["password"]),
+        'p_type' => "clean"
     ),
     "get_user_login"
 );
@@ -34,6 +34,7 @@ $_SESSION['groupID'] = $result{0}->groupID;
 $_SESSION['classID'] = $result{0}->classID;
 
 $_SESSION["sessionID"] = hash_pbkdf2("sha256", date("Y-m-d H:i:s"), mcrypt_create_iv(16, MCRYPT_DEV_URANDOM), 1000, 20);
+
 
 if ($_GET["js"] == "false") {
     header('Location: ../' . $_SESSION["language"] . '/timetable.php');

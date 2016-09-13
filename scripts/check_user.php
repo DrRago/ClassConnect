@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "communicate.php";
-if (isset($_SESSION["username"])) {
 
     $result = getContent(
         array(
@@ -19,14 +18,5 @@ if (isset($_SESSION["username"])) {
         $_SESSION['permissions'] == $result{0}->permissions &
         $_SESSION['groupID'] == $result{0}->groupID &
         $_SESSION['classID'] == $result{0}->classID
-    ) {
+    )
         $_SESSION['validation'] = true;
-    } else {
-        $_SESSION = array();
-        $_SESSION["login"] = "error";
-        header("Location: ../index.php");
-    }
-} else {
-    $_SESSION = array();
-    header("Location: ../index.php");
-}
