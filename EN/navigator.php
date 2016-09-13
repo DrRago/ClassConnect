@@ -28,7 +28,7 @@ foreach ($items as $title => $url) {
     } elseif ($url == "profile.php") {
         echo "<li class='menu-item right'><a href='" . $url . "'>" . $title . "</a></li>";
     } elseif ($title[0] == "A") {
-        echo "<li class='menu-item right'><a href='" . $url . "'>" . $title . "</a></li>";
+        //echo "<li class='menu-item right'><a href='" . $url . "'>" . $title . "</a></li>";
     } else {
         echo "<li class='menu-item'><a href='" . $url . "'>" . $title . "</a></li>\n";
     }
@@ -36,6 +36,6 @@ foreach ($items as $title => $url) {
 if (end(explode("/", $_SERVER["REQUEST_URI"])) != "profile.php") {
     echo "<li class='menu-item mobile'><a href='profile.php'>Leonhard Gahr</a></li>";
 }
-echo "<li class='menu-item mobile'><a href='", $links[count($links) - 1]->link, "'>App</a></li>";
+//echo "<li class='menu-item mobile'><a href='", $links[count($links) - 1]->link, "'>App</a></li>";
 echo "<li class='menu-item mobile'><a href='../scripts/logout.php' class='logout'>Logout</a></li>";
 echo "</ul>\n</nav>\n</header>\n";

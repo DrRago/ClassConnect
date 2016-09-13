@@ -65,6 +65,19 @@ table .changed {
     border-top: 2px solid #26697F !important;
 }
 
-.small-only {
-    min-width: 50px;
+.small-only .me {
+    background-color: transparent !important;
+}
+
+.small-only .me:hover {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.small-only tr:first-child .st-head-row {
+    font-size: 0 !important;
+}
+
+.st-head-row {
+    background-color: black;
+    font-size: 3px;
 }

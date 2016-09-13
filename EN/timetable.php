@@ -84,6 +84,11 @@ function sortTimetable($timetable) {
     $result = sortTimetable($result); ?>
 
     <table id="timetable1" border='0' cellpadding='0' cellspacing='0'>
+        <h4 hidden><?php if ((date('W') % 2) == 0) {
+                echo "Even Week";
+            } else {
+                echo "Odd Week";
+            } ?> (This Week)</h4>
         <tr>
             <th colspan="2"><strong><?php if ((date('W') % 2) == 0) {
                         echo "Even Week";
@@ -93,7 +98,7 @@ function sortTimetable($timetable) {
             </th>
         </tr>
         <tr class='days'>
-            <th class="time">Time</th>
+            <th class="time"></th>
             <th>Monday</th>
             <th>Tuesday</th>
             <th>Wednesday</th>
@@ -132,6 +137,13 @@ function sortTimetable($timetable) {
     $result = sortTimetable($result); ?>
 
     <table id="timetable2" border='0' cellpadding='0' cellspacing='0'>
+        <h4 hidden>
+            <?php if (((date('W') + 1) % 2) == 0) {
+                echo "Even Week";
+            } else {
+                echo "Odd Week";
+            } ?>
+        </h4>
         <tr>
             <th colspan="2"><strong><?php if (((date('W') + 1) % 2) == 0) {
                         echo "Even Week";
@@ -174,18 +186,30 @@ function sortTimetable($timetable) {
 <script src="../js/stacktable.js"></script>
 
 <script>
+    if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#timetable1 tr:first-child').remove();
 
-    $('#timetable1').stacktable();
+        $('#timetable1').stackcolumns();
 
-    $(".small-only tbody tr:first-child").remove();
-    $(".small-only button").closest("tr").remove();
+        $("h4").show();
 
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#timetable2 tr:first-child').remove();
+        $('#timetable2').stackcolumns();
+
         $(".large-only").remove();
-    } else {
-        $(".small-only").remove();
-    }
+        $('#timetable2');
 
+        var ele = $(".st-val");
+
+        for (var i = 0; i < ele.length; i++) {
+            if (ele[i].innerHTML == "") {
+                ele[i].closest("tr").remove();
+            }
+        }
+    }
+</script>
+
+<script>
     $(".time").hover(
         function() {
             window.globalVar =  $(this).closest("tr").css("backgroundColor");

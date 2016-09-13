@@ -87,7 +87,7 @@ if ($permissions != 'ServerAdmin') {
                 }
                 echo "<td>", $output[$count]->email, "</td>";
                 echo "<td>", $output[$count]->phone, "</td>";
-                echo "<td>", $output[$count]->permissions, "</td>";
+                echo "<td class='", $output[$count]->permissions, "Small'>", $output[$count]->permissions, "</td>";
                 echo "<td>", $output[$count]->groupID, "</td>";
                 if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
                     echo "<td>", $output[$count]->classID, "</td>";
@@ -179,18 +179,19 @@ if ($permissions != 'ServerAdmin') {
 <script src="../js/stacktable.js"></script>
 
 <script>
-    $('#tbl').stacktable();
+    if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#tbl').stacktable();
 
-    $(".small-only tbody tr:first-child").remove();
-    $(".small-only button").closest("tr").remove();
-
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         $(".large-only").remove();
-    } else {
-        $(".small-only").remove();
-    }
 
-    $("html, body").animate({ scrollTop: 0 }, "slow");
+        $(".small-only tbody tr:first-child").remove();
+        $(".small-only button").closest("tr").remove();
+
+        $(".ServerAdminSmall").closest("tr").addClass("ServerAdmin");
+        $(".ClassAdminSmall").closest("tr").addClass("Moderator");
+        $(".ModeratorSmall").closest("tr").addClass("Moderator");
+        $(".UserSmall").closest("tr").addClass("User");
+    }
 </script>
 
 <script src="../js/users.js"></script>

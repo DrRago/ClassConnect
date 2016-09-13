@@ -113,6 +113,8 @@ if ($_SESSION["permissions"] == "User") {
     <script src="../js/scroll.js"></script>
     <script src="../js/fixed-responsive-nav.js"></script>
 
+    <script src="../js/jquery-3.1.0.js"></script>
+
     </body>
     </html>
     <?php
