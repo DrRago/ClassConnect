@@ -48,6 +48,11 @@ if (isset($_SESSION['name'])) {
         wrong username or password <br />
         try again
     </div>
+
+    <div class="interror">
+        internal server error <br />
+        please try again later
+    </div>
 </form>
 
 <noscript>

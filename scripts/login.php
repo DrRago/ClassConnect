@@ -15,9 +15,18 @@ $result = getContent(
 
 if ($result == "[]") {
     if ($_GET["js"] == "false") {
-       header('Location: ../index.php');
+        header('Location: ../index.php');
     } else {
         print hash_pbkdf2("sha512", "wrong", md5("secure_hashing"), 500);
+    }
+    exit();
+}
+
+if ($result == null) {
+    if ($_GET["js"] == "false") {
+        header('Location: ../index.php');
+    } else {
+        print hash_pbkdf2("sha512", "error", md5("secure_hashing"), 500);
     }
     exit();
 }

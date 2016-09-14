@@ -32,6 +32,12 @@ $(".login").submit(function(){
                 $(".error").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
                 $("input").css({"border-color":"#FF7052"}).prop('readonly', false);
                 pwIn.val("").focus();
+            } else if (data == "465729e25900c34f728f030771cd83452123d8c4070255a327d0c7d46b605b79bb212c31504d8e9dd9a2c353132b1d69f642b0ef30513562bb1200243f4d4e27") {
+                $(".login").find(".submit i").removeAttr('class').addClass("fa fa-exclamation").css({"color":"#fff"});
+                $(".submit").css({"background":"#f0ad4e", "border-color":"#f0ad4e"});
+                $(".interror").show().animate({"opacity":"1", "bottom":"-80px"}, 400);
+                $("input").css({"border-color":"#f0ad4e"}).prop('readonly', false);
+                pwIn.val("").focus();
             }
         }
     });
