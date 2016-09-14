@@ -132,10 +132,6 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         $(".large-only").remove();
 
         $(".small-only tbody tr:first-child").remove();
-
-        var button = $("button")[0].closest("td").innerHTML;
-
-        console.log(button);
     }
 </script>
 
