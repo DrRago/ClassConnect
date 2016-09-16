@@ -95,7 +95,7 @@ body {
     color: #fff;
     outline: 0;
 }
-.error {
+.error, .interror {
     position: absolute;
     bottom: -70px;
     width: 100%;
@@ -107,36 +107,11 @@ body {
     display: none;
     opacity: 0;
 }
-.feedback {
-    position: absolute;
-    bottom: -70px;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    background: #2ecc71;
-    padding: 10px 0;
-    font-size: 12px;
-    display: none;
-    opacity: 0;
-}
-.feedback:before{
-    bottom: 100%;
-    left: 50%;
-    border: solid transparent;
-    content: "";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-    border-color: rgba(46, 204, 113, 0);
-    border-bottom-color: #2ecc71;
-    border-width: 10px;
-    margin-left: -10px;
-}
 
-.error:before  {
+.error:before, .interror:before {
+    /* change left for downloadbutton */
     bottom: 100%;
-    left: 50%;
+    left: 37%;
     border: solid transparent;
     content: "";
     height: 0;
@@ -147,6 +122,14 @@ body {
     border-bottom-color: #FF7052;
     border-width: 10px;
     margin-left: 22px;
+}
+
+.interror {
+    background-color: #f0ad4e;
+}
+
+.interror:before {
+    border-bottom-color: #f0ad4e;
 }
 
 .fa-refresh {

@@ -56,6 +56,10 @@ function sortTimetable($timetable) {
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
+
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/timetable.css">
     <link rel="stylesheet" href="../css/navigation.css">
@@ -79,7 +83,12 @@ function sortTimetable($timetable) {
     $endTimes = getTimes($result, false);
     $result = sortTimetable($result); ?>
 
-    <table border='0' cellpadding='0' cellspacing='0'>
+    <table id="timetable1" border='0' cellpadding='0' cellspacing='0'>
+        <h4 hidden><?php if ((date('W') % 2) == 0) {
+                echo "Even Week";
+            } else {
+                echo "Odd Week";
+            } ?> (This Week)</h4>
         <tr>
             <th colspan="2"><strong><?php if ((date('W') % 2) == 0) {
                         echo "Even Week";
@@ -127,7 +136,14 @@ function sortTimetable($timetable) {
     $endTimes = getTimes($result, false);
     $result = sortTimetable($result); ?>
 
-    <table border='0' cellpadding='0' cellspacing='0'>
+    <table id="timetable2" border='0' cellpadding='0' cellspacing='0'>
+        <h4 hidden>
+            <?php if (((date('W') + 1) % 2) == 0) {
+                echo "Even Week";
+            } else {
+                echo "Odd Week";
+            } ?>
+        </h4>
         <tr>
             <th colspan="2"><strong><?php if (((date('W') + 1) % 2) == 0) {
                         echo "Even Week";
@@ -161,6 +177,37 @@ function sortTimetable($timetable) {
         } ?>
     </table>
 </div>
+
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
+
+<script src='../js/jquery-3.1.0.js'></script>
+<script src="../js/stacktable.js"></script>
+
+<script>
+    if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#timetable1 tr:first-child').remove();
+
+        $('#timetable1').stackcolumns();
+
+        $("h4").show();
+
+        $('#timetable2 tr:first-child').remove();
+        $('#timetable2').stackcolumns();
+
+        $(".large-only").remove();
+        $('#timetable2');
+
+        var ele = $(".st-val");
+
+        for (var i = 0; i < ele.length; i++) {
+            if (ele[i].innerHTML == "") {
+                ele[i].closest("tr").remove();
+            }
+        }
+    }
+</script>
 
 <script>
     $(".time").hover(

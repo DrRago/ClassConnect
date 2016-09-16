@@ -14,6 +14,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/formula.css">
@@ -32,7 +35,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 <div class="examList">
-    <table>
+    <table id="tbl">
         <tr>
             <th class='lessonName'><strong>Subject</strong></th>
             <th class="topics"><strong>Topics</strong></th>
@@ -42,8 +45,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         </tr>
 
         <?php
-        if (!isset($result)) {
-            echo "<tr><td colspan='6'>No Exams</td></tr>";
+        if ($result == array()) {
+            echo "<tr class='none'><td colspan='6'>No Exams</td></tr>";
         } else {
             foreach ($result as $object) {
 
@@ -61,9 +64,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                     echo "<td class='topics'>", $object->{'topics'}, "</td>";
                 }
                 echo "<td class='examDate'>", $object->{'date'}, "</td>";
-                echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
+                echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->date)), "/", date('Ymd', strtotime($object->date)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
                 ?>
-                <td><button onclick='window.open("http://www.google.com/calendar/event?action=template&text=Exam <?= $object->lessonName ?>&dates=<?= date('Ymd', strtotime($object->examDate)) ?>/<?= date('Ymd', strtotime($object->examDate)) + 1 ?>&details=Topics: <?= $object->topics ?>&trp=false&sprop=&sprop=name:")' class='fa fa-calendar-plus-o'></button></td>
+                <td><button onclick='window.open("http://www.google.com/calendar/event?action=template&text=Exam <?= $object->lessonName ?>&dates=<?= date('Ymd', strtotime($object->date)) ?>/<?= date('Ymd', strtotime($object->date)) + 1 ?>&details=Topics: <?= $object->topics ?>&trp=false&sprop=&sprop=name:")' class='fa fa-calendar-plus-o'></button></td>
 
                 <?php
                 if ($_SESSION["permissions"] != "User") {
@@ -114,6 +117,23 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         </form>
     </div>
 <?php } ?>
+
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
+
+<script src='../js/jquery-3.1.0.js'></script>
+<script src="../js/stacktable.js"></script>
+
+<script>
+    if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#tbl').stacktable();
+
+        $(".large-only").remove();
+
+        $(".small-only tbody tr:first-child").remove();
+    }
+</script>
 
 <script type="text/javascript">
     var ele = document.getElementsByClassName("changed")[0];

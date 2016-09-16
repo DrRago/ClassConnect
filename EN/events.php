@@ -13,6 +13,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/table.css">
@@ -28,7 +31,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         <strong>Warning!</strong>
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
-<div class="events_tbl">
+<div id="tbl" class="events_tbl">
     <table>
         <tr>
             <th class="title"><strong>Title</strong></th>
@@ -42,7 +45,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         </tr>
 
         <?php
-        if (!isset($result)) {
+        if ($result == array()) {
             echo "<tr><td colspan='8'>No Events</td></tr>";
         } else {
             foreach ($result as $object) {
@@ -74,7 +77,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             <span class="input-group-addon">
                 <i class="fa fa-tag"></i>
             </span>
-            <input type="text" class="form-control" name="title" id="lesson_in" placeholder="Title" autofocus required>
+            <input type="text" class="form-control" name="title" id="lesson_in" placeholder="Title" required>
         </div>
         <div class="input-group">
             <span class="input-group-addon">
@@ -122,9 +125,25 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
 
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
+
 <script src='../js/jquery-3.1.0.js'></script>
 
 <script src="../js/events.js"></script>
+
+<script src="../js/stacktable.js"></script>
+
+<script>
+    if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#tbl').stacktable();
+        
+        $(".large-only").remove();
+
+        $(".small-only tbody tr:first-child").remove();
+    }
+</script>
 
 <script>
     function initMap() {

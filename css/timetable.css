@@ -18,7 +18,6 @@ table {
 
 .timetable1 table {
     border-collapse: collapse;
-    font-family: 'Open Sans', Helvetica;
     text-align: center;
 }
 .timetable1 table tr:nth-child(2n) {
@@ -108,4 +107,9 @@ table {
     bottom: 90%;
     filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
     opacity: 1;
+}
+
+.small-only {
+    display: table;
+    max-width: 100vw;;
 }

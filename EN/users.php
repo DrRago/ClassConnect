@@ -24,6 +24,9 @@ if ($permissions != 'ServerAdmin') {
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
     <link rel="stylesheet" href="../css/table.css">
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -40,7 +43,7 @@ if ($permissions != 'ServerAdmin') {
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 <div class='userList'>
-    <table>
+    <table id="tbl" class="<?= "table_" . $permissions ?>">
         <tr>
             <th class="free_space"></th>
             <?php if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
@@ -84,7 +87,7 @@ if ($permissions != 'ServerAdmin') {
                 }
                 echo "<td>", $output[$count]->email, "</td>";
                 echo "<td>", $output[$count]->phone, "</td>";
-                echo "<td>", $output[$count]->permissions, "</td>";
+                echo "<td class='", $output[$count]->permissions, "Small'>", $output[$count]->permissions, "</td>";
                 echo "<td>", $output[$count]->groupID, "</td>";
                 if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
                     echo "<td>", $output[$count]->classID, "</td>";
@@ -168,7 +171,28 @@ if ($permissions != 'ServerAdmin') {
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
 </script>
 
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
+
 <script src='../js/jquery-3.1.0.js'></script>
+<script src="../js/stacktable.js"></script>
+
+<script>
+    if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('#tbl').stacktable();
+
+        $(".large-only").remove();
+
+        $(".small-only tbody tr:first-child").remove();
+        $(".small-only button").closest("tr").remove();
+
+        $(".ServerAdminSmall").closest("tr").addClass("ServerAdmin");
+        $(".ClassAdminSmall").closest("tr").addClass("Moderator");
+        $(".ModeratorSmall").closest("tr").addClass("Moderator");
+        $(".UserSmall").closest("tr").addClass("User");
+    }
+</script>
 
 <script src="../js/users.js"></script>
 

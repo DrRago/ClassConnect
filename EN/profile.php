@@ -10,6 +10,9 @@ require "../scripts/check_user.php";?>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="../js/responsive-nav.js"></script>
+
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/formula.css">
@@ -123,5 +126,10 @@ require "../scripts/check_user.php";?>
         <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"></span></button>
     </form>
 </div>
+
+<script src="../js/fastclick.js"></script>
+<script src="../js/scroll.js"></script>
+<script src="../js/fixed-responsive-nav.js"></script>
+
 </body>
 </html>
