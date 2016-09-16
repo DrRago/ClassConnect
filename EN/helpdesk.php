@@ -131,7 +131,7 @@ require "../scripts/check_user.php";
                 <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
             </tr>
             <?php
-            if ($result == null) {
+            if ($result == array()) {
                 echo "<tr><td colspan='7'>No Tickets</td></tr>";
             } else {
                 foreach ($result as $object) {

@@ -81,3 +81,7 @@ table .changed {
     background-color: black;
     font-size: 3px;
 }
+
+.table_User, .table_Moderator {
+    width: 80%;
+}

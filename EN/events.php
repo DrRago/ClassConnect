@@ -45,7 +45,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         </tr>
 
         <?php
-        if (!isset($result)) {
+        if ($result == array()) {
             echo "<tr><td colspan='8'>No Events</td></tr>";
         } else {
             foreach ($result as $object) {

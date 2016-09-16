@@ -45,8 +45,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         </tr>
 
         <?php
-        if (!isset($result)) {
-            echo "<tr><td colspan='6'>No Exams</td></tr>";
+        if ($result == array()) {
+            echo "<tr class='none'><td colspan='6'>No Exams</td></tr>";
         } else {
             foreach ($result as $object) {
 
@@ -64,9 +64,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                     echo "<td class='topics'>", $object->{'topics'}, "</td>";
                 }
                 echo "<td class='examDate'>", $object->{'date'}, "</td>";
-                echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->examDate)), "/", date('Ymd', strtotime($object->examDate)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
+                echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->date)), "/", date('Ymd', strtotime($object->date)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
                 ?>
-                <td><button onclick='window.open("http://www.google.com/calendar/event?action=template&text=Exam <?= $object->lessonName ?>&dates=<?= date('Ymd', strtotime($object->examDate)) ?>/<?= date('Ymd', strtotime($object->examDate)) + 1 ?>&details=Topics: <?= $object->topics ?>&trp=false&sprop=&sprop=name:")' class='fa fa-calendar-plus-o'></button></td>
+                <td><button onclick='window.open("http://www.google.com/calendar/event?action=template&text=Exam <?= $object->lessonName ?>&dates=<?= date('Ymd', strtotime($object->date)) ?>/<?= date('Ymd', strtotime($object->date)) + 1 ?>&details=Topics: <?= $object->topics ?>&trp=false&sprop=&sprop=name:")' class='fa fa-calendar-plus-o'></button></td>
 
                 <?php
                 if ($_SESSION["permissions"] != "User") {

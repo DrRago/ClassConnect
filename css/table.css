@@ -50,5 +50,9 @@ tr:hover {
 
 .small-only {
     display: block;
-    max-width:100vw
+    max-width:100vw;
+}
+
+.small-only .st-head-row {
+    width: 100vw !important;
 }

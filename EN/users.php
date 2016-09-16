@@ -43,7 +43,7 @@ if ($permissions != 'ServerAdmin') {
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 <div class='userList'>
-    <table id="tbl">
+    <table id="tbl" class="<?= "table_" . $permissions ?>">
         <tr>
             <th class="free_space"></th>
             <?php if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
