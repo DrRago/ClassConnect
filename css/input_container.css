@@ -14,3 +14,9 @@ form {
 .IsRequired {
     color: red;
 }
+
+@media screen and (max-width: 1000px) {
+    form {
+        margin-top: 150px;
+    }
+}

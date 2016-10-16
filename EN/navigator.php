@@ -34,7 +34,7 @@ foreach ($items as $title => $url) {
     }
 }
 if (end(explode("/", $_SERVER["REQUEST_URI"])) != "profile.php") {
-    echo "<li class='menu-item mobile'><a href='profile.php'>Leonhard Gahr</a></li>";
+    echo "<li class='menu-item mobile'><a href='profile.php'>", $_SESSION["name"], "</a></li>";
 }
 //echo "<li class='menu-item mobile'><a href='", $links[count($links) - 1]->link, "'>App</a></li>";
 echo "<li class='menu-item mobile'><a href='../scripts/logout.php' class='logout'>Logout</a></li>";
