@@ -159,12 +159,12 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                 </div>
                             </td>
                         </tr>
-                    </table>
-                    <div class="btn-group">
+                     </table>
+                    <div class="center btn-group">
                         <button type="button"
                                 onclick="window.location.href='../scripts/reset_password.php<?php $_SESSION["resetPassword"] = $_GET["id"] ?>'"
-                                class="right btn btn-default">&nbsp;Reset Password <span class="fa fa-lock"></span></button>
-                        <button type="submit" class="left btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
+                                class="btn btn-default">&nbsp;Reset Password <span class="fa fa-lock"></span></button>
+                        <button type="submit" class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
                     </div>
                     <?php
                     if ($_SESSION["resetStatus"] && $_SESSION["resetStatus"] == "success") {

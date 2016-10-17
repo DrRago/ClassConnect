@@ -109,7 +109,6 @@ body {
 }
 
 .error:before, .interror:before {
-    /* change left for downloadbutton */
     bottom: 100%;
     left: 37%;
     border: solid transparent;

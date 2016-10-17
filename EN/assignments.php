@@ -22,7 +22,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/assignment.css">
+    <link rel="stylesheet" href="../css/assignments.css">
 </head>
 
 <body>
@@ -122,6 +122,6 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     }
 </script>
 
-<script src="../js/assignment.js"></script>
+<script src="../js/assignments.js"></script>
 </body>
 </html>

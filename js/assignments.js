@@ -5,7 +5,7 @@ function deleteAssignment(e, sessionID) {
             url: '../scripts/delete_assignment.php',
             data: "id=" + e.getAttribute("content") + "&validation=" + sessionID,
             success: function (data) {
-                if (data == "61d85c36464de09e23a96e2f98eca31a1607eed43653246e2966475e15458a4b82f53553c8e12cafecf9c41bf78412088fc2008dba62d676cdbe4b9c3cd09262") {
+                if (data == "7a8151f444604f8244809e8da59917d87fafe8330705184948c3f791cb8072f5f247096988a1a022f52af1baef7c133a39ea09aab76a1735b97fe77b0f865139") {
                     $("#" + e.getAttribute("content")).children('td')
                         .animate({padding: 0})
                         .wrapInner('<div />')
