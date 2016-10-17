@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-require "checkSession.php";
+require "check_session.php";
 
 include "communicate.php";
 

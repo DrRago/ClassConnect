@@ -26,6 +26,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 </head>
 
 <body>
+
+<div class="mask"></div>
+
 <?php require "navigator.php" ?>
 <div class="filler">
 </div>
@@ -85,6 +88,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         </script>
     </table>
 </div>
+
 <?php if ($_SESSION['permissions'] != 'User') { ?>
     <div class="form-inline">
         <form action="../scripts/add_exam.php" method="post" id="formular">

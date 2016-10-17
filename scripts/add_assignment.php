@@ -5,8 +5,8 @@ error_reporting(0);
 include "communicate.php";
 
 if (!preg_match('/\d{4}-\d{2}-\d{2}/', $_POST["date"])) {
-    $_SESSION["addHomework"] = "error";
-    header('Location: ../' . $_SESSION["language"] . '/homework.php');
+    $_SESSION["addAssignment"] = "error";
+    header('Location: ../' . $_SESSION["language"] . '/assignments.php');
     exit;
 }
 
@@ -21,8 +21,8 @@ $result = getContent(
     "add_assignment"
 );
 
-if ($result == "Data Inserted") {
-    $_SESSION["addHomework"] = "success";
+if ($result == 1) {
+    $_SESSION["addAssignment"] = "success";
 }
 
-header('Location: ../' . $_SESSION["language"] . '/homework.php');
+header('Location: ../' . $_SESSION["language"] . '/assignments.php');

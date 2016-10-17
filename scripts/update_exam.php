@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-require "checkSession.php";
+require "check_session.php";
 
 include "communicate.php";
 
@@ -9,7 +9,7 @@ $result = getContent(array(
     'id' => $_POST['id'],
     'lesson' => $_POST['lesson'],
     'topics' => $_POST['topics'],
-    'date' => $_POST['date']
+    'd' => $_POST['date']
 ), "update_exam");
 
 switch ($result) {

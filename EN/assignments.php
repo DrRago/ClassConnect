@@ -8,7 +8,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 ?>
 <html>
 <head>
-    <title>Homework</title>
+    <title>Assignment</title>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
@@ -22,7 +22,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/homework.css">
+    <link rel="stylesheet" href="../css/assignments.css">
 </head>
 
 <body>
@@ -34,32 +34,32 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         <strong>Warning!</strong>
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
-<div class="homework_tbl">
+<div class="assignment_tbl">
     <table id="tbl">
         <tr>
             <th class='lessonName'><strong>Subject</strong></th>
             <th class="exercise"><strong>Exercises</strong></th>
-            <th class="homeworkDate"><strong>Date</strong></th>
+            <th class="assignmentDate"><strong>Date</strong></th>
             <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
         </tr>
 
         <?php
         if ($result == array()) {
-            echo "<tr><td colspan='5'>No Homework</td></tr>";
+            echo "<tr><td colspan='5'>No Assignments</td></tr>";
         } else {
             foreach ($result as $object) {
-                if ($object->id == $_SESSION["changedHomework"]) {
+                if ($object->id == $_SESSION["changedAssignment"]) {
                     echo "<tr id='$object->id' class='changed'>";
-                    unset($_SESSION["changedHomework"]);
+                    unset($_SESSION["changedAssignment"]);
                 } else {
                     echo "<tr id='$object->id'>";
                 }
                 echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
                 echo "<td class='exercise'>", $object->{'exercises'}, "</td>";
-                echo "<td class='homeworkDate'>", $object->{'date'}, "</td>";
+                echo "<td class='assignmentDate'>", $object->{'date'}, "</td>";
                 if ($_SESSION["permissions"] != "User") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"edit_homework.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
-                    echo "<td><button type='submit' onclick='deleteHomework(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
+                    echo "<td><button type='submit' onclick='window.location.href=\"assignment.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteAssignment(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -68,7 +68,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 </div>
 <?php if ($_SESSION['permissions'] != 'User') { ?>
     <div class="form-inline">
-        <form action="../scripts/add_homework.php" method="post">
+        <form action="../scripts/add_assignment.php" method="post">
             <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-book"></i>
@@ -88,12 +88,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="yyyy-mm-dd" required>
             </div>
             <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"></span></button>
-            <?php if ($_SESSION["addHomework"] == "success") {
-                echo "<div class='alert alert-success'><strong>success: </strong>Homework added successfully.</div>";
-                unset($_SESSION["addHomework"]);
-            } elseif ($_SESSION["addHomework"] == "error") {
+            <?php if ($_SESSION["addAssignment"] == "success") {
+                echo "<div class='alert alert-success'><strong>success: </strong>Assignment added successfully.</div>";
+                unset($_SESSION["addAssignment"]);
+            } elseif ($_SESSION["addAssignment"] == "error") {
                 echo "<div class='alert alert-danger'><strong>error: </strong>Wrong date format.</div>";
-                unset($_SESSION["addHomework"]);
+                unset($_SESSION["addAssignment"]);
             } ?>
         </form>
     </div>
@@ -122,6 +122,6 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     }
 </script>
 
-<script src="../js/homework.js"></script>
+<script src="../js/assignments.js"></script>
 </body>
 </html>
