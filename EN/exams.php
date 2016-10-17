@@ -73,7 +73,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
                 <?php
                 if ($_SESSION["permissions"] != "User") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='editExam(this, \"", $_SESSION["sessionID"], "\")' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
@@ -88,6 +88,39 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         </script>
     </table>
 </div>
+
+<!-- edit begin -->
+<form class="inyo" method="post" action="../scripts/update_exam.php" hidden>
+    <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-list-ol"></i>
+                </span>
+        <input id="id" class="form-control" name="id" placeholder="id" type="text" readonly required>
+    </div>
+    <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-book"></i>
+                </span>
+        <input type="text" class="form-control" name="lesson" id="lesson_in" placeholder="subject" required>
+    </div>
+    <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-tasks"></i>
+                </span>
+        <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics">
+    </div>
+    <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </span>
+        <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
+    </div>
+    <input title="validation" name="validation" value="<?php echo $_SESSION["sessionID"] ?>"
+           style="display: none" hidden>
+    <button class="btn btn-default"> &nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
+</form>
+
+<!-- edit end -->
 
 <?php if ($_SESSION['permissions'] != 'User') { ?>
     <div class="form-inline">
@@ -141,7 +174,50 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
 <script type="text/javascript">
     var ele = document.getElementsByClassName("changed")[0];
-    window.scrollTo(ele.offsetLeft, ele.offsetTop);
+    if (ele != null) {
+        window.scrollTo(ele.offsetLeft, ele.offsetTop);
+    }
+</script>
+
+<script class="editJS">
+    function editExam(e, sessionID) {
+        $(".mask").show();
+        $(".inyo").show();
+        loadContents(e.closest("tr").getAttribute("id"), sessionID)
+    }
+
+    function loadContents(id, sessionID) {
+        $.ajax({
+            type: 'POST',
+            url: '../scripts/get_exam.php',
+            data: "id=" + id + "&validation=" + sessionID,
+            success: function (data) {
+                data = data.slice(1).slice(0, -1);
+                var obj = jQuery.parseJSON(data);
+                $(".inyo #id").val(obj.id);
+                $(".inyo #lesson_in").val(obj.lessonName);
+                $(".inyo #topics_in").val(obj.topics);
+                $(".inyo #date_in").val(obj.date);
+            }
+        });
+    }
+
+    $(document).on('keyup',function(evt) {
+        if (evt.keyCode == 27) {
+            $(".mask").hide();
+            $(".inyo").hide();
+        }
+    });
+
+    $(document).mouseup(function (e)
+    {
+        var container = $(".inyo");
+
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            $(".mask").hide();
+            $(".inyo").hide();
+        }
+    });
 </script>
 
 <script src='../js/jquery-3.1.0.js'></script>
