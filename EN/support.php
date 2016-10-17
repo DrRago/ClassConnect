@@ -4,7 +4,7 @@ require "../scripts/check_user.php";
 ?>
 <html>
 <head>
-    <title>Helpdesk</title>
+    <title>Support</title>
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
@@ -21,7 +21,7 @@ require "../scripts/check_user.php";
     <link rel="stylesheet" href="../css/navigation.css">
     <link rel="stylesheet" href="../css/style.css">
     <?php if ($_SESSION["permissions"] == "ServerAdmin") { echo "<link rel='stylesheet' href='../css/table.css'>";}?>
-    <link rel="stylesheet" href="../css/helpdesk.css">
+    <link rel="stylesheet" href="../css/support.css">
     <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/input_container.css">
 
@@ -38,7 +38,7 @@ require "../scripts/check_user.php";
 <?php if ($_SESSION["permissions"] != "ServerAdmin") { ?>
     <div class="form-inline">
         <form class="form" method="post" action="../scripts/add_ticket.php">
-            <table class="helpdeskInput">
+            <table class="supportInput">
                 <tr>
                     <td><label class="username">Username:<a class="IsRequired">*</a></label></td>
                     <td>
@@ -120,7 +120,7 @@ require "../scripts/check_user.php";
     $result = getContent(array(), "get_tickets");
     $result = json_decode($result);
     ?>
-    <div class="helpdeskList">
+    <div class="supportList">
         <table>
             <tr>
                 <th class="id"><strong>ID</strong></th>

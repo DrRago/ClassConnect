@@ -9,6 +9,9 @@ if ($permissions != 'ServerAdmin') {
     $temp = array();
     foreach ($output as  $object) {
         if ($object->classID == $_SESSION["classID"] || $object->permissions == "ServerAdmin") {
+            if ($object->permissions == "ServerAdmin" && $permissions != "ServerAdmin") {
+                $object->username = str_repeat("*" ,strlen($object->username));
+            }
             array_push($temp, $object);
         }
     }

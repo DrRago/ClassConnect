@@ -26,6 +26,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 </head>
 
 <body>
+
+<div class="mask"></div>
+
 <?php require "navigator.php" ?>
 <div class="filler">
 </div>
@@ -70,7 +73,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
                 <?php
                 if ($_SESSION["permissions"] != "User") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"exam.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='editExam(this, \"", $_SESSION["sessionID"], "\")' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
@@ -85,6 +88,16 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         </script>
     </table>
 </div>
+
+<form class="inyo" hidden>
+    <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-book"></i>
+                </span>
+        <input type="text" class="form-control" name="lessonName" id="lesson_in" placeholder="subject" required>
+    </div>
+</form>
+
 <?php if ($_SESSION['permissions'] != 'User') { ?>
     <div class="form-inline">
         <form action="../scripts/add_exam.php" method="post" id="formular">
@@ -138,6 +151,11 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 <script type="text/javascript">
     var ele = document.getElementsByClassName("changed")[0];
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
+
+    function editExam() {
+        $(".mask").show();
+        $(".inyo").show();
+    }
 </script>
 
 <script src='../js/jquery-3.1.0.js'></script>

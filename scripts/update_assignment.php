@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-require "checkSession.php";
+require "check_session.php";
 
 include "communicate.php";
 
@@ -17,7 +17,7 @@ switch ($result) {
         print hash_pbkdf2("sha512", "Fail", md5("secure_hashing"), 500);
         break;
     case 1:
-        $_SESSION["changedHomework"] = $_POST["id"];
-        header("Location: ../" . $_SESSION["language"] . "/homework.php");
+        $_SESSION["changedAssignment"] = $_POST["id"];
+        header("Location: ../" . $_SESSION["language"] . "/assignments.php");
         break;
 }

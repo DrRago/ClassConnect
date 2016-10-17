@@ -1,6 +1,5 @@
 function deleteTicket(e, sessionID) {
     if (confirm("Are you sure that you want to delete this ticket?")) {
-        alert("ghgsa");
         $.ajax({
             type: 'POST',
             url: '../scripts/delete_ticket.php',

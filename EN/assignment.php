@@ -12,7 +12,7 @@ if ($_SESSION["permissions"] == "User") {
     $result = json_decode(getContent(array('id' => $_GET['id']), "get_assignment")); ?>
     <html>
     <head>
-        <title>Homework <?php echo $_GET["id"] ?></title>
+        <title>Assignment <?php echo $_GET["id"] ?></title>
 
         <link rel="stylesheet" href="../css/bootstrap.css">
         <link rel="stylesheet" href="../css/font-awesome.css">
@@ -45,13 +45,13 @@ if ($_SESSION["permissions"] == "User") {
         echo "<div class='alert alert-danger container'><strong>error: </strong>The ID ", $_GET['id'], " is no number</div>";
     } else {
     if ($result == null || ($result{0}->classID != $_SESSION["classID"] && $_SESSION["permissions"] != "ServerAdmin")) {
-        echo "<div class='alert alert-danger container'><strong>error: </strong>No homework with the ID ", $_GET['id'], " found</div>";
+        echo "<div class='alert alert-danger container'><strong>error: </strong>No assignment with the ID ", $_GET['id'], " found</div>";
     } else { ?>
     <div class="form-inline">
-        <form class="form" method="post" action="../scripts/update_homework.php">
+        <form class="form" method="post" action="../scripts/update_assignment.php">
             <table>
                 <tr>
-                    <td><label for="id">Homework ID<a class="IsRequired">*</a>:</label></td>
+                    <td><label for="id">Assignment ID<a class="IsRequired">*</a>:</label></td>
                     <td>
                         <div class="input-group">
                             <span class="input-group-addon">

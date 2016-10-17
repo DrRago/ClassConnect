@@ -1,12 +1,12 @@
-.helpdeskList th:hover, .nohover {
+.supportList th:hover, .nohover {
     cursor: auto !important;
 }
 
-.helpdeskList table {
+.supportList table {
     width: 70%;
 }
 
-.helpdeskList table input {
+.supportList table input {
     margin-top: 0 !important;
     margin-left: 0 !important;
     border: none;
