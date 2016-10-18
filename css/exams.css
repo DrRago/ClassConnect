@@ -122,6 +122,16 @@ table .changed {
     color: white;
 }
 
+.inyo .fa-check {
+    width: auto !important;
+    color: #2ecc71;
+}
+
+.inyo .fa-times {
+    width: auto;
+    color: #FF7052;
+}
+
 @-webkit-keyframes spin2 {
     from { -webkit-transform: rotate(0deg);}
     to { -webkit-transform: rotate(360deg);}

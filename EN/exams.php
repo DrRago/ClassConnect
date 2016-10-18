@@ -59,7 +59,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 } else {
                     echo "<tr id='$object->id'>";
                 }
-                echo "<td class='lessonName'>$object->lessonName</td>";
+                echo "<td class='lessonName'>$object->lesson</td>";
 
                 if (filter_var($object->{'topics'}, FILTER_VALIDATE_URL)) {
                     echo "<td class='topics'><a target='_blank' href='$object->topics'>Click Here</a></td>";
@@ -91,7 +91,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
 <!-- edit begin -->
 <form class="inyo" method="post" action="../scripts/update_exam.php" hidden>
-    <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+    <i id="status" class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
 
     <div class="input-div" style="display: none">
         <div class="input-group">
@@ -185,6 +185,15 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 </script>
 
 <script class="editJS">
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+
     function editExam(e, sessionID) {
         $(".mask").show();
         $(".inyo").show();
@@ -201,41 +210,44 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 data = data.slice(1).slice(0, -1);
                 var obj = jQuery.parseJSON(data);
                 $(".inyo #id").val(obj.id);
-                $(".inyo #lesson_in").val(obj.lessonName);
+                $(".inyo #lesson_in").val(obj.lesson);
                 $(".inyo #topics_in").val(obj.topics);
                 $(".inyo #date_in").val(obj.date);
-                $(".inyo .input-div").show();
+                $(".inyo .input-div").fadeIn();
                 $(".inyo .fa-spin").hide();
             }
         });
     }
 
     $(document).on('keyup',function(evt) {
-        if (evt.keyCode == 27) {
+        if (evt.keyCode == 27 && $(".mask").is(":visible")) {
             exitEdit();
         }
     });
 
-    $(document).mouseup(function (e)
-    {
+    $(document).mouseup(function (e) {
         var container = $(".inyo");
 
-        if (!container.is(e.target) && container.has(e.target).length === 0) {
+        if (!container.is(e.target) && container.has(e.target).length === 0 && $(".mask").is(":visible")) {
             exitEdit();
         }
     });
 
     function exitEdit() {
-        $(".mask").hide();
-        $(".inyo").hide();
+        $(".mask").fadeOut();
+        $(".inyo").fadeOut();
         $(".form-inline input").prop("disabled", false);
-        $(".inyo .input-div").hide();
-        $(".inyo .fa-spin").show();
+        $(".inyo .input-div").fadeOut();
+        setTimeout(function () {
+            $(".inyo .fa-spin").show();
+        }, 1000)
     }
 
     $(".inyo").submit(function () {
-        $(".inyo .input-div").hide();
-        $(".inyo .fa-spin").show();
+        $(".inyo .input-div").fadeOut();
+        setTimeout(function () {
+            $(".inyo .fa-spin").show();
+        }, 400);
 
         var inputs = $(this).find(".input-div");
 
@@ -249,20 +261,30 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             url: '../scripts/update_exam.php',
             data: "id=" + id + "&lesson=" + lesson + "&topics=" + topics + "&date=" + date + "&validation=" + inputs.find("#session").val(),
             success: function (data) {
+                $("#status").removeClass("fa-refresh fa-spin");
+
                 if (data == "bdec0ac5c069dd4899e2bf43dc43f4639218a05bbf43f165fd0e80dfe729d118b820551c81bf0308e225a9125ab44823fe89406f56c1a680dad7ecccf631e63c") {
-                    alert("Error, please check your dateformat");
+                    $("#status").addClass("fa-times");
                 } else {
+                    $("#status").addClass("fa-check");
+
                     var changedRow = $(".examList #" + id);
                     changedRow.find(".lessonName").html(lesson);
                     changedRow.find(".topics").html(topics);
                     changedRow.find(".examDate").html(date);
 
-                    changedRow.addClass("changed");
+                    setTimeout(function () {
+                        changedRow.addClass("changed");
+                        exitEdit();
+                        setTimeout(function () {
+                            $("#status").removeClass("fa-times fa-check");
+                            $("#status").addClass("fa-refresh fa-spin");
+                        }, 1000);
+                    }, 1000);
 
-                    exitEdit();
                     setTimeout(function () {
                         changedRow.removeClass("changed");
-                    }, 4000);
+                    }, 3000);
                 }
             }
         });

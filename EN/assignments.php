@@ -54,11 +54,11 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 } else {
                     echo "<tr id='$object->id'>";
                 }
-                echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
-                echo "<td class='exercise'>", $object->{'exercises'}, "</td>";
-                echo "<td class='assignmentDate'>", $object->{'date'}, "</td>";
+                echo "<td class='lessonName'>$object->lesson</td>";
+                echo "<td class='exercise'>$object->exercises</td>";
+                echo "<td class='assignmentDate'>$object->date</td>";
                 if ($_SESSION["permissions"] != "User") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"assignment.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                    echo "<td><button type='submit' onclick='window.location.href=\"assignment.php?id=$object->id\"' class='fa fa-pencil'></button></td>";
                     echo "<td><button type='submit' onclick='deleteAssignment(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";

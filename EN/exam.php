@@ -70,7 +70,7 @@ if ($_SESSION["permissions"] == "User") {
                             <i class="fa fa-book"></i>
                         </span>
                             <input id="lesson" class="form-control" name="lesson" type="text"
-                                   value="<?php echo $result{0}->lessonName ?>" required>
+                                   value="<?php echo $result{0}->lesson ?>" required>
                         </div>
                     </td>
                 </tr>
