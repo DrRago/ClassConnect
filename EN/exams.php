@@ -33,7 +33,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 <div class="filler">
 </div>
 <noscript>
-    <div class="container alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert">
         <strong>Warning!</strong>
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
@@ -44,7 +44,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             <th class="topics"><strong>Topics</strong></th>
             <th><strong>Date</strong></th>
             <th class="ico calendar"></th>
-            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
+            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico delete' style='display: none'></th>";}?>
         </tr>
 
         <?php
@@ -59,22 +59,22 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 } else {
                     echo "<tr id='$object->id'>";
                 }
-                echo "<td class='lessonName'>", $object->{'lessonName'}, "</td>";
+                echo "<td class='lessonName'>$object->lessonName</td>";
 
                 if (filter_var($object->{'topics'}, FILTER_VALIDATE_URL)) {
-                    echo "<td class='topics'><a target='_blank' href='", $object->{'topics'}, "'>", $object->{'topics'}, "</a></td>";
+                    echo "<td class='topics'><a target='_blank' href='$object->topics'>Click Here</a></td>";
                 } else {
-                    echo "<td class='topics'>", $object->{'topics'}, "</td>";
+                    echo "<td class='topics'>$object->topics</td>";
                 }
-                echo "<td class='examDate'>", $object->{'date'}, "</td>";
-                echo "<noscript><td><a href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=", date('Ymd', strtotime($object->date)), "/", date('Ymd', strtotime($object->date)) + 1, "&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank' class='fa fa-calendar-plus-o'></a></td></noscript>";
-                ?>
-                <td><button onclick='window.open("http://www.google.com/calendar/event?action=template&text=Exam <?= $object->lessonName ?>&dates=<?= date('Ymd', strtotime($object->date)) ?>/<?= date('Ymd', strtotime($object->date)) + 1 ?>&details=Topics: <?= $object->topics ?>&trp=false&sprop=&sprop=name:")' class='fa fa-calendar-plus-o'></button></td>
+                echo "<td class='examDate'>$object->date</td>";
 
-                <?php
+                $timecode = date('Ymd', strtotime($object->date));
+                $timecode2 = $timecode + 1;
+                echo "<td><a class='nolink' href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=$timecode/$timecode2&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank'><button class='fa fa-calendar-plus-o'></button></a></td>";
+
                 if ($_SESSION["permissions"] != "User") {
-                    echo "<td><button type='submit' onclick='editExam(this, \"", $_SESSION["sessionID"], "\")' class='fa fa-pencil'></button></td>";
-                    echo "<td><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
+                    echo "<td><noscript><a class='nolink' href='exam.php?id=$object->id'></noscript><button type='submit' onclick='editExam(this, \"", $_SESSION["sessionID"], "\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
+                    echo "<td class='delete' style='display: none'><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -91,34 +91,37 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
 <!-- edit begin -->
 <form class="inyo" method="post" action="../scripts/update_exam.php" hidden>
-    <div class="fa-li fa fa-spinner fa-spin fa-2x"></div>
-    <div class="input-group">
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+
+    <div class="input-div" style="display: none">
+        <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-list-ol"></i>
                 </span>
-        <input id="id" class="form-control" name="id" placeholder="id" type="text" readonly required>
-    </div>
-    <div class="input-group">
+            <input id="id" class="form-control" name="id" placeholder="id" type="text" readonly required>
+        </div>
+        <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-book"></i>
                 </span>
-        <input type="text" class="form-control" name="lesson" id="lesson_in" placeholder="subject" required>
-    </div>
-    <div class="input-group">
+            <input type="text" class="form-control" name="lesson" id="lesson_in" placeholder="subject" required>
+        </div>
+        <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-tasks"></i>
                 </span>
-        <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics">
-    </div>
-    <div class="input-group">
+            <input type="text" class="form-control" name="topics" id="topics_in" placeholder="topics">
+        </div>
+        <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </span>
-        <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
+            <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
+        </div>
+        <input title="validation" name="validation" id="session" value="<?php echo $_SESSION["sessionID"] ?>"
+               style="display: none" hidden>
+        <button class="btn btn-default"> &nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
     </div>
-    <input title="validation" name="validation" value="<?php echo $_SESSION["sessionID"] ?>"
-           style="display: none" hidden>
-    <button class="btn btn-default"> &nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
 </form>
 <!-- edit end -->
 
@@ -177,6 +180,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     if (ele != null) {
         window.scrollTo(ele.offsetLeft, ele.offsetTop);
     }
+
+    $(".delete").show();
 </script>
 
 <script class="editJS">
@@ -199,6 +204,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 $(".inyo #lesson_in").val(obj.lessonName);
                 $(".inyo #topics_in").val(obj.topics);
                 $(".inyo #date_in").val(obj.date);
+                $(".inyo .input-div").show();
+                $(".inyo .fa-spin").hide();
             }
         });
     }
@@ -222,7 +229,45 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         $(".mask").hide();
         $(".inyo").hide();
         $(".form-inline input").prop("disabled", false);
+        $(".inyo .input-div").hide();
+        $(".inyo .fa-spin").show();
     }
+
+    $(".inyo").submit(function () {
+        $(".inyo .input-div").hide();
+        $(".inyo .fa-spin").show();
+
+        var inputs = $(this).find(".input-div");
+
+        var id = inputs.find("#id").val();
+        var lesson = inputs.find("#lesson_in").val();
+        var topics = inputs.find("#topics_in").val();
+        var date = inputs.find("#date_in").val();
+
+        $.ajax({
+            type: 'POST',
+            url: '../scripts/update_exam.php',
+            data: "id=" + id + "&lesson=" + lesson + "&topics=" + topics + "&date=" + date + "&validation=" + inputs.find("#session").val(),
+            success: function (data) {
+                if (data == "bdec0ac5c069dd4899e2bf43dc43f4639218a05bbf43f165fd0e80dfe729d118b820551c81bf0308e225a9125ab44823fe89406f56c1a680dad7ecccf631e63c") {
+                    alert("Error, please check your dateformat");
+                } else {
+                    var changedRow = $(".examList #" + id);
+                    changedRow.find(".lessonName").html(lesson);
+                    changedRow.find(".topics").html(topics);
+                    changedRow.find(".examDate").html(date);
+
+                    changedRow.addClass("changed");
+
+                    exitEdit();
+                    setTimeout(function () {
+                        changedRow.removeClass("changed");
+                    }, 4000);
+                }
+            }
+        });
+        return false;
+    })
 </script>
 
 <script src='../js/jquery-3.1.0.js'></script>

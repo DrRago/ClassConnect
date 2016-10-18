@@ -48,7 +48,10 @@ table .changed {
 
 @keyframes bgchanged {
     0% {
-        background-color: #00d200;
+        background-color: transparent;
+    }
+    10% {
+        background-color: #00d200
     }
     75% {
         background-color: #00d200;
@@ -68,7 +71,7 @@ table .changed {
     display: inline-block !important;
 }
 
-.calendar, .fa:link, .fa:visited, .fa:active {
+.nolink, .nolink:hover, .fa:link, .fa:visited, .fa:active {
     margin-top: 3px;
     color: black;
     text-decoration: none;
@@ -114,10 +117,9 @@ table .changed {
     display: block;
 }
 
-.inyo .fa-refresh-animate {
+.inyo .fa-spin {
+    width: auto !important;
     color: white;
-    -animation: spin .7s infinite linear;
-    -webkit-animation: spin2 .7s infinite linear;
 }
 
 @-webkit-keyframes spin2 {
