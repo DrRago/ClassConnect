@@ -91,6 +91,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
 <!-- edit begin -->
 <form class="inyo" method="post" action="../scripts/update_exam.php" hidden>
+    <div class="fa-li fa fa-spinner fa-spin fa-2x"></div>
     <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-list-ol"></i>
@@ -119,7 +120,6 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
            style="display: none" hidden>
     <button class="btn btn-default"> &nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
 </form>
-
 <!-- edit end -->
 
 <?php if ($_SESSION['permissions'] != 'User') { ?>
@@ -183,6 +183,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     function editExam(e, sessionID) {
         $(".mask").show();
         $(".inyo").show();
+        $(".form-inline input").prop( "disabled", true );
         loadContents(e.closest("tr").getAttribute("id"), sessionID)
     }
 
@@ -204,8 +205,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
     $(document).on('keyup',function(evt) {
         if (evt.keyCode == 27) {
-            $(".mask").hide();
-            $(".inyo").hide();
+            exitEdit();
         }
     });
 
@@ -214,10 +214,15 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         var container = $(".inyo");
 
         if (!container.is(e.target) && container.has(e.target).length === 0) {
-            $(".mask").hide();
-            $(".inyo").hide();
+            exitEdit();
         }
     });
+
+    function exitEdit() {
+        $(".mask").hide();
+        $(".inyo").hide();
+        $(".form-inline input").prop("disabled", false);
+    }
 </script>
 
 <script src='../js/jquery-3.1.0.js'></script>
