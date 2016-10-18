@@ -284,7 +284,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
                     setTimeout(function () {
                         changedRow.removeClass("changed");
-                    }, 3000);
+                    }, 5000);
                 }
             }
         });
