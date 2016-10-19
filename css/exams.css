@@ -42,11 +42,11 @@ table .notDeleted {
 }
 
 table .changed {
-    animation: 4s bgchanged;
-    -webkit-animation: 4s bgchanged;
+    animation: 4s bgcolorchange;
+    -webkit-animation: 4s bgcolorchange;
 }
 
-@keyframes bgchanged {
+@keyframes bgcolorchange {
     0% {
         background-color: transparent;
     }
@@ -81,63 +81,4 @@ table .changed {
     .large-only {
         width: 100%;
     }
-}
-
-.mask {
-    position: fixed;
-    width:100%;
-    height:100%;
-    background: rgba(0, 0, 0, 0.4);
-    top:0;
-    left:0;
-    display: none;
-    z-index: 2;
-}
-
-.inyo {
-    font-family: Arial, serif;
-    font-size: 15px;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 35px 35px 35px;
-    width: auto !important;
-    position: fixed;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-}
-
-.inyo .input-group {
-    margin-bottom: 10px !important;
-}
-
-.inyo .btn {
-    position: relative;
-    margin: 20px auto 0;
-    display: block;
-}
-
-.inyo .fa-spin {
-    width: auto !important;
-    color: white;
-}
-
-.inyo .fa-check {
-    width: auto !important;
-    color: #2ecc71;
-}
-
-.inyo .fa-times {
-    width: auto;
-    color: #FF7052;
-}
-
-@-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
-}
-
-@keyframes spin {
-    from { transform: scale(1) rotate(0deg);}
-    to { transform: scale(1) rotate(360deg);}
 }

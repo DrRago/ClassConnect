@@ -26,6 +26,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 </head>
 
 <body>
+
+<div class="mask"></div>
+
 <?php require "navigator.php" ?>
 <div class="filler">
 </div>
@@ -58,7 +61,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 echo "<td class='exercise'>$object->exercises</td>";
                 echo "<td class='assignmentDate'>$object->date</td>";
                 if ($_SESSION["permissions"] != "User") {
-                    echo "<td><button type='submit' onclick='window.location.href=\"assignment.php?id=$object->id\"' class='fa fa-pencil'></button></td>";
+                    echo "<td class='table_edit'><noscript><a class='nolink' href='assignment.php?id=$object->id'></noscript><button type='submit' onclick='editAssignment(this, \"$_SESSION[sessionID]\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
                     echo "<td><button type='submit' onclick='deleteAssignment(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
@@ -99,9 +102,47 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     </div>
 <?php } ?>
 
+<!-- edit begin -->
+<form class="edit_form" method="post" action="../scripts/update_exam.php" hidden>
+    <i id="status" class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+
+    <div class="input-div" style="display: none">
+        <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-list-ol"></i>
+                </span>
+            <input id="id" class="form-control" name="id" placeholder="id" type="text" readonly required>
+        </div>
+        <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-book"></i>
+                </span>
+            <input type="text" class="form-control" name="lesson" id="lesson_in" placeholder="subject" required>
+        </div>
+        <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-tasks"></i>
+                </span>
+            <input type="text" class="form-control" name="exercises" id="exercises_in" placeholder="exercises">
+        </div>
+        <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </span>
+            <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
+        </div>
+        <input title="validation" name="validation" id="session" value="<?php echo $_SESSION["sessionID"] ?>"
+               style="display: none" hidden>
+        <button class="btn btn-default"> &nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
+    </div>
+</form>
+<!-- edit end -->
+
 <script type="text/javascript">
     var ele = document.getElementsByClassName("changed")[0];
-    window.scrollTo(ele.offsetLeft, ele.offsetTop);
+    if (ele != null) {
+        window.scrollTo(ele.offsetLeft, ele.offsetTop);
+    }
 </script>
 
 <script src="../js/fastclick.js"></script>
@@ -119,9 +160,20 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
 
         $(".small-only tbody tr:first-child").remove();
+
+        $(".examList").find(".table_edit noscript").contents().unwrap();
+        $(".examList .table_edit").each(function(){
+            var $this = $(this);
+            var t = $this.html();
+            console.log(t);
+            $this.html(t.replace(new RegExp('&amp;lt;','g'), "<").replace(new RegExp('&amp;gt;', 'g'), '>'));
+        });
+        $(".examList .table_edit .nolink button").removeAttr("onclick");
     }
 </script>
 
 <script src="../js/assignments.js"></script>
+<script src="../js/edit.js"></script>
+
 </body>
 </html>

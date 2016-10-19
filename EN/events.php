@@ -34,11 +34,11 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 <div id="tbl" class="events_tbl">
     <table>
         <tr>
-            <th class="title"><strong>Title</strong></th>
-            <th class="description"><strong>Description</strong></th>
-            <th class="place"><strong>Place</strong></th>
-            <th class="time"><strong>Time</strong></th>
-            <th class="date"><strong>Date</strong></th>
+            <th class=""><strong>Title</strong></th>
+            <th class=""><strong>Description</strong></th>
+            <th class=""><strong>Place</strong></th>
+            <th class=""><strong>Time</strong></th>
+            <th class=""><strong>Date</strong></th>
             <th class='ico'></th>
             <th class='ico'></th>
             <th class='ico'></th>
@@ -61,7 +61,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 echo "<td class='time'>", $object->{'eventStart'}, ' - ', $object->{'eventEnd'}, "</td>";
                 echo "<td class='date'>", $object->{'date'}, "</td>";
                 echo "<td><button type='submit' onclick='window.open(\"https://maps.google.com/maps/place/", $object->place, "\", \"_blank\");' class='fa fa-map'></button></td>";
-                echo "<td><button type='submit' onclick='window.location.href=\"event.php?id=", $object->{'id'}, "\"' class='fa fa-pencil'></button></td>";
+                echo "<td class='table_edit'><noscript><a class='nolink' href='event.php?id=$object->id'></noscript><button type='submit' onclick='editEvent(this, \"$_SESSION[sessionID]\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
                 if ($_SESSION["username"] == $object->creator || $_SESSION["permissions"] == "ServerAdmin") {
                     echo "<td><button type='submit' onclick='deleteEvent(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
@@ -120,6 +120,60 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     </form>
 </div>
 
+<!-- edit begin -->
+<form class="edit_form" method="post" action="../scripts/update_event.php" hidden>
+    <i id="status" class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
+
+    <div class="input-div" style="display: none">
+        <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-list-ol"></i>
+                </span>
+            <input id="id" class="form-control" name="id" placeholder="id" type="text" readonly required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-tag"></i>
+            </span>
+            <input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-comment"></i>
+            </span>
+            <input type="text" class="form-control" name="description" id="description" placeholder="Description">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-map-marker"></i>
+            </span>
+            <input type="text" class="form-control" name="place" id="place_in" placeholder="Enter a location" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+            </span>
+            <input type="time" class="form-control" name="eventStart" id="start" placeholder="Begin" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+            </span>
+            <input type="time" class="form-control" name="eventEnd" id="end" placeholder="End" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </span>
+            <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
+        </div>
+        <input title="validation" name="validation" id="session" value="<?php echo $_SESSION["sessionID"] ?>"
+               style="display: none" hidden>
+        <button class="btn btn-default"> &nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
+    </div>
+</form>
+<!-- edit end -->
+
 <script type="text/javascript">
     var ele = document.getElementsByClassName("changed")[0];
     window.scrollTo(ele.offsetLeft, ele.offsetTop);
@@ -133,6 +187,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
 <script src="../js/events.js"></script>
 
+<script src="../js/edit.js"></script>
+
 <script src="../js/stacktable.js"></script>
 
 <script>
@@ -142,6 +198,15 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         $(".large-only").remove();
 
         $(".small-only tbody tr:first-child").remove();
+
+        $(".examList").find(".table_edit noscript").contents().unwrap();
+        $(".examList .table_edit").each(function(){
+            var $this = $(this);
+            var t = $this.html();
+            console.log(t);
+            $this.html(t.replace(new RegExp('&amp;lt;','g'), "<").replace(new RegExp('&amp;gt;', 'g'), '>'));
+        });
+        $(".examList .table_edit .nolink button").removeAttr("onclick");
     }
 </script>
 

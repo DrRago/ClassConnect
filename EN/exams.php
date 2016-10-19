@@ -44,7 +44,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             <th class="topics"><strong>Topics</strong></th>
             <th><strong>Date</strong></th>
             <th class="ico calendar"></th>
-            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico delete' style='display: none'></th>";}?>
+            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico table_edit'></th><th class='ico delete' style='display: none'></th>";}?>
         </tr>
 
         <?php
@@ -61,7 +61,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 }
                 echo "<td class='lessonName'>$object->lesson</td>";
 
-                if (filter_var($object->{'topics'}, FILTER_VALIDATE_URL)) {
+                if (filter_var($object->topics, FILTER_VALIDATE_URL)) {
                     echo "<td class='topics'><a target='_blank' href='$object->topics'>Click Here</a></td>";
                 } else {
                     echo "<td class='topics'>$object->topics</td>";
@@ -73,8 +73,8 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 echo "<td><a class='nolink' href='http://www.google.com/calendar/event?action=template&text=Exam $object->lessonName&dates=$timecode/$timecode2&details=Topics: $object->topics&trp=false&sprop=&sprop=name:' target='_blank'><button class='fa fa-calendar-plus-o'></button></a></td>";
 
                 if ($_SESSION["permissions"] != "User") {
-                    echo "<td><noscript><a class='nolink' href='exam.php?id=$object->id'></noscript><button type='submit' onclick='editExam(this, \"", $_SESSION["sessionID"], "\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
-                    echo "<td class='delete' style='display: none'><button type='submit' onclick='deleteExam(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
+                    echo "<td class='table_edit'><noscript><a class='nolink' href='exam.php?id=$object->id'></noscript><button type='submit' onclick='editExam(this, \"$_SESSION[sessionID]\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
+                    echo "<td class='delete' style='display: none'><button type='submit' onclick='deleteExam(this,\"$_SESSION[sessionID]\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -90,7 +90,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 </div>
 
 <!-- edit begin -->
-<form class="inyo" method="post" action="../scripts/update_exam.php" hidden>
+<form class="edit_form" method="post" action="../scripts/update_exam.php" hidden>
     <i id="status" class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
 
     <div class="input-div" style="display: none">
@@ -172,6 +172,16 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         $(".large-only").remove();
 
         $(".small-only tbody tr:first-child").remove();
+
+
+        $(".examList").find(".table_edit noscript").contents().unwrap();
+        $(".examList .table_edit").each(function(){
+            var $this = $(this);
+            var t = $this.html();
+            console.log(t);
+            $this.html(t.replace(new RegExp('&amp;lt;','g'), "<").replace(new RegExp('&amp;gt;', 'g'), '>'));
+        });
+        $(".examList .table_edit .nolink button").removeAttr("onclick");
     }
 </script>
 
@@ -184,122 +194,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     $(".delete").show();
 </script>
 
-<script class="editJS">
-    function sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds){
-                break;
-            }
-        }
-    }
-
-    function editExam(e, sessionID) {
-        $(".mask").show();
-        $(".inyo").show();
-        $(".form-inline input").prop( "disabled", true );
-        loadContents(e.closest("tr").getAttribute("id"), sessionID)
-    }
-
-    function loadContents(id, sessionID) {
-        $.ajax({
-            type: 'POST',
-            url: '../scripts/get_exam.php',
-            data: "id=" + id + "&validation=" + sessionID,
-            success: function (data) {
-                data = data.slice(1).slice(0, -1);
-                var obj = jQuery.parseJSON(data);
-                $(".inyo #id").val(obj.id);
-                $(".inyo #lesson_in").val(obj.lesson);
-                $(".inyo #topics_in").val(obj.topics);
-                $(".inyo #date_in").val(obj.date);
-                $(".inyo .input-div").fadeIn();
-                $(".inyo .fa-spin").hide();
-            },
-            error: function () {
-                $("#status").removeClass("fa-refresh fa-spin");
-                $("#status").addClass("fa-times");
-                alert("Timeout! Check your internet connection and try again");
-            },
-            timeout: 10000
-        });
-    }
-
-    $(document).on('keyup',function(evt) {
-        if (evt.keyCode == 27 && $(".mask").is(":visible")) {
-            exitEdit();
-        }
-    });
-
-    $(document).mouseup(function (e) {
-        var container = $(".inyo");
-
-        if (!container.is(e.target) && container.has(e.target).length === 0 && $(".mask").is(":visible")) {
-            exitEdit();
-        }
-    });
-
-    function exitEdit() {
-        $(".mask").fadeOut();
-        $(".inyo").fadeOut();
-        $(".form-inline input").prop("disabled", false);
-        $(".inyo .input-div").fadeOut();
-        setTimeout(function () {
-            $(".inyo .fa-spin").show();
-        }, 1000)
-    }
-
-    $(".inyo").submit(function () {
-        $(".inyo .input-div").fadeOut();
-        setTimeout(function () {
-            $(".inyo .fa-spin").show();
-        }, 400);
-
-        var inputs = $(this).find(".input-div");
-
-        var id = inputs.find("#id").val();
-        var lesson = inputs.find("#lesson_in").val();
-        var topics = inputs.find("#topics_in").val();
-        var date = inputs.find("#date_in").val();
-
-        $.ajax({
-            type: 'POST',
-            url: '../scripts/update_exam.php',
-            data: "id=" + id + "&lesson=" + lesson + "&topics=" + topics + "&date=" + date + "&validation=" + inputs.find("#session").val(),
-            success: function (data) {
-                $("#status").removeClass("fa-refresh fa-spin");
-
-                if (data == "bdec0ac5c069dd4899e2bf43dc43f4639218a05bbf43f165fd0e80dfe729d118b820551c81bf0308e225a9125ab44823fe89406f56c1a680dad7ecccf631e63c") {
-                    $("#status").addClass("fa-times");
-                } else {
-                    $("#status").addClass("fa-check");
-
-                    var changedRow = $(".examList #" + id);
-                    changedRow.find(".lessonName").html(lesson);
-                    changedRow.find(".topics").html(topics);
-                    changedRow.find(".examDate").html(date);
-
-                    setTimeout(function () {
-                        changedRow.addClass("changed");
-                        exitEdit();
-                        setTimeout(function () {
-                            $("#status").removeClass("fa-times fa-check");
-                            $("#status").addClass("fa-refresh fa-spin");
-                        }, 1000);
-                    }, 1000);
-
-                    setTimeout(function () {
-                        changedRow.removeClass("changed");
-                    }, 5000);
-                }
-            }
-        });
-        return false;
-    })
-</script>
-
 <script src='../js/jquery-3.1.0.js'></script>
 
 <script src="../js/exams.js"></script>
+<script src="../js/edit.js"></script>
 </body>
 </html>

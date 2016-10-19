@@ -26,7 +26,10 @@ table .changed {
 
 @keyframes bgcolorchange {
     0% {
-        background-color: #00d200;
+        background-color: transparent;
+    }
+    10% {
+        background-color: #00d200
     }
     75% {
         background-color: #00d200;

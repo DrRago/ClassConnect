@@ -18,4 +18,5 @@ switch ($result) {
     case 1:
         $_SESSION["changedExam"] = $_POST["id"];
         header("Location: ../" . $_SESSION["language"] . "/exams.php");
+        break;
 }

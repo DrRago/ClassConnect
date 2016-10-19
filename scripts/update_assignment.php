@@ -8,7 +8,7 @@ include "communicate.php";
 $result = getContent(array(
     'id' => $_POST['id'],
     'lesson' => $_POST['lesson'],
-    'exercise' => $_POST['exercises'],
+    'exercises' => $_POST['exercises'],
     'd' => $_POST['date']
 ), "update_assignment");
 
