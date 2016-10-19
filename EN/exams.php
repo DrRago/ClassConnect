@@ -215,7 +215,13 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 $(".inyo #date_in").val(obj.date);
                 $(".inyo .input-div").fadeIn();
                 $(".inyo .fa-spin").hide();
-            }
+            },
+            error: function () {
+                $("#status").removeClass("fa-refresh fa-spin");
+                $("#status").addClass("fa-times");
+                alert("Timeout! Check your internet connection and try again");
+            },
+            timeout: 10000
         });
     }
 
