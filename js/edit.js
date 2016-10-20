@@ -7,6 +7,8 @@ $(document).on('keyup',function(evt) {
 $(document).mouseup(function (e) {
     var container = $(".edit_form");
 
+    var date = $("#ui-datepicker-div");
+
     if (!container.is(e.target) && container.has(e.target).length === 0 && $(".mask").is(":visible")) {
         exitEdit();
     }

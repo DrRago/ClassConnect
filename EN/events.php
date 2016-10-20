@@ -107,7 +107,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             <span class="input-group-addon">
                 <i class="fa fa-calendar"></i>
             </span>
-            <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
+            <input type="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
         </div>
         <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
         <?php if ($_SESSION["addEvent"] == "success") {
@@ -165,7 +165,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             <span class="input-group-addon">
                 <i class="fa fa-calendar"></i>
             </span>
-            <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
+            <input type="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
         </div>
         <input title="validation" name="validation" id="session" value="<?php echo $_SESSION["sessionID"] ?>"
                style="display: none" hidden>
@@ -185,7 +185,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 <script src="../js/scroll.js"></script>
 <script src="../js/fixed-responsive-nav.js"></script>
 
-<script src='../js/jquery-3.1.0.js'></script>
+<script src='../js/jquery-3.1.1.js'></script>
 
 <script src="../js/events.js"></script>
 
@@ -210,6 +210,17 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         });
         $(".examList .table_edit .nolink button").removeAttr("onclick");
     }
+
+    $(".date").each(function () {
+        var res = $(this).html().split("-");
+
+        var d = new Date();
+        d.setFullYear(parseInt(res[0]));
+        d.setMonth(parseInt(res[1]) - 1);
+        d.setDate(parseInt(res[2]));
+
+        $(this).html(d.toLocaleDateString());
+    });
 </script>
 
 <script>

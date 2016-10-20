@@ -26,6 +26,7 @@ if ($_SESSION["permissions"] == "User") {
         <link rel="stylesheet" href="../css/formula.css">
         <link rel="stylesheet" href="../css/input_container.css">
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/assignments.css">
     </head>
     <body>
     <?php require "navigator.php"; ?>
@@ -93,7 +94,7 @@ if ($_SESSION["permissions"] == "User") {
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
-                            <input id="date" class="form-control" name="date" type="date"
+                            <input id="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" type="date"
                                    value="<?php echo $result{0}->date ?>" required>
                         </div>
                     </td>

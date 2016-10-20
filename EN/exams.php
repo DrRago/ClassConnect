@@ -22,7 +22,6 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
     <link rel="stylesheet" href="../css/formula.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/exams.css">
-
 </head>
 
 <body>
@@ -44,7 +43,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             <th class="topics"><strong>Topics</strong></th>
             <th><strong>Date</strong></th>
             <th class="ico calendar"></th>
-            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico table_edit'></th><th class='ico delete' style='display: none'></th>";}?>
+            <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico table_edit'></th><th class='ico'></th>";}?>
         </tr>
 
         <?php
@@ -74,7 +73,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
                 if ($_SESSION["permissions"] != "User") {
                     echo "<td class='table_edit'><noscript><a class='nolink' href='exam.php?id=$object->id'></noscript><button type='submit' onclick='editExam(this, \"$_SESSION[sessionID]\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
-                    echo "<td class='delete' style='display: none'><button type='submit' onclick='deleteExam(this,\"$_SESSION[sessionID]\")' content='$object->id' class='fa fa-trash'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteExam(this,\"$_SESSION[sessionID]\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -116,7 +115,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 <span class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </span>
-            <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
+            <input type="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
         </div>
         <input title="validation" name="validation" id="session" value="<?php echo $_SESSION["sessionID"] ?>"
                style="display: none" hidden>
@@ -144,7 +143,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 <span class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </span>
-                <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
+                <input type="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
             </div>
             <button class="btn btn-default"> &nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
             <?php if ($_SESSION["addExam"] == "success") {
@@ -162,7 +161,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 <script src="../js/scroll.js"></script>
 <script src="../js/fixed-responsive-nav.js"></script>
 
-<script src='../js/jquery-3.1.0.js'></script>
+<script src='../js/jquery-3.1.1.js'></script>
 <script src="../js/stacktable.js"></script>
 
 <script>
@@ -191,10 +190,19 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         window.scrollTo(ele.offsetLeft, ele.offsetTop);
     }
 
-    $(".delete").show();
+    $(".examDate").each(function () {
+        var res = $(this).html().split("-");
+
+        var d = new Date();
+        d.setFullYear(parseInt(res[0]));
+        d.setMonth(parseInt(res[1]) - 1);
+        d.setDate(parseInt(res[2]));
+
+        $(this).html(d.toLocaleDateString());
+    });
 </script>
 
-<script src='../js/jquery-3.1.0.js'></script>
+<script src='../js/jquery-3.1.1.js'></script>
 
 <script src="../js/exams.js"></script>
 <script src="../js/edit.js"></script>

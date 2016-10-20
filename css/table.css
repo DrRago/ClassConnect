@@ -67,10 +67,10 @@ table .changed {
         background-color: transparent;
     }
     10% {
-        background-color: #00d200
+        background-color: rgba(76, 255, 72, 0.5);
     }
     75% {
-        background-color: #00d200;
+        background-color: rgba(76, 255, 72, 0.5);
     }
     100% {
         background-color: transparent;

@@ -42,7 +42,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         <tr>
             <th class='lessonName'><strong>Subject</strong></th>
             <th class="exercise"><strong>Exercises</strong></th>
-            <th class="assignmentDate"><strong>Date</strong></th>
+            <th class=""><strong>Date</strong></th>
             <?php if ($_SESSION["permissions"] != "User") { echo "<th class='ico'></th><th class='ico'></th>";}?>
         </tr>
 
@@ -62,7 +62,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 echo "<td class='assignmentDate'>$object->date</td>";
                 if ($_SESSION["permissions"] != "User") {
                     echo "<td class='table_edit'><noscript><a class='nolink' href='assignment.php?id=$object->id'></noscript><button type='submit' onclick='editAssignment(this, \"$_SESSION[sessionID]\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
-                    echo "<td><button type='submit' onclick='deleteAssignment(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteAssignment(this,\"$_SESSION[sessionID]\")' content='$object->id' class='fa fa-trash'></button></td>";
                 }
                 echo "</tr>";
             }
@@ -88,7 +88,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 <span class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </span>
-                <input type="date" class="form-control" name="date" id="date_in" title="date" placeholder="yyyy-mm-dd" required>
+                <input type="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" id="date_in" title="date" placeholder="yyyy-mm-dd" required>
             </div>
             <button class="btn btn-default">&nbsp;Submit <span class="fa fa-paper-plane"></span></button>
             <?php if ($_SESSION["addAssignment"] == "success") {
@@ -129,7 +129,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 <span class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                 </span>
-            <input type="date" class="form-control" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
+            <input type="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" id="date_in" placeholder="YYYY-MM-DD" required>
         </div>
         <input title="validation" name="validation" id="session" value="<?php echo $_SESSION["sessionID"] ?>"
                style="display: none" hidden>
@@ -149,7 +149,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 <script src="../js/scroll.js"></script>
 <script src="../js/fixed-responsive-nav.js"></script>
 
-<script src='../js/jquery-3.1.0.js'></script>
+<script src='../js/jquery-3.1.1.js'></script>
 <script src="../js/stacktable.js"></script>
 
 <script>
@@ -170,6 +170,17 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
         });
         $(".examList .table_edit .nolink button").removeAttr("onclick");
     }
+
+    $(".assignmentDate").each(function () {
+        var res = $(this).html().split("-");
+
+        var d = new Date();
+        d.setFullYear(parseInt(res[0]));
+        d.setMonth(parseInt(res[1]) - 1);
+        d.setDate(parseInt(res[2]));
+
+        $(this).html(d.toLocaleDateString());
+    });
 </script>
 
 <script src="../js/assignments.js"></script>

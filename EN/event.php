@@ -122,7 +122,7 @@ if ($result == null || ($result{0}->classID != $_SESSION["classID"] && $_SESSION
                         <span class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </span>
-                        <input id="date" class="form-control" name="date" type="date"
+                        <input id="date" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" class="form-control" name="date" type="date"
                                value="<?php echo $result{0}->date ?>" required>
                     </div>
                 </td>

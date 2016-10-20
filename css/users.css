@@ -30,32 +30,6 @@ table input {
     background: none;
 }
 
-table .changed {
-    animation: 4s bgcolorchange;
-    -webkit-animation: 4s bgcolorchange;
-}
-
-@keyframes bgcolorchange {
-    0% {
-        background-color: lightgreen;
-    }
-    75% {
-        background-color: lightgreen;
-    }
-    100% {
-        background-color: transparent;
-    }
-}
-
-.form-inline {
-    margin-left: 1px !important;
-}
-
-.btn {
-    display: inline-block;
-    margin-bottom: 30px;
-}
-
 .alert {
     display: inline-block !important;
 }

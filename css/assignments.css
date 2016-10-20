@@ -22,23 +22,3 @@ table .exercise {
 .alert {
     display: inline-block !important;
 }
-
-table .changed {
-    animation: 4s bgcolorchange;
-    -webkit-animation: 4s bgcolorchange;
-}
-
-@keyframes bgcolorchange {
-    0% {
-        background-color: transparent;
-    }
-    10% {
-        background-color: lightgreen
-    }
-    75% {
-        background-color: lightgreen;
-    }
-    100% {
-        background-color: transparent;
-    }
-}

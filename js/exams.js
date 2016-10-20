@@ -77,7 +77,24 @@ $(".edit_form").submit(function () {
 
                     var changedRow = $(".examList #" + id);
                     changedRow.find(".lessonName").html(lesson);
-                    changedRow.find(".topics").html(topics);
+
+                    const regex = /(https?|ftp):\/\/(-\.)?([^\s/?\.#-]+\.?)+(\/[^\s]*)?$/i;
+
+                    if(regex.exec(topics)) {
+                        changedRow.find(".topics").html("<a href='" + topics + "' target='_blank'>Click Here</a>");
+                    } else {
+                        changedRow.find(".topics").html(topics);
+                    }
+
+                    var res = date.split("-");
+
+                    var d = new Date();
+                    d.setFullYear(parseInt(res[0]));
+                    d.setMonth(parseInt(res[1]) - 1);
+                    d.setDate(parseInt(res[2]));
+
+                    date = d.toLocaleDateString();
+
                     changedRow.find(".examDate").html(date);
 
                     setTimeout(function () {

@@ -78,6 +78,15 @@ $(".edit_form").submit(function () {
                     var changedRow = $(".assignment_tbl #" + id);
                     changedRow.find(".lessonName").html(lesson);
                     changedRow.find(".exercise").html(exercises);
+
+                    var res = date.split("-");
+                    var d = new Date();
+                    d.setFullYear(parseInt(res[0]));
+                    d.setMonth(parseInt(res[1]) - 1);
+                    d.setDate(parseInt(res[2]));
+
+                    date = d.toLocaleDateString();
+
                     changedRow.find(".assignmentDate").html(date);
 
                     setTimeout(function () {

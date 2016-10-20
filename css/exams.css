@@ -24,44 +24,6 @@ table .topics {
     width: 70%;
 }
 
-table .notDeleted {
-    animation: 4s bgcolorchange;
-    -webkit-animation: 4s bgcolorchange;
-}
-
-@keyframes bgcolorchange {
-    0% {
-        background-color: #a94442;
-    }
-    75% {
-        background-color: #a94442;
-    }
-    100% {
-        background-color: transparent;
-    }
-}
-
-table .changed {
-    animation: 4s bgcolorchange;
-    -webkit-animation: 4s bgcolorchange;
-}
-
-@keyframes bgcolorchange {
-    0% {
-        background-color: transparent;
-    }
-    10% {
-        background-color: lightgreen
-    }
-    75% {
-        background-color: lightgreen;
-    }
-    100% {
-        background-color: transparent;
-    }
-}
-
-
 .btn {
     display: inline-block;
     margin-bottom: 30px;

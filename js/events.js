@@ -86,6 +86,15 @@ $(".edit_form").submit(function () {
                     changedRow.find(".start").html(start);
                     changedRow.find(".end").html(end);
                     changedRow.find(".place").html(place);
+
+                    var res = date.split("-");
+                    var d = new Date();
+                    d.setFullYear(parseInt(res[0]));
+                    d.setMonth(parseInt(res[1]) - 1);
+                    d.setDate(parseInt(res[2]));
+
+                    date = d.toLocaleDateString();
+
                     changedRow.find(".assignmentDate").html(date);
 
                     setTimeout(function () {

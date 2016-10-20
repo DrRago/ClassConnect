@@ -60,7 +60,7 @@ if (isset($_SESSION['name'])) {
         For full functionality of this site it is necessary to enable JavaScript. Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</div>
 </noscript>
 
-<script src='../js/jquery-3.1.0.js'></script>
+<script src='../js/jquery-3.1.1.js'></script>
 <script src="../js/jquery.download.js"></script>
 <script src="../js/index.js"></script>
 

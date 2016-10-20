@@ -51,8 +51,6 @@ function sortTimetable($timetable) {
 
     <link rel='shortcut icon' type='image/x-icon' href='../img/favicon.ico'>
 
-    <script src='../js/jquery-3.1.0.js'></script>
-
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/font-awesome.css">
 
@@ -182,7 +180,7 @@ function sortTimetable($timetable) {
 <script src="../js/scroll.js"></script>
 <script src="../js/fixed-responsive-nav.js"></script>
 
-<script src='../js/jquery-3.1.0.js'></script>
+<script src='../js/jquery-3.1.1.js'></script>
 <script src="../js/stacktable.js"></script>
 
 <script>
