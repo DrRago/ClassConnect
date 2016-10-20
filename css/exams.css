@@ -51,10 +51,10 @@ table .changed {
         background-color: transparent;
     }
     10% {
-        background-color: #00d200
+        background-color: lightgreen
     }
     75% {
-        background-color: #00d200;
+        background-color: lightgreen;
     }
     100% {
         background-color: transparent;

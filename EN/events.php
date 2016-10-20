@@ -176,7 +176,9 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
 <script type="text/javascript">
     var ele = document.getElementsByClassName("changed")[0];
-    window.scrollTo(ele.offsetLeft, ele.offsetTop);
+    if (ele != null) {
+        window.scrollTo(ele.offsetLeft, ele.offsetTop);
+    }
 </script>
 
 <script src="../js/fastclick.js"></script>
@@ -194,7 +196,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 <script>
     if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         $('#tbl').stacktable();
-        
+
         $(".large-only").remove();
 
         $(".small-only tbody tr:first-child").remove();
