@@ -33,7 +33,7 @@ if (isset($_SESSION['name'])) {
     <fieldset>
         <legend class="legend">Login</legend>
         <div class="input">
-            <input class="user-in" type="text" name="username" placeholder="Username" autocomplete="off" required autofocus/>
+            <input class="user-in" type="text" name="username" placeholder="Username" autocomplete="off" required/>
             <span><i class="fa fa-user"></i></span>
         </div>
         <div class="input">
@@ -63,6 +63,12 @@ if (isset($_SESSION['name'])) {
 <script src='../js/jquery-3.1.1.js'></script>
 <script src="../js/jquery.download.js"></script>
 <script src="../js/index.js"></script>
+
+<script>
+    window.onload = function() {
+        $(".user-in").focus();
+    };
+</script>
 
 </body>
 </html>
