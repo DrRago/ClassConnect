@@ -55,12 +55,12 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 } else {
                     echo "<tr id='$object->id'>";
                 }
-                echo "<td class='title'>", $object->{'title'}, "</td>";
-                echo "<td class='description'>", $object->{'description'}, "</td>";
-                echo "<td class='place'>", $object->{'place'}, "</td>";
-                echo "<td class='time'>", $object->{'eventStart'}, ' - ', $object->{'eventEnd'}, "</td>";
-                echo "<td class='date'>", $object->{'date'}, "</td>";
-                echo "<td><button type='submit' onclick='window.open(\"https://maps.google.com/maps/place/", $object->place, "\", \"_blank\");' class='fa fa-map'></button></td>";
+                echo "<td class='title'>$object->title</td>";
+                echo "<td class='description'>$object->description</td>";
+                echo "<td class='place'>$object->place</td>";
+                echo "<td class='time'>$object->eventStart -  $object->eventEnd</td>";
+                echo "<td class='date'>$object->date</td>";
+                echo "<td><a class='nolink' href='https://maps.google.com/maps/place/$object->place' target='_blank'><button class='fa fa-map'></button></a></td>";
                 echo "<td class='table_edit'><noscript><a class='nolink' href='event.php?id=$object->id'></noscript><button type='submit' onclick='editEvent(this, \"$_SESSION[sessionID]\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
                 if ($_SESSION["username"] == $object->creator || $_SESSION["permissions"] == "ServerAdmin") {
                     echo "<td><button type='submit' onclick='deleteEvent(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
@@ -95,13 +95,13 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             <span class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
             </span>
-            <input type="time" class="form-control" name="eventStart" id="start" placeholder="Begin" required>
+            <input type="time" class="form-control" pattern="^(2[0-3]|[01]?[0-9]):([1-5]{1}[0-9])$" name="eventStart" id="start" placeholder="Begin" required>
         </div>
         <div class="input-group">
             <span class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
             </span>
-            <input type="time" class="form-control" name="eventEnd" id="end" placeholder="End" required>
+            <input type="time" class="form-control" pattern="^(2[0-3]|[01]?[0-9]):([1-5]{1}[0-9])$" name="eventEnd" id="end" placeholder="End" required>
         </div>
         <div class="input-group">
             <span class="input-group-addon">
@@ -153,13 +153,13 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             <span class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
             </span>
-            <input type="time" class="form-control" name="eventStart" id="start" placeholder="Begin" required>
+            <input type="time" class="form-control" pattern="^(2[0-3]|[01]?[0-9]):([1-5]{1}[0-9])$" name="eventStart" id="start" placeholder="Begin" required>
         </div>
         <div class="input-group">
             <span class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
             </span>
-            <input type="time" class="form-control" name="eventEnd" id="end" placeholder="End" required>
+            <input type="time" class="form-control" pattern="^(2[0-3]|[01]?[0-9]):([1-5]{1}[0-9])$" name="eventEnd" id="end" placeholder="End" required>
         </div>
         <div class="input-group">
             <span class="input-group-addon">

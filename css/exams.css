@@ -33,12 +33,6 @@ table .topics {
     display: inline-block !important;
 }
 
-.nolink, .nolink:hover, .fa:link, .fa:visited, .fa:active {
-    margin-top: 3px;
-    color: black;
-    text-decoration: none;
-}
-
 @media screen and (max-width: 1000px){
     .large-only {
         width: 100%;
