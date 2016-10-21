@@ -10,6 +10,6 @@ body {
     width: 10px;
 }
 
-.container {
+.container .alert-info {
     width: 641px;
 }
