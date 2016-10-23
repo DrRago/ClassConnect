@@ -135,13 +135,13 @@ require "../scripts/check_user.php";
                 echo "<tr><td colspan='7'>No Tickets</td></tr>";
             } else {
                 foreach ($result as $object) {
-                    echo "<tr id='$object->id'><td><input class='ticketID' name='id' type='text' readonly style='width:", strlen($object->{'id'}) * 10, "px;' value='", $object->{'id'}, "'>";
-                    echo "<td class='name'>", $object->{'creatorName'}, "</td>";
-                    echo "<td class='email'>", $object->{'creatorEmail'}, "</td>";
-                    echo "<td class='reason'>", $object->{'reason'}, "</td>";
-                    echo "<td class='creatorID'>", $object->{'creatorID'}, "</td>";
-                    echo "<td><button type='submit' onclick='window.location.href=\"ticket.php?id=", $object->id, "\"' class='fa fa-eye'></button></td>";
-                    echo "<td><button type='submit' onclick='deleteTicket(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
+                    echo "<tr id='$object->id'><td><input class='ticketID' name='id' type='text' readonly style='width:", strlen($object->{'id'}) * 10, "px;' value='$object->id'>";
+                    echo "<td class='name'>$object->creatorName</td>";
+                    echo "<td class='email'>$object->creatorEmail</td>";
+                    echo "<td class='reason'>$object->reason</td>";
+                    echo "<td class='creatorID'>$object->creatorID</td>";
+                    echo "<td><button type='submit' onclick='window.location.href=\"ticket.php?id=$object->id\"' class='fa fa-eye'></button></td>";
+                    echo "<td><button type='submit' onclick='deleteTicket(this,\"$_SESSION[sessionID]\")' content='$object->id' class='fa fa-trash'></button></td>";
                     echo "</tr>";
                 }
             } ?>
