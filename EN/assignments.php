@@ -161,14 +161,14 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
         $(".small-only tbody tr:first-child").remove();
 
-        $(".examList").find(".table_edit noscript").contents().unwrap();
-        $(".examList .table_edit").each(function(){
+        $(".assignment_tbl").find(".table_edit noscript").contents().unwrap();
+        $(".assignment_tbl .table_edit").each(function(){
             var $this = $(this);
             var t = $this.html();
             console.log(t);
             $this.html(t.replace(new RegExp('&amp;lt;','g'), "<").replace(new RegExp('&amp;gt;', 'g'), '>'));
         });
-        $(".examList .table_edit .nolink button").removeAttr("onclick");
+        $(".assignment_tbl .table_edit .nolink button").removeAttr("onclick");
     }
 
     $(".assignmentDate").each(function () {

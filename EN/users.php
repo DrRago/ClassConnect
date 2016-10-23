@@ -82,7 +82,7 @@ if ($permissions != 'ServerAdmin') {
                 }
                 echo "<td class='", $output[$count]->permissions, "'></td>";
                 if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {
-                    echo "<td><input name='id' type='text' readonly style='width:", strlen($output[$count]->id) * 9, "px;' value='", $output[$count]->id, "'>";
+                    echo "<td><input name='id' type='text' readonly style='width:", strlen($output[$count]->id) * 11, "px;' value='", $output[$count]->id, "'>";
                 }
                 echo "<td>", $output[$count]->name, "</td>";
                 if ($permissions == "ServerAdmin" || $permissions == "ClassAdmin") {

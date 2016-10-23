@@ -62,9 +62,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
                 echo "<td class='date'>$object->date</td>";
                 echo "<td><a class='nolink' href='https://maps.google.com/maps/place/$object->place' target='_blank'><button class='fa fa-map'></button></a></td>";
                 echo "<td class='table_edit'><noscript><a class='nolink' href='event.php?id=$object->id'></noscript><button type='submit' onclick='editEvent(this, \"$_SESSION[sessionID]\")' class='fa fa-pencil'></button><noscript></a></noscript></td>";
-                if ($_SESSION["username"] == $object->creator || $_SESSION["permissions"] == "ServerAdmin") {
-                    echo "<td><button type='submit' onclick='deleteEvent(this,\"", $_SESSION["sessionID"], "\")' content='$object->id' class='fa fa-trash'></button></td>";
-                }
+                echo "<td><button type='submit' onclick='deleteEvent(this,\"$_SESSION[sessionID]\")' content='$object->id' class='fa fa-trash'></button></td>";
                 echo "</tr>";
             }
         } ?>
@@ -201,14 +199,14 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
 
         $(".small-only tbody tr:first-child").remove();
 
-        $(".examList").find(".table_edit noscript").contents().unwrap();
-        $(".examList .table_edit").each(function(){
+        $(".events_tbl").find(".table_edit noscript").contents().unwrap();
+        $(".events_tbl .table_edit").each(function(){
             var $this = $(this);
             var t = $this.html();
             console.log(t);
             $this.html(t.replace(new RegExp('&amp;lt;','g'), "<").replace(new RegExp('&amp;gt;', 'g'), '>'));
         });
-        $(".examList .table_edit .nolink button").removeAttr("onclick");
+        $(".events_tbl .table_edit .nolink button").removeAttr("onclick");
     }
 
     $(".date").each(function () {
