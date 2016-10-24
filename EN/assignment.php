@@ -12,7 +12,7 @@ if ($_SESSION["permissions"] == "User") {
     $result = json_decode(getContent(array('id' => $_GET['id']), "get_assignment")); ?>
     <html>
     <head>
-        <title>Assignment <?php echo $_GET["id"] ?></title>
+        <title>Assignment <?= $_GET["id"] ?></title>
 
         <link rel="stylesheet" href="../css/bootstrap.css">
         <link rel="stylesheet" href="../css/font-awesome.css">
@@ -43,10 +43,10 @@ if ($_SESSION["permissions"] == "User") {
     </noscript>
     <?php
     if (!is_numeric($_GET['id'])) {
-        echo "<div class='alert alert-danger container'><strong>error: </strong>The ID ", $_GET['id'], " is no number</div>";
+        echo "<div class='alert alert-danger container'><strong>error: </strong>The ID $_GET[id] is no number</div>";
     } else {
     if ($result == null || ($result{0}->classID != $_SESSION["classID"] && $_SESSION["permissions"] != "ServerAdmin")) {
-        echo "<div class='alert alert-danger container'><strong>error: </strong>No assignment with the ID ", $_GET['id'], " found</div>";
+        echo "<div class='alert alert-danger container'><strong>error: </strong>No assignment with the ID $_GET[id] found</div>";
     } else { ?>
     <div class="form-inline">
         <form class="form" method="post" action="../scripts/update_assignment.php">
@@ -55,10 +55,10 @@ if ($_SESSION["permissions"] == "User") {
                     <td><label for="id">Assignment ID<a class="IsRequired">*</a>:</label></td>
                     <td>
                         <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-list-ol"></i>
-                            </span>
-                            <input id="id" class="form-control" name="id" type="text" value="<?php echo $result{0}->id ?>"
+                                <span class="input-group-addon">
+                                    <i class="fa fa-list-ol"></i>
+                                </span>
+                            <input id="id" class="form-control" name="id" type="text" value="<?= $result{0}->id ?>"
                                    readonly required>
                         </div>
                     </td>
@@ -67,11 +67,11 @@ if ($_SESSION["permissions"] == "User") {
                     <td><label for="lesson">Lesson<a class="IsRequired">*</a>:</label></td>
                     <td>
                         <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-book"></i>
-                            </span>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-book"></i>
+                                </span>
                             <input id="lesson" class="form-control" name="lesson" type="text"
-                                   value="<?php echo $result{0}->lesson ?>" required>
+                                   value="<?= $result{0}->lesson ?>" required>
                         </div>
                     </td>
                 </tr>
@@ -79,11 +79,11 @@ if ($_SESSION["permissions"] == "User") {
                     <td><label for="exercises">Exercises<a class="IsRequired">*</a>:</label></td>
                     <td>
                         <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-tasks"></i>
-                            </span>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-tasks"></i>
+                                </span>
                             <input id="exercises" class="form-control" name="exercises" type="text"
-                                   value="<?php echo $result{0}->exercises ?>" required>
+                                   value="<?= $result{0}->exercises ?>" required>
                         </div>
                     </td>
                 </tr>
@@ -91,16 +91,16 @@ if ($_SESSION["permissions"] == "User") {
                     <td><label for="date">Date<a class="IsRequired">*</a>:</label></td>
                     <td>
                         <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
                             <input id="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" type="date"
-                                   value="<?php echo $result{0}->date ?>" required>
+                                   value="<?= $result{0}->date ?>" required>
                         </div>
                     </td>
                 </tr>
             </table>
-            <input title="validation" name="validation" value="<?php echo $_SESSION["sessionID"] ?>" hidden>
+            <input title="validation" name="validation" value="<?= $_SESSION["sessionID"] ?>" hidden>
             <button class="btn btn-default" type="submit">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
             <?php
             }

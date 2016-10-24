@@ -12,7 +12,7 @@ if ($_SESSION["permissions"] == "User") {
     $result = json_decode(getContent(array('id' => $_GET['id']), "get_exam")); ?>
     <html>
     <head>
-        <title>Exam <?php echo $_GET["id"] ?></title>
+        <title>Exam <?= $_GET["id"] ?></title>
 
         <link rel="stylesheet" href="../css/bootstrap.css">
         <link rel="stylesheet" href="../css/font-awesome.css">
@@ -42,10 +42,10 @@ if ($_SESSION["permissions"] == "User") {
     </noscript>
     <?php
     if (!is_numeric($_GET['id'])) {
-        echo "<div class='alert alert-danger container'><strong>error: </strong>The ID ", $_GET['id'], " is no number</div>";
+        echo "<div class='alert alert-danger container'><strong>error: </strong>The ID $_GET[id] is no number</div>";
     } else {
     if ($result == null || ($result{0}->classID != $_SESSION["classID"] && $_SESSION["permissions"] != "ServerAdmin")) {
-        echo "<div class='alert alert-danger container'><strong>error: </strong>No exam with the ID ", $_GET['id'], " found</div>";
+        echo "<div class='alert alert-danger container'><strong>error: </strong>No exam with the ID $_GET[id] found</div>";
     } else { ?>
     <div class="form-inline">
         <form class="form" method="post" action="../scripts/update_exam.php">
@@ -58,7 +58,7 @@ if ($_SESSION["permissions"] == "User") {
                             <i class="fa fa-list-ol"></i>
                         </span>
                             <input id="id" class="form-control" name="id" type="text"
-                                   value="<?php echo $result{0}->id ?>" readonly required>
+                                   value="<?= $result{0}->id ?>" readonly required>
                         </div>
                     </td>
                 </tr>
@@ -70,7 +70,7 @@ if ($_SESSION["permissions"] == "User") {
                             <i class="fa fa-book"></i>
                         </span>
                             <input id="lesson" class="form-control" name="lesson" type="text"
-                                   value="<?php echo $result{0}->lesson ?>" required>
+                                   value="<?= $result{0}->lesson ?>" required>
                         </div>
                     </td>
                 </tr>
@@ -82,7 +82,7 @@ if ($_SESSION["permissions"] == "User") {
                             <i class="fa fa-tasks"></i>
                         </span>
                             <input id="topics" class="form-control" name="topics" type="text"
-                                   value="<?php echo $result{0}->topics ?>" placeholder="Tasks">
+                                   value="<?= $result{0}->topics ?>" placeholder="Tasks">
                         </div>
                     </td>
                 </tr>
@@ -94,12 +94,12 @@ if ($_SESSION["permissions"] == "User") {
                             <i class="fa fa-calendar"></i>
                         </span>
                             <input id="date" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" class="form-control" name="date" type="date"
-                                   value="<?php echo $result{0}->date ?>" required>
+                                   value="<?= $result{0}->date ?>" required>
                         </div>
                     </td>
                 </tr>
             </table>
-            <input title="validation" name="validation" value="<?php echo $_SESSION["sessionID"] ?>"
+            <input title="validation" name="validation" value="<?= $_SESSION["sessionID"] ?>"
                    style="display: none" hidden>
             <button class="btn btn-default" type="submit">&nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
             <?php
@@ -113,7 +113,7 @@ if ($_SESSION["permissions"] == "User") {
     <script src="../js/scroll.js"></script>
     <script src="../js/fixed-responsive-nav.js"></script>
 
-    <script src="../js/jquery-3.1.0.js"></script>
+    <script src="../js/jquery-3.1.1.js"></script>
 
     </body>
     </html>

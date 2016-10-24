@@ -165,7 +165,7 @@ $result = json_decode(getContent(array('d' => date("o-m-d"), 'cid' => $_SESSION[
             </span>
             <input type="date" class="form-control" pattern="^[0-9]{4}-[0-1][0-9]-[0-3][0-9]$" name="date" id="date_in" title="date" placeholder="YYYY-MM-DD" required>
         </div>
-        <input title="validation" name="validation" id="session" value="<?php echo $_SESSION["sessionID"] ?>"
+        <input title="validation" name="validation" id="session" value="<?= $_SESSION["sessionID"] ?>"
                style="display: none" hidden>
         <button class="btn btn-default"> &nbsp;Submit <span class="fa fa-paper-plane"> </span></button>
     </div>

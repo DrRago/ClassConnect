@@ -95,7 +95,7 @@ require "../scripts/check_user.php";
                             <span class="input-group-addon">
                                 <i class="fa fa-envelope"></i>
                             </span>
-                            <textarea class="form-control" maxlength="500" id="message" name="message" placeholder="message"><?php echo $_SESSION["ticketMessage"] ?></textarea>
+                            <textarea class="form-control" maxlength="500" id="message" name="message" placeholder="message"><?= $_SESSION["ticketMessage"] ?></textarea>
                         </div>
                     </td>
                 </tr>

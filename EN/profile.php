@@ -36,7 +36,7 @@ require "../scripts/check_user.php";?>
                         <span class="input-group-addon">
                             <i class="fa fa-user"></i>
                         </span>
-                        <input class="form-control" name="username" type="text" value="<?php echo $_SESSION["username"] ?>" placeholder="Username" readonly>
+                        <input class="form-control" name="username" type="text" value="<?= $_SESSION["username"] ?>" placeholder="Username" readonly>
                     </div>
                 </td>
             </tr>
@@ -46,7 +46,7 @@ require "../scripts/check_user.php";?>
                         <span class="input-group-addon">
                             <i class="fa fa-male"></i>
                         </span>
-                        <input class="form-control" name="name" type="text" value="<?php echo $_SESSION["name"] ?>" placeholder="Name" required>
+                        <input class="form-control" name="name" type="text" value="<?= $_SESSION["name"] ?>" placeholder="Name" required>
                     </div>
                 </td>
             </tr>
@@ -56,7 +56,7 @@ require "../scripts/check_user.php";?>
                         <span class="input-group-addon">
                             <i class="fa fa-phone"></i>
                         </span>
-                        <input class="form-control" name="phone" type="tel" value="<?php echo $_SESSION["phone"] ?>" placeholder="Phone">
+                        <input class="form-control" name="phone" type="tel" value="<?= $_SESSION["phone"] ?>" placeholder="Phone">
                     </div>
                 </td>
             </tr>
@@ -66,7 +66,7 @@ require "../scripts/check_user.php";?>
                         <span class="input-group-addon">
                             <i class="fa fa-at"></i>
                         </span>
-                        <input class="form-control" name="email" type="email" value="<?php echo $_SESSION["email"] ?>" placeholder="Email">
+                        <input class="form-control" name="email" type="email" value="<?= $_SESSION["email"] ?>" placeholder="Email">
                     </div>
                 </td>
             </tr>
@@ -76,7 +76,7 @@ require "../scripts/check_user.php";?>
                         <span class="input-group-addon">
                             <i class="fa fa-users"></i>
                         </span>
-                        <input class="form-control" name="groupID" type="text" value="<?php echo $_SESSION["groupID"] ?>" placeholder="GroupID" required>
+                        <input class="form-control" name="groupID" type="text" value="<?= $_SESSION["groupID"] ?>" placeholder="GroupID" required>
                     </div>
                 </td>
             </tr>

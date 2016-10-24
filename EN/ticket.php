@@ -39,10 +39,10 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
     <div class="form-inline">
         <?php
         if (!is_numeric($_GET['id'])) {
-            echo "<div class='alert alert-danger'><strong>error: </strong>The ID ", $_GET['id'], " is no number</div>";
+            echo "<div class='alert alert-danger'><strong>error: </strong>The ID $_GET[id] is no number</div>";
         } else {
             if ($result == null) {
-                echo "<div class='alert alert-danger'><strong>error: </strong>No ticket with the ID ", $_GET['id'], " found</div>";
+                echo "<div class='alert alert-danger'><strong>error: </strong>No ticket with the ID $_GET[id] found</div>";
             } else { ?>
                 <form>
                     <table>
@@ -54,7 +54,7 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
                                     <i class="fa fa-list-ol"></i>
                                 </span>
                                     <input id="id" class="form-control" name="id" type="text"
-                                           value="<?php echo $result{0}->id ?>" readonly>
+                                           value="<?= $result{0}->id ?>" readonly>
                                 </div>
                             </td>
                         </tr>
@@ -66,7 +66,7 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
                                     <i class="fa fa-list-ol"></i>
                                 </span>
                                     <input id="creatorID" class="form-control" type="text"
-                                           value="<?php echo $result{0}->creatorID ?>" readonly>
+                                           value="<?= $result{0}->creatorID ?>" readonly>
                                 </div>
                             </td>
                         </tr>
@@ -78,7 +78,7 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
                                     <i class="fa fa-male"></i>
                                 </span>
                                     <input id="creatorName" class="form-control" name="name" type="text"
-                                           value="<?php echo $result{0}->creatorName ?>" readonly>
+                                           value="<?= $result{0}->creatorName ?>" readonly>
                                 </div>
                             </td>
                         </tr>
@@ -90,7 +90,7 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
                                     <i class="fa fa-at"></i>
                                 </span>
                                     <input id="creatorEmail" class="form-control" type="text"
-                                           value="<?php echo $result{0}->creatorEmail ?>" readonly>
+                                           value="<?= $result{0}->creatorEmail ?>" readonly>
                                 </div>
                             </td>
                         </tr>
@@ -102,7 +102,7 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
                                     <i class="fa fa-tag"></i>
                                 </span>
                                     <input id="reason" class="form-control" type="text"
-                                           value="<?php echo $result{0}->reason ?>" readonly>
+                                           value="<?= $result{0}->reason ?>" readonly>
                                 </div>
                             </td>
                         </tr>
@@ -114,7 +114,7 @@ if ($_SESSION["permissions"] != "ServerAdmin") {
                                     <i class="fa fa-envelope"></i>
                                 </span>
                                     <textarea id="message" class="form-control"
-                                              readonly><?php echo $result{0}->content ?></textarea>
+                                              readonly><?= $result{0}->content ?></textarea>
                                 </div>
                             </td>
                         </tr>

@@ -52,10 +52,10 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
         <form class="form" method="post" action="../scripts/edit_user.php">
             <?php
             if (!is_numeric($_GET['id'])) {
-                echo "<div class='alert alert-danger'><strong>error: </strong>The ID ", $_GET['id'], " is no number</div>";
+                echo "<div class='alert alert-danger'><strong>error: </strong>The ID $_GET[id] is no number</div>";
             } else {
                 if ($result == null) {
-                    echo "<div class='alert alert-danger'><strong>error: </strong>No user with the ID ", $_GET['id'], " found</div>";
+                    echo "<div class='alert alert-danger'><strong>error: </strong>No user with the ID $_GET[id] found</div>";
                 } else { ?>
                     <table>
                         <tr>
@@ -64,7 +64,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                         <i class="fa fa-list-ol"></i>
                                     </span>
-                                    <input class="form-control" name="id" type="number" value="<?php echo $result{0}->id ?>" placeholder="Username" readonly>
+                                    <input class="form-control" name="id" type="number" value="<?= $result{0}->id ?>" placeholder="Username" readonly>
                                 </div>
                             </td>
                         </tr>
@@ -74,7 +74,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                     <i class="fa fa-user"></i>
                                     </span>
-                                    <input class="form-control" name="username" type="text" value="<?php echo $result{0}->username ?>" placeholder="Username" readonly>
+                                    <input class="form-control" name="username" type="text" value="<?= $result{0}->username ?>" placeholder="Username" readonly>
                                 </div>
                             </td>
                         </tr>
@@ -84,7 +84,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                         <i class="fa fa-male"></i>
                                     </span>
-                                    <input class="form-control" name="name" type="text" value="<?php echo $result{0}->name ?>" placeholder="Name" required>
+                                    <input class="form-control" name="name" type="text" value="<?= $result{0}->name ?>" placeholder="Name" required>
                                 </div>
                             </td>
                         </tr>
@@ -94,7 +94,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </span>
-                                    <input class="form-control" name="phone" type="tel" value="<?php echo $result{0}->phone ?>" placeholder="Phone">
+                                    <input class="form-control" name="phone" type="tel" value="<?= $result{0}->phone ?>" placeholder="Phone">
                                 </div>
                             </td>
                         </tr>
@@ -104,7 +104,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                         <i class="fa  fa-at"></i>
                                     </span>
-                                    <input class="form-control" name="email" type="email" value="<?php echo $result{0}->email ?>" placeholder="Email">
+                                    <input class="form-control" name="email" type="email" value="<?= $result{0}->email ?>" placeholder="Email">
                                 </div>
                             </td>
                         </tr>
@@ -114,7 +114,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                         <i class="fa fa-group"></i>
                                     </span>
-                                    <input class="form-control" name="groupID" type="text" maxlength="1" onkeypress='return event.charCode >= 65 && event.charCode <= 66' value="<?php echo $result{0}->groupID ?>" placeholder="GroupID" list="suggestions" required>
+                                    <input class="form-control" name="groupID" type="text" maxlength="1" onkeypress='return event.charCode >= 65 && event.charCode <= 66' value="<?= $result{0}->groupID ?>" placeholder="GroupID" list="suggestions" required>
                                     <datalist id="suggestions">
                                         <option value="B">
                                         <option value="A">
@@ -128,7 +128,7 @@ if ($_SESSION["permissions"] == "Moderator" || $_SESSION["permissions"] == "User
                                     <span class="input-group-addon">
                                         <i class="fa fa-graduation-cap"></i>
                                     </span>
-                                    <input class="form-control" name="classID" type="number" value="<?php echo $result{0}->classID ?>" placeholder="ClassID" required>
+                                    <input class="form-control" name="classID" type="number" value="<?= $result{0}->classID ?>" placeholder="ClassID" required>
                                 </div>
                             </td>
                         </tr>

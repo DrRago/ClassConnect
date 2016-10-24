@@ -41,7 +41,7 @@ if (isset($_SESSION['name'])) {
             <span><i class="fa fa-lock"></i></span>
         </div>
         <button type="submit" class="submit" style="margin-right: 70px;"><i class="fa fa-arrow-right" style="margin-top: -2px"></i></button>
-        <button type="button" class="download" onclick="download('<?php echo $links[count($links) - 1]->link?>')" style="margin-left: 60px;margin-top: -45px"><i class="fa fa-download" style="margin-top: -2px"></i></button>
+        <button type="button" class="download" onclick="download('<?= $links[count($links) - 1]->link?>')" style="margin-left: 60px;margin-top: -45px"><i class="fa fa-download" style="margin-top: -2px"></i></button>
     </fieldset>
     <div class="error">
         wrong username or password <br />
