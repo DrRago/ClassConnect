@@ -2,13 +2,22 @@
 session_start();
 error_reporting(1);
 
-
-include_once "../scripts/communicate.php";
-$links = json_decode(getContent(array(), "get_app"));
-
-if (isset($_SESSION['name'])) {
-    header('Location: timetable.php');
-    exit;
+$data["k"] = "QVBJV0Vic2l0ZSBza2lhZG5zZ";
+$url = 'http://api.tandashi.de/api/get_app';
+// use key 'http' even if you send the request to https://...
+$options = array(
+    'http' => array(
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($data),
+        'timeout' => 0.001
+    ),
+);
+$context = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+if (isset($http_response_header)) {
+    include_once "../scripts/communicate.php";
+    $links = json_decode(getContent(array(), "get_app"));
 }
 ?>
 <html>
@@ -29,19 +38,6 @@ if (isset($_SESSION['name'])) {
 <body>
 
 <?php
-$data["k"] = "QVBJV0Vic2l0ZSBza2lhZG5zZ";
-$url = 'http://api.tandashi.de/api/get_app';
-// use key 'http' even if you send the request to https://...
-$options = array(
-    'http' => array(
-        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-        'method' => 'POST',
-        'content' => http_build_query($data),
-        'timeout' => 1
-    ),
-);
-$context = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
 if (!isset($http_response_header)) {?>
     <form class="login" action="../scripts/login.php?js=false" method="post">
         <fieldset>
@@ -87,7 +83,7 @@ if (!isset($http_response_header)) {?>
                 <span><i class="fa fa-lock"></i></span>
             </div>
             <button type="submit" class="submit" style="margin-right: 70px;"><i class="fa fa-arrow-right"
-                                                                                         style="margin-top: -2px"></i>
+                                                                                style="margin-top: -2px"></i>
             </button>
             <button type="button" class="download" onclick="download('<?= $links[count($links) - 1]->link ?>')"
                     style="margin-left: 60px;margin-top: -45px"><i class="fa fa-download" style="margin-top: -2px"></i>
