@@ -11,7 +11,6 @@ $items = array(
     "Events" => "events.php",
     "Users" => "users.php",
     "Support" => "support.php",
-    "Support v2" => "suppoart.php",
     "Logout" => "../scripts/logout.php",
     "App " . $links[count($links) - 1]->version => $links[count($links) - 1]->link,
     $_SESSION["name"] => "profile.php",
