@@ -145,3 +145,32 @@ body {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+button:disabled{
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+
+button:disabled i{
+    color: #fff;
+}
+
+button:disabled i:before{
+    content: '\f12a';
+}
+
+input:disabled {
+    border-color: #f0ad4e;
+}
+
+.submit:disabled:hover {
+    background-color: #f0ad4e;
+}
+
+.legend.disabled{
+    background-color: #f0ad4e !important;
+}
+
+.api_error {
+    width: 800px;
+}
