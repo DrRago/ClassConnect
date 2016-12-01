@@ -15,7 +15,7 @@ $options = array(
 );
 $context = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
-if (isset($http_response_header)) {
+if (!empty($http_response_header)) {
     include_once "../scripts/communicate.php";
     $links = json_decode(getContent(array(), "get_app"));
 }
@@ -38,20 +38,19 @@ if (isset($http_response_header)) {
 <body>
 
 <?php
-if (!isset($http_response_header)) {?>
+if (empty($http_response_header)) {?>
     <form class="login" action="../scripts/login.php?js=false" method="post">
         <fieldset>
             <legend class="legend disabled">Login</legend>
             <div class="input">
                 <input class="user-in" type="text" name="username" placeholder="Username" autocomplete="off" required disabled/>
-                <span><i class="fa fa-user"></i></span>
+                <span><i class="fa fa-user disabled"></i></span>
             </div>
             <div class="input">
                 <input class="pw-in" type="password" name="password" placeholder="Password" required disabled/>
-                <span><i class="fa fa-lock"></i></span>
+                <span><i class="fa fa-lock disabled"></i></span>
             </div>
-            <button type="submit" class="submit" style="margin-right: 70px;" disabled><i class="fa fa-arrow-right" style="margin-top: -2px"></i></button>
-            <button type="button" class="download" onclick="download('<?= $links[count($links) - 1]->link?>')" style="margin-left: 60px;margin-top: -45px"><i class="fa fa-download" style="margin-top: -2px"></i></button>
+            <button type="submit" class="submit" disabled><i class="fa fa-arrow-right" style="margin-top: -2px"></i></button>
         </fieldset>
         <div class="error">
             wrong username or password <br />

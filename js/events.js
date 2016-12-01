@@ -61,6 +61,7 @@ $(".edit_form").submit(function () {
     setTimeout(function () {
         var inputs = $(".edit_form .input-div");
 
+        //TODO Correct these times
         var id = inputs.find("#id").val();
         var title = inputs.find("#title").val();
         var description = inputs.find("#description").val();

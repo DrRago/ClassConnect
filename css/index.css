@@ -161,9 +161,30 @@ button:disabled i:before{
 
 input:disabled {
     border-color: #f0ad4e;
+    background-color: rgba(240, 173, 78, 0.52);
 }
 
-.submit:disabled:hover {
+i.disabled {
+    color: white;
+}
+
+input:disabled::-webkit-input-placeholder {
+    color: white;
+}
+
+input:disabled:-moz-placeholder { /* Firefox 18- */
+    color: white;
+}
+
+input:disabled::-moz-placeholder {  /* Firefox 19+ */
+    color: white;
+}
+
+input:disabled:-ms-input-placeholder {
+    color: white;
+}
+
+button:disabled:hover {
     background-color: #f0ad4e;
 }
 

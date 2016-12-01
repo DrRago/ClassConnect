@@ -44,7 +44,26 @@ function sortTimetable($timetable) {
         array_push($temp{$days{$value->day}}, $value);
     }
     return $temp;
-}?>
+}
+
+function getNextLesson($timetable) {
+    $time = date("H:i");
+    $day = date("l");
+    $found = false;
+    foreach ($timetable as $e) {
+        $count = count($e);
+        for ($c = 0; $count > $c; $c++) {
+            $i = $e{$c};
+            if ($i->day == $day && $i->lessonEnd > $time && $i->lessonStart > $time) {
+                return $i;
+            } elseif ($count == $c) {
+                var_dump("last");
+            }
+        }
+    }
+    return false;
+}
+?>
 <html>
 <head>
     <title>Timetable</title>
@@ -79,7 +98,10 @@ function sortTimetable($timetable) {
 
     $startTimes = getTimes($result, true);
     $endTimes = getTimes($result, false);
-    $result = sortTimetable($result); ?>
+    $result = sortTimetable($result);
+
+    $nextLesson = getNextLesson($result);
+    ?>
 
     <table id="timetable1" border='0' cellpadding='0' cellspacing='0'>
         <h4 hidden><?php if ((date('W') % 2) == 0) {
@@ -109,8 +131,12 @@ function sortTimetable($timetable) {
             echo "<tr>";
             echo "<td class='time'>$startTimes[$i] - $endTimes[$i]</td>";
             for ($e = 0; $e <= 4; $e++) {
+                if ($result{$e}{$i - $count[$e]}->id == null){
+                }
                 if ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart && ($startTimes[$i] <= date("H:i") and $endTimes[$i] >= date("H:i") and $e == date("N") - 1)) { // checks if the actual time is between the time of the lesson and sets the class cell to 'now'
                     echo "<td class='now' data-tooltip='", $result{$e}{$i - $count[$e]}->lesson, "'>", $result{$e}{$i - $count[$e]}->lessonShort, " <br>", $result{$e}{$i - $count[$e]}->room, "</td>";
+                } elseif (isset($nextLesson->id) && $nextLesson->id == $result{$e}{$i - $count[$e]}->id) {
+                    echo "<td class='next' data-tooltip='", $result{$e}{$i - $count[$e]}->lesson, "'>", $result{$e}{$i - $count[$e]}->lessonShort, " <br>", $result{$e}{$i - $count[$e]}->room, "</td>";
                 } elseif ($startTimes[$i] == $result{$e}{$i - $count[$e]}->lessonStart) {
                     echo "<td data-tooltip='", $result{$e}{$i - $count[$e]}->lesson, "'>", $result{$e}{$i - $count[$e]}->lessonShort, "<br>", $result{$e}{$i - $count[$e]}->room, "</td>";
                 } else {
