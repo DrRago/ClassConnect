@@ -38,7 +38,7 @@ if (!empty($http_response_header)) {
 <body>
 
 <?php
-if (empty($http_response_header)) {?>
+if (1) {?>
     <form class="login" action="../scripts/login.php?js=false" method="post">
         <fieldset>
             <legend class="legend disabled">Login</legend>
@@ -52,20 +52,11 @@ if (empty($http_response_header)) {?>
             </div>
             <button type="submit" class="submit" disabled><i class="fa fa-arrow-right" style="margin-top: -2px"></i></button>
         </fieldset>
-        <div class="error">
-            wrong username or password <br />
-            try again
-        </div>
-
-        <div class="interror">
-            internal server error <br />
-            please try again later
-        </div>
     </form>
 
     <div class="container alert alert-danger api_error" role="alert">
         <strong>Attention!</strong>
-        The login has been disabled during an issue on our server. This has been reported. Please try again later.
+        This service has been disabled and won't be recovered in future.
     </div>
     <?php
 } else {
